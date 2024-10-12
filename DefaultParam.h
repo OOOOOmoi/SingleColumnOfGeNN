@@ -2,8 +2,7 @@
 #include <string>
 using namespace std;
 
-struct LIFParams
-{
+struct LIFParams{
     string NeuronName = "E";
     float EL = -70.0;
     float Vth = -50.0;
@@ -12,4 +11,9 @@ struct LIFParams
     float taum = 20.0;
     float tau_syn = 0.5;
     float t_ref = 2.0;
+};
+
+struct InitParam{
+    float Vmean=-150.0;
+    float Vstd=50.0;
 };
