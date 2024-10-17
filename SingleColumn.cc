@@ -6,7 +6,34 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <fstream>
 using namespace std;
+const char *FileWeight="/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/SynapsesWeight.txt";
+const char *FilePoissonWeight="/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/ExternalSynapses.txt";
+const char *FileSynapseNumber="/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/SynapsesNumber.txt";
+
+map<string,map<string,float>> IndCompute(map<string,int> NeuronCount){
+    map<string,map<string,float>> K;
+    ifstream SynapseNum(FileSynapseNumber,ios::in);
+    string SrcPop,TarPop;
+    float syn;
+    while (SynapseNum>>SrcPop>>TarPop>>syn){
+        K[SrcPop][TarPop]=syn/NeuronCount[TarPop];
+    }
+    return K;
+}
+
+map<string,map<string,WeightInfo>> GetWeight(){
+    map<string,map<string,WeightInfo>> W;
+    ifstream Weight(FileWeight,ios::in);
+    string SrcPop,TarPop;
+    float wAve,wSd;
+    while (Weight>>SrcPop>>TarPop>>wAve>>wSd){
+        W[SrcPop][TarPop].w_ave=wAve;
+        W[SrcPop][TarPop].w_sd=wSd;
+    }
+    return W;
+}
 
 LIFParams NeuronParamInit(string name, float EL, float Vth, float Vreset, float Cm, float taum, float tan_syn, float t_ref){
     LIFParams Param;
@@ -21,14 +48,18 @@ LIFParams NeuronParamInit(string name, float EL, float Vth, float Vreset, float 
     return Param;
 }
 
+
+
 void modelDefinition(ModelSpec &model){
+    ifstream SynapsesWeight(FileWeight,ios::in);
+    ifstream PoissonWeight(FilePoissonWeight,ios::in);
     LIFParams ParamE;
     LIFParams ParamS=NeuronParamInit("S",-76.0,-50.0,-60.0,800.0,50.0,0.5,1.0);
     LIFParams ParamP=NeuronParamInit("P",-86.0,-50.0,-60.0,200.0,10.0,0.5,1.0);
     LIFParams ParamV=NeuronParamInit("V",-70.0,-50.0,-65.0,100.0,20.0,0.5,1.0);
     LIFParams ParamH=NeuronParamInit("H",-70.0,-50.0,-65.0,100.0,20.0,0.5,1.0);
     InitParam InitVoltage;
-    vector<string> NeuronType={"E","S","P","H"};
+    vector<string> NeuronType={"E","S","P","V"};
     vector<string> LayerList={"1","23","4","5","6"};
     string PopList[17];
     PopList[0]="H1";
@@ -50,20 +81,22 @@ void modelDefinition(ModelSpec &model){
             {"E23", 51738},
             {"S23", 1892},
             {"P23", 2610},
-            {"H23", 4514},
+            {"V23", 4514},
             {"E4", 74933},
             {"S4", 4041},
             {"P4", 7037},
-            {"H4", 1973},
+            {"V4", 1973},
             {"E5", 21624},
             {"S5", 1586},
             {"P5", 1751},
-            {"H5", 334},
+            {"V5", 334},
             {"E6", 20278},
             {"S6", 1667},
             {"P6", 1656},
-            {"H6", 302}
+            {"V6", 302}
     };
+    map<string,map<string,float>> Ind;
+    Ind=IndCompute(neuron_number);
     InitVarSnippet::Normal::ParamValues vDist(
         InitVoltage.Vmean, //mean
         InitVoltage.Vstd);  //sd
@@ -78,8 +111,8 @@ void modelDefinition(ModelSpec &model){
             ParaList=ParamS;
         }else if (PopList[i].find("P")!=string::npos){
             ParaList=ParamP;
-        }else if (PopList[i].find("H")!=string::npos){
-            ParaList=ParamH;
+        }else if (PopList[i].find("V")!=string::npos){
+            ParaList=ParamV;
         }
         NeuronModels::LIF::ParamValues lifParams(
             ParaList.Cm/1000.0,//C
@@ -89,8 +122,23 @@ void modelDefinition(ModelSpec &model){
             ParaList.Vth,//Vthresh
             0.0,//Ioffset
             ParaList.t_ref);//refractor
+        cout<<"Building Population: "<<PopList[i]<<" ,NeuronNumber: "<<neuron_number[PopList[i]]<<endl;
         model.addNeuronPopulation<NeuronModels::LIF>(PopList[i],neuron_number[PopList[i]],lifParams,lifInit);
+        string popPoisson;
+        float weightPoisson;
+        PoissonWeight>>popPoisson>>weightPoisson;
+        CurrentSourceModels::PoissonExp::VarValues poissonInit(0.0);
+        CurrentSourceModels::PoissonExp::ParamValues poissonParams(weightPoisson/1000.0,ParamE.tau_syn,10.0);
+        model.addCurrentSource<CurrentSourceModels::PoissonExp>(PopList[i]+"_Poisson",PopList[i],poissonParams,poissonInit)
+        cout<<"Creating Poisson Input Of "<<PopList[i]<<endl;
     }
-    
-    
+    map<string,map<string,WeightInfo>> W;
+    W=GetWeight();
+    for (auto srcPop=begin(PopList);srcPop!=end(PopList);srcPop++){
+        for (auto tarPop=begin(PopList);tarPop!=end(PopList);tarPop++){
+            model.addSynapsePopulation<WeightUpdateModels::StaticPulseDendriticDelay,PostsynapticModels::ExpCurr>(
+                srcPop+"2"+tarPop,SynapseMatrixType::SPARSE_INDIVIDUALG,NO_DELAY,srcPop,tarPop,
+                );
+        }
+    }
 }

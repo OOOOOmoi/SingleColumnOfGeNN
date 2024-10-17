@@ -17,3 +17,8 @@ struct InitParam{
     float Vmean=-150.0;
     float Vstd=50.0;
 };
+
+struct WeightInfo{
+    float w_ave;
+    float w_sd;
+};
