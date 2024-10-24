@@ -5,6 +5,7 @@ DataPath=os.path.join("/home/yangjinhao/GeNN/genn-master/userproject/SingleColum
 file1=os.path.join("/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/SynapsesWeight.txt")
 file2=os.path.join("/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/ExternalSynapses.txt")
 file3=os.path.join("/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/SynapsesNumber.txt")
+file4=os.path.join("/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/SynapsesNumberEx.txt")
 with open(DataPath,'r') as f:
     ParamOfAll=json.load(f)
 SynapsesWeightMean=OrderedDict()
@@ -14,7 +15,7 @@ SynapsesWeightMean=ParamOfAll["synapse_weights_mean"]
 SynapsesWeightSd=ParamOfAll["synapse_weights_sd"]
 SynapsesNumber=ParamOfAll["synapses"]
 # 打开两个文件，分别保存数据
-with open(file1, 'w') as f1, open(file2, 'w') as f2, open(file3, 'w') as f3:
+with open(file1, 'w') as f1, open(file2, 'w') as f2, open(file3, 'w') as f3, open(file4, 'w') as f4:
     # 用于存储 popTar 和 wEx 的集合，避免重复写入
     popTar_wEx_written = set()
 
@@ -25,6 +26,7 @@ with open(file1, 'w') as f1, open(file2, 'w') as f2, open(file3, 'w') as f3:
             wSd = SynapsesWeightSd['V1'][popTar]['V1'][popSrc]
             wEx = SynapsesWeightMean['V1'][popTar]["external"]["external"]
             synNum = SynapsesNumber['V1'][popTar]['V1'][popSrc]
+            synNumEx = SynapsesNumber['V1'][popTar]['external']['external']
 
             # 写入第一个文件：popSrc popTar wAve wSd
             f1.write(f"{popSrc} {popTar} {wAve} {wSd}\n")
@@ -32,4 +34,5 @@ with open(file1, 'w') as f1, open(file2, 'w') as f2, open(file3, 'w') as f3:
             # 如果 popTar 尚未写入第二个文件，写入 popTar 和 wEx
             if popTar not in popTar_wEx_written:
                 f2.write(f"{popTar} {wEx}\n")
+                f4.write(f"{popTar} {synNumEx}\n")
                 popTar_wEx_written.add(popTar)  # 记录 popTar，防止重复写入
