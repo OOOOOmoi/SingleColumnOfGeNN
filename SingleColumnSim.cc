@@ -95,6 +95,7 @@ using namespace std;
 int main(){
     allocateMem();
     initialize();
+    
     SpikeRecorder<> H1Spikes(&getH1CurrentSpikes, &getH1CurrentSpikeCount, "outputH1SpikeTime");
     SpikeRecorder<> E23Spikes(&getE23CurrentSpikes, &getE23CurrentSpikeCount, "outputE23SpikeTime");
     SpikeRecorder<> E6Spikes(&getE6CurrentSpikes, &getE6CurrentSpikeCount, "outputE6SpikeTime");
