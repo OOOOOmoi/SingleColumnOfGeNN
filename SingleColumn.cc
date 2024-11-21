@@ -27,9 +27,9 @@ map<string,map<string,float>> IndCompute(map<string,int> NeuronCount){
     while (SynapsesNumberExternal>>TarPop>>syn){
         K["external"][TarPop]=syn/NeuronCount[TarPop];
     }
-    return K;
     SynapseNum.close();
     SynapsesNumberExternal.close();
+    return K;
 }
 
 map<string,map<string,WeightInfo>> GetWeight(){
@@ -41,8 +41,8 @@ map<string,map<string,WeightInfo>> GetWeight(){
         W[SrcPop][TarPop].w_ave=wAve/1000;
         W[SrcPop][TarPop].w_sd=wSd/1000;
     }
-    return W;
     Weight.close();
+    return W;
 }
 
 LIFParams NeuronParamInit(string name, float EL, float Vth, float Vreset, float Cm, float taum, float tau_syn, float t_ref){
@@ -57,9 +57,6 @@ LIFParams NeuronParamInit(string name, float EL, float Vth, float Vreset, float 
     Param.t_ref=t_ref;
     return Param;
 }
-
-
-
 void modelDefinition(ModelSpec &model){
     model.setDT(0.1);
     model.setName("SingleColumn");
@@ -162,7 +159,8 @@ void modelDefinition(ModelSpec &model){
             ioffset,//Ioffset
             ParaList.t_ref);//refractor
         cout<<"Building Population: "<<PopList[i]<<" ,NeuronNumber: "<<neuron_number[PopList[i]]<<endl;
-        model.addNeuronPopulation<NeuronModels::LIF>(PopList[i],neuron_number[PopList[i]],lifParams,lifInit);
+        auto *Neu=model.addNeuronPopulation<NeuronModels::LIF>(PopList[i],neuron_number[PopList[i]],lifParams,lifInit);
+        Neu->setSpikeRecordingEnabled(true);
         if (PoissionInput==true){
             string popPoisson;
             float weightPoisson;
@@ -180,9 +178,9 @@ void modelDefinition(ModelSpec &model){
     for (auto srcPop=begin(PopList);srcPop!=end(PopList);srcPop++){
         for (auto tarPop=begin(PopList);tarPop!=end(PopList);tarPop++){
             SynapsesNumber>>temp1>>temp2>>syn_num;
-            cout<<"Creating Connect of "<<*srcPop<<" to "<<*tarPop<<", SynapseNumber="<<syn_num<<endl;
+            cout<<"Creating Connect of "<<*srcPop<<" to "<<*tarPop<<", SynapseNumber="<<static_cast<int>(syn_num)<<endl;
             InitSparseConnectivitySnippet::FixedNumberTotalWithReplacement::ParamValues synapseNum(
-                syn_num);
+                static_cast<int>(syn_num));
             if (srcPop->find("E")){
                 PostsynapticModels::ExpCurr::ParamValues ExpCurrParams(ParamE.tau_syn);
                 InitVarSnippet::NormalClipped::ParamValues wDist(

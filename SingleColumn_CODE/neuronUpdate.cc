@@ -3,24 +3,24 @@
 
 struct MergedNeuronUpdateGroup0
  {
-    unsigned int* denDelayPtrInSyn11;
-    unsigned int* denDelayPtrInSyn6;
-    float* inSynInSyn7;
-    float* denDelayInSyn7;
-    unsigned int* denDelayPtrInSyn7;
-    float* inSynInSyn8;
-    float* denDelayInSyn8;
-    unsigned int* denDelayPtrInSyn8;
     float* inSynInSyn9;
-    float* denDelayInSyn9;
-    unsigned int* denDelayPtrInSyn9;
-    float* inSynInSyn10;
-    float* denDelayInSyn10;
-    unsigned int* denDelayPtrInSyn10;
-    float* inSynInSyn11;
+    unsigned int* denDelayPtrInSyn11;
     float* denDelayInSyn11;
-    float* denDelayInSyn6;
+    float* inSynInSyn11;
+    unsigned int* denDelayPtrInSyn10;
+    float* denDelayInSyn10;
+    float* inSynInSyn10;
+    unsigned int* denDelayPtrInSyn9;
+    float* denDelayInSyn9;
     float* inSynInSyn12;
+    unsigned int* denDelayPtrInSyn8;
+    float* denDelayInSyn8;
+    float* inSynInSyn8;
+    unsigned int* denDelayPtrInSyn7;
+    float* denDelayInSyn7;
+    float* inSynInSyn7;
+    unsigned int* denDelayPtrInSyn6;
+    float* denDelayInSyn6;
     float* denDelayInSyn12;
     unsigned int* denDelayPtrInSyn12;
     float* inSynInSyn13;
@@ -35,6 +35,7 @@ struct MergedNeuronUpdateGroup0
     float* inSynInSyn16;
     float* denDelayInSyn16;
     unsigned int* denDelayPtrInSyn16;
+    uint32_t* recordSpk;
     float* inSynInSyn1;
     unsigned int* spkCnt;
     unsigned int* spk;
@@ -82,8 +83,8 @@ void pushMergedNeuronSpikeQueueUpdateGroup0ToDevice(unsigned int idx, unsigned i
     CHECK_CUDA_ERRORS(cudaMemcpyToSymbolAsync(d_mergedNeuronSpikeQueueUpdateGroup0, &group, sizeof(MergedNeuronSpikeQueueUpdateGroup0), idx * sizeof(MergedNeuronSpikeQueueUpdateGroup0)));
 }
 __device__ __constant__ MergedNeuronUpdateGroup0 d_mergedNeuronUpdateGroup0[17];
-void pushMergedNeuronUpdateGroup0ToDevice(unsigned int idx, unsigned int* denDelayPtrInSyn11, unsigned int* denDelayPtrInSyn6, float* inSynInSyn7, float* denDelayInSyn7, unsigned int* denDelayPtrInSyn7, float* inSynInSyn8, float* denDelayInSyn8, unsigned int* denDelayPtrInSyn8, float* inSynInSyn9, float* denDelayInSyn9, unsigned int* denDelayPtrInSyn9, float* inSynInSyn10, float* denDelayInSyn10, unsigned int* denDelayPtrInSyn10, float* inSynInSyn11, float* denDelayInSyn11, float* denDelayInSyn6, float* inSynInSyn12, float* denDelayInSyn12, unsigned int* denDelayPtrInSyn12, float* inSynInSyn13, float* denDelayInSyn13, unsigned int* denDelayPtrInSyn13, float* inSynInSyn14, float* denDelayInSyn14, unsigned int* denDelayPtrInSyn14, float* inSynInSyn15, float* denDelayInSyn15, unsigned int* denDelayPtrInSyn15, float* inSynInSyn16, float* denDelayInSyn16, unsigned int* denDelayPtrInSyn16, float* inSynInSyn1, unsigned int* spkCnt, unsigned int* spk, scalar* V, scalar* RefracTime, float* inSynInSyn0, float* denDelayInSyn0, unsigned int* denDelayPtrInSyn0, float* denDelayInSyn1, unsigned int* denDelayPtrInSyn1, float* inSynInSyn2, float* denDelayInSyn2, float* inSynInSyn3, float* inSynInSyn6, unsigned int* denDelayPtrInSyn5, float* denDelayInSyn5, float* inSynInSyn5, unsigned int* denDelayPtrInSyn4, float* denDelayInSyn4, float* inSynInSyn4, unsigned int* denDelayPtrInSyn3, float* denDelayInSyn3, unsigned int* denDelayPtrInSyn2, scalar Rmembrane, scalar ExpTC, scalar TauRefrac, scalar Ioffset, scalar Vreset, scalar Vrest, scalar TauM, scalar C, unsigned int numNeurons) {
-    MergedNeuronUpdateGroup0 group = {denDelayPtrInSyn11, denDelayPtrInSyn6, inSynInSyn7, denDelayInSyn7, denDelayPtrInSyn7, inSynInSyn8, denDelayInSyn8, denDelayPtrInSyn8, inSynInSyn9, denDelayInSyn9, denDelayPtrInSyn9, inSynInSyn10, denDelayInSyn10, denDelayPtrInSyn10, inSynInSyn11, denDelayInSyn11, denDelayInSyn6, inSynInSyn12, denDelayInSyn12, denDelayPtrInSyn12, inSynInSyn13, denDelayInSyn13, denDelayPtrInSyn13, inSynInSyn14, denDelayInSyn14, denDelayPtrInSyn14, inSynInSyn15, denDelayInSyn15, denDelayPtrInSyn15, inSynInSyn16, denDelayInSyn16, denDelayPtrInSyn16, inSynInSyn1, spkCnt, spk, V, RefracTime, inSynInSyn0, denDelayInSyn0, denDelayPtrInSyn0, denDelayInSyn1, denDelayPtrInSyn1, inSynInSyn2, denDelayInSyn2, inSynInSyn3, inSynInSyn6, denDelayPtrInSyn5, denDelayInSyn5, inSynInSyn5, denDelayPtrInSyn4, denDelayInSyn4, inSynInSyn4, denDelayPtrInSyn3, denDelayInSyn3, denDelayPtrInSyn2, Rmembrane, ExpTC, TauRefrac, Ioffset, Vreset, Vrest, TauM, C, numNeurons, };
+void pushMergedNeuronUpdateGroup0ToDevice(unsigned int idx, float* inSynInSyn9, unsigned int* denDelayPtrInSyn11, float* denDelayInSyn11, float* inSynInSyn11, unsigned int* denDelayPtrInSyn10, float* denDelayInSyn10, float* inSynInSyn10, unsigned int* denDelayPtrInSyn9, float* denDelayInSyn9, float* inSynInSyn12, unsigned int* denDelayPtrInSyn8, float* denDelayInSyn8, float* inSynInSyn8, unsigned int* denDelayPtrInSyn7, float* denDelayInSyn7, float* inSynInSyn7, unsigned int* denDelayPtrInSyn6, float* denDelayInSyn6, float* denDelayInSyn12, unsigned int* denDelayPtrInSyn12, float* inSynInSyn13, float* denDelayInSyn13, unsigned int* denDelayPtrInSyn13, float* inSynInSyn14, float* denDelayInSyn14, unsigned int* denDelayPtrInSyn14, float* inSynInSyn15, float* denDelayInSyn15, unsigned int* denDelayPtrInSyn15, float* inSynInSyn16, float* denDelayInSyn16, unsigned int* denDelayPtrInSyn16, uint32_t* recordSpk, float* inSynInSyn1, unsigned int* spkCnt, unsigned int* spk, scalar* V, scalar* RefracTime, float* inSynInSyn0, float* denDelayInSyn0, unsigned int* denDelayPtrInSyn0, float* denDelayInSyn1, unsigned int* denDelayPtrInSyn1, float* inSynInSyn2, float* denDelayInSyn2, float* inSynInSyn3, float* inSynInSyn6, unsigned int* denDelayPtrInSyn5, float* denDelayInSyn5, float* inSynInSyn5, unsigned int* denDelayPtrInSyn4, float* denDelayInSyn4, float* inSynInSyn4, unsigned int* denDelayPtrInSyn3, float* denDelayInSyn3, unsigned int* denDelayPtrInSyn2, scalar Rmembrane, scalar ExpTC, scalar TauRefrac, scalar Ioffset, scalar Vreset, scalar Vrest, scalar TauM, scalar C, unsigned int numNeurons) {
+    MergedNeuronUpdateGroup0 group = {inSynInSyn9, denDelayPtrInSyn11, denDelayInSyn11, inSynInSyn11, denDelayPtrInSyn10, denDelayInSyn10, inSynInSyn10, denDelayPtrInSyn9, denDelayInSyn9, inSynInSyn12, denDelayPtrInSyn8, denDelayInSyn8, inSynInSyn8, denDelayPtrInSyn7, denDelayInSyn7, inSynInSyn7, denDelayPtrInSyn6, denDelayInSyn6, denDelayInSyn12, denDelayPtrInSyn12, inSynInSyn13, denDelayInSyn13, denDelayPtrInSyn13, inSynInSyn14, denDelayInSyn14, denDelayPtrInSyn14, inSynInSyn15, denDelayInSyn15, denDelayPtrInSyn15, inSynInSyn16, denDelayInSyn16, denDelayPtrInSyn16, recordSpk, inSynInSyn1, spkCnt, spk, V, RefracTime, inSynInSyn0, denDelayInSyn0, denDelayPtrInSyn0, denDelayInSyn1, denDelayPtrInSyn1, inSynInSyn2, denDelayInSyn2, inSynInSyn3, inSynInSyn6, denDelayPtrInSyn5, denDelayInSyn5, inSynInSyn5, denDelayPtrInSyn4, denDelayInSyn4, inSynInSyn4, denDelayPtrInSyn3, denDelayInSyn3, denDelayPtrInSyn2, Rmembrane, ExpTC, TauRefrac, Ioffset, Vreset, Vrest, TauM, C, numNeurons, };
     CHECK_CUDA_ERRORS(cudaMemcpyToSymbolAsync(d_mergedNeuronUpdateGroup0, &group, sizeof(MergedNeuronUpdateGroup0), idx * sizeof(MergedNeuronUpdateGroup0)));
 }
 // ------------------------------------------------------------------------
@@ -92,6 +93,10 @@ void pushMergedNeuronUpdateGroup0ToDevice(unsigned int idx, unsigned int* denDel
 // ------------------------------------------------------------------------
 // merged extra global parameter functions
 // ------------------------------------------------------------------------
+void pushMergedNeuronUpdate0recordSpkToDevice(unsigned int idx, uint32_t* value) {
+    CHECK_CUDA_ERRORS(cudaMemcpyToSymbolAsync(d_mergedNeuronUpdateGroup0, &value, sizeof(value), (sizeof(MergedNeuronUpdateGroup0) * (idx)) + offsetof(MergedNeuronUpdateGroup0, recordSpk)));
+}
+
 __device__ __constant__ unsigned int d_mergedNeuronUpdateGroupStartID0[] = {0, 51776, 126720, 148352, 168640, 184192, 186816, 193856, 195648, 197312, 199232, 203328, 204928, 206656, 211200, 213184, 213568, };
 
 extern "C" __global__ void neuronSpikeQueueUpdateKernel() {
@@ -102,7 +107,7 @@ extern "C" __global__ void neuronSpikeQueueUpdateKernel() {
     }
 }
 
-extern "C" __global__ void updateNeuronsKernel(float t)
+extern "C" __global__ void updateNeuronsKernel(float t, unsigned int recordingTimestep)
  {
     const unsigned int id = 64 * blockIdx.x + threadIdx.x; 
     __shared__ unsigned int shSpk[64];
@@ -112,6 +117,10 @@ extern "C" __global__ void updateNeuronsKernel(float t)
         shSpkCount = 0;
     }
     
+    __shared__ uint32_t shSpkRecord[2];
+    if (threadIdx.x < 2) {
+        shSpkRecord[threadIdx.x] = 0;
+    }
     __syncthreads();
     // merged0
     if(id < 213888) {
@@ -320,6 +329,7 @@ extern "C" __global__ void updateNeuronsKernel(float t)
             if (lRefracTime <= 0.0f && lV >= (-5.00000000000000000e+01f)) {
                 const unsigned int spkIdx = atomicAdd(&shSpkCount, 1);
                 shSpk[spkIdx] = lid;
+                atomicOr(&shSpkRecord[threadIdx.x / 32], 1 << (threadIdx.x % 32));
                 // spike reset code
                 lV = group->Vreset;
                 lRefracTime = group->TauRefrac;
@@ -339,9 +349,16 @@ extern "C" __global__ void updateNeuronsKernel(float t)
             const unsigned int n = shSpk[threadIdx.x];
             group->spk[shPosSpk + threadIdx.x] = n;
         }
+        if(threadIdx.x < 2) {
+            const unsigned int numRecordingWords = (group->numNeurons + 31) / 32;
+            const unsigned int popWordIdx = (lid / 32) + threadIdx.x;
+            if(popWordIdx < numRecordingWords) {
+                group->recordSpk[(recordingTimestep * numRecordingWords * 1) + popWordIdx] = shSpkRecord[threadIdx.x];
+            }
+        }
     }
 }
-void updateNeurons(float t) {
+void updateNeurons(float t, unsigned int recordingTimestep) {
      {
         const dim3 threads(32, 1);
         const dim3 grid(1, 1);
@@ -351,7 +368,7 @@ void updateNeurons(float t) {
      {
         const dim3 threads(64, 1);
         const dim3 grid(3342, 1);
-        updateNeuronsKernel<<<grid, threads>>>(t);
+        updateNeuronsKernel<<<grid, threads>>>(t, recordingTimestep);
         CHECK_CUDA_ERRORS(cudaPeekAtLastError());
     }
 }

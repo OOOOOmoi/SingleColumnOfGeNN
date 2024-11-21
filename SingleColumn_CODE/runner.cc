@@ -6,6 +6,7 @@ extern "C" {
 // ------------------------------------------------------------------------
 unsigned long long iT;
 float t;
+unsigned long long numRecordingTimesteps = 0;
 __device__ curandStatePhilox4_32_10_t d_rng;
 std::mt19937 hostRNG;
 
@@ -29,6 +30,8 @@ unsigned int* glbSpkCntE23;
 unsigned int* d_glbSpkCntE23;
 unsigned int* glbSpkE23;
 unsigned int* d_glbSpkE23;
+uint32_t* recordSpkE23;
+uint32_t* d_recordSpkE23;
 scalar* VE23;
 scalar* d_VE23;
 scalar* RefracTimeE23;
@@ -37,6 +40,8 @@ unsigned int* glbSpkCntE4;
 unsigned int* d_glbSpkCntE4;
 unsigned int* glbSpkE4;
 unsigned int* d_glbSpkE4;
+uint32_t* recordSpkE4;
+uint32_t* d_recordSpkE4;
 scalar* VE4;
 scalar* d_VE4;
 scalar* RefracTimeE4;
@@ -45,6 +50,8 @@ unsigned int* glbSpkCntE5;
 unsigned int* d_glbSpkCntE5;
 unsigned int* glbSpkE5;
 unsigned int* d_glbSpkE5;
+uint32_t* recordSpkE5;
+uint32_t* d_recordSpkE5;
 scalar* VE5;
 scalar* d_VE5;
 scalar* RefracTimeE5;
@@ -53,6 +60,8 @@ unsigned int* glbSpkCntE6;
 unsigned int* d_glbSpkCntE6;
 unsigned int* glbSpkE6;
 unsigned int* d_glbSpkE6;
+uint32_t* recordSpkE6;
+uint32_t* d_recordSpkE6;
 scalar* VE6;
 scalar* d_VE6;
 scalar* RefracTimeE6;
@@ -61,6 +70,8 @@ unsigned int* glbSpkCntH1;
 unsigned int* d_glbSpkCntH1;
 unsigned int* glbSpkH1;
 unsigned int* d_glbSpkH1;
+uint32_t* recordSpkH1;
+uint32_t* d_recordSpkH1;
 scalar* VH1;
 scalar* d_VH1;
 scalar* RefracTimeH1;
@@ -69,6 +80,8 @@ unsigned int* glbSpkCntP23;
 unsigned int* d_glbSpkCntP23;
 unsigned int* glbSpkP23;
 unsigned int* d_glbSpkP23;
+uint32_t* recordSpkP23;
+uint32_t* d_recordSpkP23;
 scalar* VP23;
 scalar* d_VP23;
 scalar* RefracTimeP23;
@@ -77,6 +90,8 @@ unsigned int* glbSpkCntP4;
 unsigned int* d_glbSpkCntP4;
 unsigned int* glbSpkP4;
 unsigned int* d_glbSpkP4;
+uint32_t* recordSpkP4;
+uint32_t* d_recordSpkP4;
 scalar* VP4;
 scalar* d_VP4;
 scalar* RefracTimeP4;
@@ -85,6 +100,8 @@ unsigned int* glbSpkCntP5;
 unsigned int* d_glbSpkCntP5;
 unsigned int* glbSpkP5;
 unsigned int* d_glbSpkP5;
+uint32_t* recordSpkP5;
+uint32_t* d_recordSpkP5;
 scalar* VP5;
 scalar* d_VP5;
 scalar* RefracTimeP5;
@@ -93,6 +110,8 @@ unsigned int* glbSpkCntP6;
 unsigned int* d_glbSpkCntP6;
 unsigned int* glbSpkP6;
 unsigned int* d_glbSpkP6;
+uint32_t* recordSpkP6;
+uint32_t* d_recordSpkP6;
 scalar* VP6;
 scalar* d_VP6;
 scalar* RefracTimeP6;
@@ -101,6 +120,8 @@ unsigned int* glbSpkCntS23;
 unsigned int* d_glbSpkCntS23;
 unsigned int* glbSpkS23;
 unsigned int* d_glbSpkS23;
+uint32_t* recordSpkS23;
+uint32_t* d_recordSpkS23;
 scalar* VS23;
 scalar* d_VS23;
 scalar* RefracTimeS23;
@@ -109,6 +130,8 @@ unsigned int* glbSpkCntS4;
 unsigned int* d_glbSpkCntS4;
 unsigned int* glbSpkS4;
 unsigned int* d_glbSpkS4;
+uint32_t* recordSpkS4;
+uint32_t* d_recordSpkS4;
 scalar* VS4;
 scalar* d_VS4;
 scalar* RefracTimeS4;
@@ -117,6 +140,8 @@ unsigned int* glbSpkCntS5;
 unsigned int* d_glbSpkCntS5;
 unsigned int* glbSpkS5;
 unsigned int* d_glbSpkS5;
+uint32_t* recordSpkS5;
+uint32_t* d_recordSpkS5;
 scalar* VS5;
 scalar* d_VS5;
 scalar* RefracTimeS5;
@@ -125,6 +150,8 @@ unsigned int* glbSpkCntS6;
 unsigned int* d_glbSpkCntS6;
 unsigned int* glbSpkS6;
 unsigned int* d_glbSpkS6;
+uint32_t* recordSpkS6;
+uint32_t* d_recordSpkS6;
 scalar* VS6;
 scalar* d_VS6;
 scalar* RefracTimeS6;
@@ -133,6 +160,8 @@ unsigned int* glbSpkCntV23;
 unsigned int* d_glbSpkCntV23;
 unsigned int* glbSpkV23;
 unsigned int* d_glbSpkV23;
+uint32_t* recordSpkV23;
+uint32_t* d_recordSpkV23;
 scalar* VV23;
 scalar* d_VV23;
 scalar* RefracTimeV23;
@@ -141,6 +170,8 @@ unsigned int* glbSpkCntV4;
 unsigned int* d_glbSpkCntV4;
 unsigned int* glbSpkV4;
 unsigned int* d_glbSpkV4;
+uint32_t* recordSpkV4;
+uint32_t* d_recordSpkV4;
 scalar* VV4;
 scalar* d_VV4;
 scalar* RefracTimeV4;
@@ -149,6 +180,8 @@ unsigned int* glbSpkCntV5;
 unsigned int* d_glbSpkCntV5;
 unsigned int* glbSpkV5;
 unsigned int* d_glbSpkV5;
+uint32_t* recordSpkV5;
+uint32_t* d_recordSpkV5;
 scalar* VV5;
 scalar* d_VV5;
 scalar* RefracTimeV5;
@@ -157,6 +190,8 @@ unsigned int* glbSpkCntV6;
 unsigned int* d_glbSpkCntV6;
 unsigned int* glbSpkV6;
 unsigned int* d_glbSpkV6;
+uint32_t* recordSpkV6;
+uint32_t* d_recordSpkV6;
 scalar* VV6;
 scalar* d_VV6;
 scalar* RefracTimeV6;
@@ -23687,6 +23722,254 @@ void copyCurrentSpikesFromDevice() {
 void copyCurrentSpikeEventsFromDevice() {
 }
 
+void allocateRecordingBuffers(unsigned int timesteps) {
+    numRecordingTimesteps = timesteps;
+     {
+        const unsigned int numWords = 1617 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkE23, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkE23, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(0, d_recordSpkE23);
+        }
+    }
+     {
+        const unsigned int numWords = 2342 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkE4, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkE4, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(1, d_recordSpkE4);
+        }
+    }
+     {
+        const unsigned int numWords = 676 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkE5, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkE5, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(2, d_recordSpkE5);
+        }
+    }
+     {
+        const unsigned int numWords = 634 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkE6, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkE6, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(3, d_recordSpkE6);
+        }
+    }
+     {
+        const unsigned int numWords = 486 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkH1, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkH1, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(4, d_recordSpkH1);
+        }
+    }
+     {
+        const unsigned int numWords = 82 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkP23, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkP23, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(5, d_recordSpkP23);
+        }
+    }
+     {
+        const unsigned int numWords = 220 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkP4, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkP4, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(6, d_recordSpkP4);
+        }
+    }
+     {
+        const unsigned int numWords = 55 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkP5, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkP5, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(7, d_recordSpkP5);
+        }
+    }
+     {
+        const unsigned int numWords = 52 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkP6, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkP6, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(8, d_recordSpkP6);
+        }
+    }
+     {
+        const unsigned int numWords = 60 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkS23, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkS23, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(9, d_recordSpkS23);
+        }
+    }
+     {
+        const unsigned int numWords = 127 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkS4, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkS4, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(10, d_recordSpkS4);
+        }
+    }
+     {
+        const unsigned int numWords = 50 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkS5, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkS5, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(11, d_recordSpkS5);
+        }
+    }
+     {
+        const unsigned int numWords = 53 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkS6, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkS6, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(12, d_recordSpkS6);
+        }
+    }
+     {
+        const unsigned int numWords = 142 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkV23, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkV23, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(13, d_recordSpkV23);
+        }
+    }
+     {
+        const unsigned int numWords = 62 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkV4, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkV4, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(14, d_recordSpkV4);
+        }
+    }
+     {
+        const unsigned int numWords = 11 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkV5, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkV5, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(15, d_recordSpkV5);
+        }
+    }
+     {
+        const unsigned int numWords = 10 * timesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkV6, numWords * sizeof(uint32_t), cudaHostAllocPortable));
+            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkV6, numWords * sizeof(uint32_t)));
+            pushMergedNeuronUpdate0recordSpkToDevice(16, d_recordSpkV6);
+        }
+    }
+}
+
+void pullRecordingBuffersFromDevice() {
+    if(numRecordingTimesteps == 0) {
+        throw std::runtime_error("Recording buffer not allocated - cannot pull from device");
+    }
+     {
+        const unsigned int numWords = 1617 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkE23, d_recordSpkE23, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 2342 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkE4, d_recordSpkE4, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 676 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkE5, d_recordSpkE5, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 634 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkE6, d_recordSpkE6, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 486 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkH1, d_recordSpkH1, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 82 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkP23, d_recordSpkP23, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 220 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkP4, d_recordSpkP4, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 55 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkP5, d_recordSpkP5, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 52 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkP6, d_recordSpkP6, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 60 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkS23, d_recordSpkS23, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 127 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkS4, d_recordSpkS4, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 50 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkS5, d_recordSpkS5, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 53 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkS6, d_recordSpkS6, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 142 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkV23, d_recordSpkV23, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 62 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkV4, d_recordSpkV4, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 11 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkV5, d_recordSpkV5, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+     {
+        const unsigned int numWords = 10 * numRecordingTimesteps;
+         {
+            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkV6, d_recordSpkV6, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
+        }
+    }
+}
+
 void allocateMem() {
     int deviceID;
     CHECK_CUDA_ERRORS(cudaDeviceGetByPCIBusId(&deviceID, "0000:3B:00.0"));
@@ -27622,294 +27905,294 @@ void allocateMem() {
     CHECK_CUDA_ERRORS(cudaMalloc(&d_dV62V6, 4228 * sizeof(uint8_t)));
     
     mergedSynapseConnectivityHostInitGroup0[0] = {&preCalcRowLengthE232E23, &d_preCalcRowLengthE232E23, 51738, 51738, 1147, 4.96114520000000000e+07f};
-    mergedSynapseConnectivityHostInitGroup0[1] = {&preCalcRowLengthE232E4, &d_preCalcRowLengthE232E4, 51738, 74933, 209, 7.00997650000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[1] = {&preCalcRowLengthE232E4, &d_preCalcRowLengthE232E4, 51738, 74933, 209, 7.00997600000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[2] = {&preCalcRowLengthE232E5, &d_preCalcRowLengthE232E5, 51738, 21624, 295, 1.06138820000000000e+07f};
     mergedSynapseConnectivityHostInitGroup0[3] = {&preCalcRowLengthE232E6, &d_preCalcRowLengthE232E6, 51738, 20278, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[4] = {&preCalcRowLengthE232H1, &d_preCalcRowLengthE232H1, 51738, 15545, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[5] = {&preCalcRowLengthE232P23, &d_preCalcRowLengthE232P23, 51738, 2610, 196, 6.44787950000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[6] = {&preCalcRowLengthE232P4, &d_preCalcRowLengthE232P4, 51738, 7037, 120, 3.45403025000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[7] = {&preCalcRowLengthE232P5, &d_preCalcRowLengthE232P5, 51738, 1751, 45, 8.38462062500000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[5] = {&preCalcRowLengthE232P23, &d_preCalcRowLengthE232P23, 51738, 2610, 196, 6.44787900000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[6] = {&preCalcRowLengthE232P4, &d_preCalcRowLengthE232P4, 51738, 7037, 120, 3.45403000000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[7] = {&preCalcRowLengthE232P5, &d_preCalcRowLengthE232P5, 51738, 1751, 45, 8.38462000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[8] = {&preCalcRowLengthE232P6, &d_preCalcRowLengthE232P6, 51738, 1656, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[9] = {&preCalcRowLengthE232S23, &d_preCalcRowLengthE232S23, 51738, 1892, 83, 2.07168362500000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[10] = {&preCalcRowLengthE232S4, &d_preCalcRowLengthE232S4, 51738, 4041, 80, 1.99074825000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[11] = {&preCalcRowLengthE232S5, &d_preCalcRowLengthE232S5, 51738, 1586, 49, 9.59801125000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[9] = {&preCalcRowLengthE232S23, &d_preCalcRowLengthE232S23, 51738, 1892, 83, 2.07168300000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[10] = {&preCalcRowLengthE232S4, &d_preCalcRowLengthE232S4, 51738, 4041, 80, 1.99074800000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[11] = {&preCalcRowLengthE232S5, &d_preCalcRowLengthE232S5, 51738, 1586, 49, 9.59801000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[12] = {&preCalcRowLengthE232S6, &d_preCalcRowLengthE232S6, 51738, 1667, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[13] = {&preCalcRowLengthE232V23, &d_preCalcRowLengthE232V23, 51738, 4514, 103, 2.81353975000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[14] = {&preCalcRowLengthE232V4, &d_preCalcRowLengthE232V4, 51738, 1973, 49, 9.68428375000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[13] = {&preCalcRowLengthE232V23, &d_preCalcRowLengthE232V23, 51738, 4514, 103, 2.81353900000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[14] = {&preCalcRowLengthE232V4, &d_preCalcRowLengthE232V4, 51738, 1973, 49, 9.68428000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[15] = {&preCalcRowLengthE232V5, &d_preCalcRowLengthE232V5, 51738, 334, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[16] = {&preCalcRowLengthE232V6, &d_preCalcRowLengthE232V6, 51738, 302, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[17] = {&preCalcRowLengthE42E23, &d_preCalcRowLengthE42E23, 74933, 51738, 601, 3.49573840000000000e+07f};
     mergedSynapseConnectivityHostInitGroup0[18] = {&preCalcRowLengthE42E4, &d_preCalcRowLengthE42E4, 74933, 74933, 1406, 8.94931680000000000e+07f};
     mergedSynapseConnectivityHostInitGroup0[19] = {&preCalcRowLengthE42E5, &d_preCalcRowLengthE42E5, 74933, 21624, 221, 1.07860460000000000e+07f};
-    mergedSynapseConnectivityHostInitGroup0[20] = {&preCalcRowLengthE42E6, &d_preCalcRowLengthE42E6, 74933, 20278, 84, 3.07421775000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[20] = {&preCalcRowLengthE42E6, &d_preCalcRowLengthE42E6, 74933, 20278, 84, 3.07421700000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[21] = {&preCalcRowLengthE42H1, &d_preCalcRowLengthE42H1, 74933, 15545, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[22] = {&preCalcRowLengthE42P23, &d_preCalcRowLengthE42P23, 74933, 2610, 46, 1.25093225000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[22] = {&preCalcRowLengthE42P23, &d_preCalcRowLengthE42P23, 74933, 2610, 46, 1.25093200000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[23] = {&preCalcRowLengthE42P4, &d_preCalcRowLengthE42P4, 74933, 7037, 296, 1.53949600000000000e+07f};
-    mergedSynapseConnectivityHostInitGroup0[24] = {&preCalcRowLengthE42P5, &d_preCalcRowLengthE42P5, 74933, 1751, 36, 8.47766875000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[24] = {&preCalcRowLengthE42P5, &d_preCalcRowLengthE42P5, 74933, 1751, 36, 8.47766000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[25] = {&preCalcRowLengthE42P6, &d_preCalcRowLengthE42P6, 74933, 1656, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[26] = {&preCalcRowLengthE42S23, &d_preCalcRowLengthE42S23, 74933, 1892, 38, 9.06806125000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[26] = {&preCalcRowLengthE42S23, &d_preCalcRowLengthE42S23, 74933, 1892, 38, 9.06806000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[27] = {&preCalcRowLengthE42S4, &d_preCalcRowLengthE42S4, 74933, 4041, 242, 1.20664890000000000e+07f};
-    mergedSynapseConnectivityHostInitGroup0[28] = {&preCalcRowLengthE42S5, &d_preCalcRowLengthE42S5, 74933, 1586, 40, 9.77704437500000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[28] = {&preCalcRowLengthE42S5, &d_preCalcRowLengthE42S5, 74933, 1586, 40, 9.77704000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[29] = {&preCalcRowLengthE42S6, &d_preCalcRowLengthE42S6, 74933, 1667, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[30] = {&preCalcRowLengthE42V23, &d_preCalcRowLengthE42V23, 74933, 4514, 66, 2.16348975000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[30] = {&preCalcRowLengthE42V23, &d_preCalcRowLengthE42V23, 74933, 4514, 66, 2.16348900000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[31] = {&preCalcRowLengthE42V4, &d_preCalcRowLengthE42V4, 74933, 1973, 137, 5.89140500000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[32] = {&preCalcRowLengthE42V5, &d_preCalcRowLengthE42V5, 74933, 334, 12, 7.93603125000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[32] = {&preCalcRowLengthE42V5, &d_preCalcRowLengthE42V5, 74933, 334, 12, 7.93600000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[33] = {&preCalcRowLengthE42V6, &d_preCalcRowLengthE42V6, 74933, 302, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[34] = {&preCalcRowLengthE52E23, &d_preCalcRowLengthE52E23, 21624, 51738, 257, 3.79252650000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[35] = {&preCalcRowLengthE52E4, &d_preCalcRowLengthE52E4, 21624, 74933, 142, 1.82662787500000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[34] = {&preCalcRowLengthE52E23, &d_preCalcRowLengthE52E23, 21624, 51738, 257, 3.79252600000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[35] = {&preCalcRowLengthE52E4, &d_preCalcRowLengthE52E4, 21624, 74933, 142, 1.82662700000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[36] = {&preCalcRowLengthE52E5, &d_preCalcRowLengthE52E5, 21624, 21624, 533, 8.89880700000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[37] = {&preCalcRowLengthE52E6, &d_preCalcRowLengthE52E6, 21624, 20278, 231, 3.34141050000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[38] = {&preCalcRowLengthE52H1, &d_preCalcRowLengthE52H1, 21624, 15545, 85, 9.21813437500000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[39] = {&preCalcRowLengthE52P23, &d_preCalcRowLengthE52P23, 21624, 2610, 52, 4.57758562500000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[40] = {&preCalcRowLengthE52P4, &d_preCalcRowLengthE52P4, 21624, 7037, 105, 1.23419787500000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[41] = {&preCalcRowLengthE52P5, &d_preCalcRowLengthE52P5, 21624, 1751, 57, 5.12667625000000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[42] = {&preCalcRowLengthE52P6, &d_preCalcRowLengthE52P6, 21624, 1656, 29, 1.73675625000000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[43] = {&preCalcRowLengthE52S23, &d_preCalcRowLengthE52S23, 21624, 1892, 43, 3.31831812500000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[44] = {&preCalcRowLengthE52S4, &d_preCalcRowLengthE52S4, 21624, 4041, 71, 7.08735062500000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[45] = {&preCalcRowLengthE52S5, &d_preCalcRowLengthE52S5, 21624, 1586, 44, 3.51261218750000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[46] = {&preCalcRowLengthE52S6, &d_preCalcRowLengthE52S6, 21624, 1667, 29, 1.74830187500000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[47] = {&preCalcRowLengthE52V23, &d_preCalcRowLengthE52V23, 21624, 4514, 76, 7.91699875000000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[48] = {&preCalcRowLengthE52V4, &d_preCalcRowLengthE52V4, 21624, 1973, 44, 3.46037875000000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[49] = {&preCalcRowLengthE52V5, &d_preCalcRowLengthE52V5, 21624, 334, 24, 1.24178125000000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[50] = {&preCalcRowLengthE52V6, &d_preCalcRowLengthE52V6, 21624, 302, 13, 3.16735273437500000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[37] = {&preCalcRowLengthE52E6, &d_preCalcRowLengthE52E6, 21624, 20278, 231, 3.34141000000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[38] = {&preCalcRowLengthE52H1, &d_preCalcRowLengthE52H1, 21624, 15545, 85, 9.21813000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[39] = {&preCalcRowLengthE52P23, &d_preCalcRowLengthE52P23, 21624, 2610, 52, 4.57758000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[40] = {&preCalcRowLengthE52P4, &d_preCalcRowLengthE52P4, 21624, 7037, 105, 1.23419700000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[41] = {&preCalcRowLengthE52P5, &d_preCalcRowLengthE52P5, 21624, 1751, 57, 5.12667000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[42] = {&preCalcRowLengthE52P6, &d_preCalcRowLengthE52P6, 21624, 1656, 29, 1.73675000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[43] = {&preCalcRowLengthE52S23, &d_preCalcRowLengthE52S23, 21624, 1892, 43, 3.31831000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[44] = {&preCalcRowLengthE52S4, &d_preCalcRowLengthE52S4, 21624, 4041, 71, 7.08735000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[45] = {&preCalcRowLengthE52S5, &d_preCalcRowLengthE52S5, 21624, 1586, 44, 3.51261000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[46] = {&preCalcRowLengthE52S6, &d_preCalcRowLengthE52S6, 21624, 1667, 29, 1.74830000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[47] = {&preCalcRowLengthE52V23, &d_preCalcRowLengthE52V23, 21624, 4514, 76, 7.91699000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[48] = {&preCalcRowLengthE52V4, &d_preCalcRowLengthE52V4, 21624, 1973, 44, 3.46037000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[49] = {&preCalcRowLengthE52V5, &d_preCalcRowLengthE52V5, 21624, 334, 24, 1.24178000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[50] = {&preCalcRowLengthE52V6, &d_preCalcRowLengthE52V6, 21624, 302, 13, 3.16730000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[51] = {&preCalcRowLengthE62E23, &d_preCalcRowLengthE62E23, 20278, 51738, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[52] = {&preCalcRowLengthE62E4, &d_preCalcRowLengthE62E4, 20278, 74933, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[53] = {&preCalcRowLengthE62E5, &d_preCalcRowLengthE62E5, 20278, 21624, 131, 1.53923437500000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[54] = {&preCalcRowLengthE62E6, &d_preCalcRowLengthE62E6, 20278, 20278, 231, 3.13479075000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[53] = {&preCalcRowLengthE62E5, &d_preCalcRowLengthE62E5, 20278, 21624, 131, 1.53923400000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[54] = {&preCalcRowLengthE62E6, &d_preCalcRowLengthE62E6, 20278, 20278, 231, 3.13479000000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[55] = {&preCalcRowLengthE62H1, &d_preCalcRowLengthE62H1, 20278, 15545, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[56] = {&preCalcRowLengthE62P23, &d_preCalcRowLengthE62P23, 20278, 2610, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[57] = {&preCalcRowLengthE62P4, &d_preCalcRowLengthE62P4, 20278, 7037, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[58] = {&preCalcRowLengthE62P5, &d_preCalcRowLengthE62P5, 20278, 1751, 23, 1.03831968750000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[59] = {&preCalcRowLengthE62P6, &d_preCalcRowLengthE62P6, 20278, 1656, 125, 1.45712950000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[58] = {&preCalcRowLengthE62P5, &d_preCalcRowLengthE62P5, 20278, 1751, 23, 1.03831000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[59] = {&preCalcRowLengthE62P6, &d_preCalcRowLengthE62P6, 20278, 1656, 125, 1.45712900000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[60] = {&preCalcRowLengthE62S23, &d_preCalcRowLengthE62S23, 20278, 1892, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[61] = {&preCalcRowLengthE62S4, &d_preCalcRowLengthE62S4, 20278, 4041, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[62] = {&preCalcRowLengthE62S5, &d_preCalcRowLengthE62S5, 20278, 1586, 21, 9.40453593750000000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[63] = {&preCalcRowLengthE62S6, &d_preCalcRowLengthE62S6, 20278, 1667, 95, 1.00373550000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[62] = {&preCalcRowLengthE62S5, &d_preCalcRowLengthE62S5, 20278, 1586, 21, 9.40450000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[63] = {&preCalcRowLengthE62S6, &d_preCalcRowLengthE62S6, 20278, 1667, 95, 1.00373500000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[64] = {&preCalcRowLengthE62V23, &d_preCalcRowLengthE62V23, 20278, 4514, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[65] = {&preCalcRowLengthE62V4, &d_preCalcRowLengthE62V4, 20278, 1973, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[66] = {&preCalcRowLengthE62V5, &d_preCalcRowLengthE62V5, 20278, 334, 11, 1.98057734375000000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[67] = {&preCalcRowLengthE62V6, &d_preCalcRowLengthE62V6, 20278, 302, 31, 1.81841421875000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[66] = {&preCalcRowLengthE62V5, &d_preCalcRowLengthE62V5, 20278, 334, 11, 1.98050000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[67] = {&preCalcRowLengthE62V6, &d_preCalcRowLengthE62V6, 20278, 302, 31, 1.81841000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[68] = {&preCalcRowLengthH12E23, &d_preCalcRowLengthH12E23, 15545, 51738, 721, 9.00343700000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[69] = {&preCalcRowLengthH12E4, &d_preCalcRowLengthH12E4, 15545, 74933, 445, 5.22172550000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[70] = {&preCalcRowLengthH12E5, &d_preCalcRowLengthH12E5, 15545, 21624, 158, 1.50687387500000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[71] = {&preCalcRowLengthH12E6, &d_preCalcRowLengthH12E6, 15545, 20278, 150, 1.41307837500000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[69] = {&preCalcRowLengthH12E4, &d_preCalcRowLengthH12E4, 15545, 74933, 445, 5.22172500000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[70] = {&preCalcRowLengthH12E5, &d_preCalcRowLengthH12E5, 15545, 21624, 158, 1.50687300000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[71] = {&preCalcRowLengthH12E6, &d_preCalcRowLengthH12E6, 15545, 20278, 150, 1.41307800000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[72] = {&preCalcRowLengthH12H1, &d_preCalcRowLengthH12H1, 15545, 15545, 450, 5.28564500000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[73] = {&preCalcRowLengthH12P23, &d_preCalcRowLengthH12P23, 15545, 2610, 27, 1.13203328125000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[73] = {&preCalcRowLengthH12P23, &d_preCalcRowLengthH12P23, 15545, 2610, 27, 1.13203000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[74] = {&preCalcRowLengthH12P4, &d_preCalcRowLengthH12P4, 15545, 7037, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[75] = {&preCalcRowLengthH12P5, &d_preCalcRowLengthH12P5, 15545, 1751, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[76] = {&preCalcRowLengthH12P6, &d_preCalcRowLengthH12P6, 15545, 1656, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[77] = {&preCalcRowLengthH12S23, &d_preCalcRowLengthH12S23, 15545, 1892, 19, 5.97440625000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[77] = {&preCalcRowLengthH12S23, &d_preCalcRowLengthH12S23, 15545, 1892, 19, 5.97440000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[78] = {&preCalcRowLengthH12S4, &d_preCalcRowLengthH12S4, 15545, 4041, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[79] = {&preCalcRowLengthH12S5, &d_preCalcRowLengthH12S5, 15545, 1586, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[80] = {&preCalcRowLengthH12S6, &d_preCalcRowLengthH12S6, 15545, 1667, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[81] = {&preCalcRowLengthH12V23, &d_preCalcRowLengthH12V23, 15545, 4514, 119, 1.04496181250000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[81] = {&preCalcRowLengthH12V23, &d_preCalcRowLengthH12V23, 15545, 4514, 119, 1.04496100000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[82] = {&preCalcRowLengthH12V4, &d_preCalcRowLengthH12V4, 15545, 1973, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[83] = {&preCalcRowLengthH12V5, &d_preCalcRowLengthH12V5, 15545, 334, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[84] = {&preCalcRowLengthH12V6, &d_preCalcRowLengthH12V6, 15545, 302, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[85] = {&preCalcRowLengthP232E23, &d_preCalcRowLengthP232E23, 2610, 51738, 2855, 6.72813200000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[86] = {&preCalcRowLengthP232E4, &d_preCalcRowLengthP232E4, 2610, 74933, 541, 1.11125312500000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[87] = {&preCalcRowLengthP232E5, &d_preCalcRowLengthP232E5, 2610, 21624, 248, 4.50487718750000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[86] = {&preCalcRowLengthP232E4, &d_preCalcRowLengthP232E4, 2610, 74933, 541, 1.11125300000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[87] = {&preCalcRowLengthP232E5, &d_preCalcRowLengthP232E5, 2610, 21624, 248, 4.50487000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[88] = {&preCalcRowLengthP232E6, &d_preCalcRowLengthP232E6, 2610, 20278, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[89] = {&preCalcRowLengthP232H1, &d_preCalcRowLengthP232H1, 2610, 15545, 81, 1.10159453125000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[90] = {&preCalcRowLengthP232P23, &d_preCalcRowLengthP232P23, 2610, 2610, 213, 3.75290875000000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[91] = {&preCalcRowLengthP232P4, &d_preCalcRowLengthP232P4, 2610, 7037, 78, 1.04356789062500000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[92] = {&preCalcRowLengthP232P5, &d_preCalcRowLengthP232P5, 2610, 1751, 39, 3.80626992187500000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[89] = {&preCalcRowLengthP232H1, &d_preCalcRowLengthP232H1, 2610, 15545, 81, 1.10159000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[90] = {&preCalcRowLengthP232P23, &d_preCalcRowLengthP232P23, 2610, 2610, 213, 3.75290000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[91] = {&preCalcRowLengthP232P4, &d_preCalcRowLengthP232P4, 2610, 7037, 78, 1.04356000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[92] = {&preCalcRowLengthP232P5, &d_preCalcRowLengthP232P5, 2610, 1751, 39, 3.80620000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[93] = {&preCalcRowLengthP232P6, &d_preCalcRowLengthP232P6, 2610, 1656, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[94] = {&preCalcRowLengthP232S23, &d_preCalcRowLengthP232S23, 2610, 1892, 24, 1.67769433593750000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[95] = {&preCalcRowLengthP232S4, &d_preCalcRowLengthP232S4, 2610, 4041, 53, 5.99309804687500000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[94] = {&preCalcRowLengthP232S23, &d_preCalcRowLengthP232S23, 2610, 1892, 24, 1.67760000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[95] = {&preCalcRowLengthP232S4, &d_preCalcRowLengthP232S4, 2610, 4041, 53, 5.99300000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[96] = {&preCalcRowLengthP232S5, &d_preCalcRowLengthP232S5, 2610, 1586, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[97] = {&preCalcRowLengthP232S6, &d_preCalcRowLengthP232S6, 2610, 1667, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[98] = {&preCalcRowLengthP232V23, &d_preCalcRowLengthP232V23, 2610, 4514, 179, 3.03386843750000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[99] = {&preCalcRowLengthP232V4, &d_preCalcRowLengthP232V4, 2610, 1973, 33, 2.92629902343750000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[98] = {&preCalcRowLengthP232V23, &d_preCalcRowLengthP232V23, 2610, 4514, 179, 3.03386000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[99] = {&preCalcRowLengthP232V4, &d_preCalcRowLengthP232V4, 2610, 1973, 33, 2.92620000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[100] = {&preCalcRowLengthP232V5, &d_preCalcRowLengthP232V5, 2610, 334, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[101] = {&preCalcRowLengthP232V6, &d_preCalcRowLengthP232V6, 2610, 302, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[102] = {&preCalcRowLengthP42E23, &d_preCalcRowLengthP42E23, 7037, 51738, 1016, 5.97777500000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[103] = {&preCalcRowLengthP42E4, &d_preCalcRowLengthP42E4, 7037, 74933, 2493, 1.56671330000000000e+07f};
-    mergedSynapseConnectivityHostInitGroup0[104] = {&preCalcRowLengthP42E5, &d_preCalcRowLengthP42E5, 7037, 21624, 187, 8.54773125000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[104] = {&preCalcRowLengthP42E5, &d_preCalcRowLengthP42E5, 7037, 21624, 187, 8.54773000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[105] = {&preCalcRowLengthP42E6, &d_preCalcRowLengthP42E6, 7037, 20278, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[106] = {&preCalcRowLengthP42H1, &d_preCalcRowLengthP42H1, 7037, 15545, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[107] = {&preCalcRowLengthP42P23, &d_preCalcRowLengthP42P23, 7037, 2610, 29, 5.82398164062500000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[108] = {&preCalcRowLengthP42P4, &d_preCalcRowLengthP42P4, 7037, 7037, 303, 1.52251125000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[109] = {&preCalcRowLengthP42P5, &d_preCalcRowLengthP42P5, 7037, 1751, 32, 7.16102812500000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[107] = {&preCalcRowLengthP42P23, &d_preCalcRowLengthP42P23, 7037, 2610, 29, 5.82390000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[108] = {&preCalcRowLengthP42P4, &d_preCalcRowLengthP42P4, 7037, 7037, 303, 1.52251100000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[109] = {&preCalcRowLengthP42P5, &d_preCalcRowLengthP42P5, 7037, 1751, 32, 7.16100000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[110] = {&preCalcRowLengthP42P6, &d_preCalcRowLengthP42P6, 7037, 1656, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[111] = {&preCalcRowLengthP42S23, &d_preCalcRowLengthP42S23, 7037, 1892, 24, 4.22167460937500000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[112] = {&preCalcRowLengthP42S4, &d_preCalcRowLengthP42S4, 7037, 4041, 27, 5.39198203125000000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[113] = {&preCalcRowLengthP42S5, &d_preCalcRowLengthP42S5, 7037, 1586, 17, 2.11645234375000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[111] = {&preCalcRowLengthP42S23, &d_preCalcRowLengthP42S23, 7037, 1892, 24, 4.22160000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[112] = {&preCalcRowLengthP42S4, &d_preCalcRowLengthP42S4, 7037, 4041, 27, 5.39190000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[113] = {&preCalcRowLengthP42S5, &d_preCalcRowLengthP42S5, 7037, 1586, 17, 2.11640000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[114] = {&preCalcRowLengthP42S6, &d_preCalcRowLengthP42S6, 7037, 1667, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[115] = {&preCalcRowLengthP42V23, &d_preCalcRowLengthP42V23, 7037, 4514, 40, 1.00725757812500000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[116] = {&preCalcRowLengthP42V4, &d_preCalcRowLengthP42V4, 7037, 1973, 63, 1.99532250000000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[117] = {&preCalcRowLengthP42V5, &d_preCalcRowLengthP42V5, 7037, 334, 9, 4.45747509765625000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[115] = {&preCalcRowLengthP42V23, &d_preCalcRowLengthP42V23, 7037, 4514, 40, 1.00725000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[116] = {&preCalcRowLengthP42V4, &d_preCalcRowLengthP42V4, 7037, 1973, 63, 1.99532000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[117] = {&preCalcRowLengthP42V5, &d_preCalcRowLengthP42V5, 7037, 334, 9, 4.45700000000000000e+03f};
     mergedSynapseConnectivityHostInitGroup0[118] = {&preCalcRowLengthP42V6, &d_preCalcRowLengthP42V6, 7037, 302, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[119] = {&preCalcRowLengthP52E23, &d_preCalcRowLengthP52E23, 1751, 51738, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[120] = {&preCalcRowLengthP52E4, &d_preCalcRowLengthP52E4, 1751, 74933, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[121] = {&preCalcRowLengthP52E5, &d_preCalcRowLengthP52E5, 1751, 21624, 1941, 3.00685425000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[122] = {&preCalcRowLengthP52E6, &d_preCalcRowLengthP52E6, 1751, 20278, 155, 1.72236953125000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[121] = {&preCalcRowLengthP52E5, &d_preCalcRowLengthP52E5, 1751, 21624, 1941, 3.00685400000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[122] = {&preCalcRowLengthP52E6, &d_preCalcRowLengthP52E6, 1751, 20278, 155, 1.72236000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[123] = {&preCalcRowLengthP52H1, &d_preCalcRowLengthP52H1, 1751, 15545, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[124] = {&preCalcRowLengthP52P23, &d_preCalcRowLengthP52P23, 1751, 2610, 83, 7.63070937500000000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[125] = {&preCalcRowLengthP52P4, &d_preCalcRowLengthP52P4, 1751, 7037, 76, 6.77882578125000000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[126] = {&preCalcRowLengthP52P5, &d_preCalcRowLengthP52P5, 1751, 1751, 168, 1.89776078125000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[127] = {&preCalcRowLengthP52P6, &d_preCalcRowLengthP52P6, 1751, 1656, 15, 4.67377880859375000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[124] = {&preCalcRowLengthP52P23, &d_preCalcRowLengthP52P23, 1751, 2610, 83, 7.63070000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[125] = {&preCalcRowLengthP52P4, &d_preCalcRowLengthP52P4, 1751, 7037, 76, 6.77880000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[126] = {&preCalcRowLengthP52P5, &d_preCalcRowLengthP52P5, 1751, 1751, 168, 1.89776000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[127] = {&preCalcRowLengthP52P6, &d_preCalcRowLengthP52P6, 1751, 1656, 15, 4.67300000000000000e+03f};
     mergedSynapseConnectivityHostInitGroup0[128] = {&preCalcRowLengthP52S23, &d_preCalcRowLengthP52S23, 1751, 1892, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[129] = {&preCalcRowLengthP52S4, &d_preCalcRowLengthP52S4, 1751, 4041, 47, 3.43208242187500000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[130] = {&preCalcRowLengthP52S5, &d_preCalcRowLengthP52S5, 1751, 1586, 26, 1.34726142578125000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[131] = {&preCalcRowLengthP52S6, &d_preCalcRowLengthP52S6, 1751, 1667, 15, 4.70399023437500000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[129] = {&preCalcRowLengthP52S4, &d_preCalcRowLengthP52S4, 1751, 4041, 47, 3.43200000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[130] = {&preCalcRowLengthP52S5, &d_preCalcRowLengthP52S5, 1751, 1586, 26, 1.34720000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[131] = {&preCalcRowLengthP52S6, &d_preCalcRowLengthP52S6, 1751, 1667, 15, 4.70300000000000000e+03f};
     mergedSynapseConnectivityHostInitGroup0[132] = {&preCalcRowLengthP52V23, &d_preCalcRowLengthP52V23, 1751, 4514, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[133] = {&preCalcRowLengthP52V4, &d_preCalcRowLengthP52V4, 1751, 1973, 30, 1.67589824218750000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[134] = {&preCalcRowLengthP52V5, &d_preCalcRowLengthP52V5, 1751, 334, 35, 2.14993789062500000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[135] = {&preCalcRowLengthP52V6, &d_preCalcRowLengthP52V6, 1751, 302, 7, 8.53238952636718750e+02f};
-    mergedSynapseConnectivityHostInitGroup0[136] = {&preCalcRowLengthP62E23, &d_preCalcRowLengthP62E23, 1656, 51738, 1748, 2.54404825000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[137] = {&preCalcRowLengthP62E4, &d_preCalcRowLengthP62E4, 1656, 74933, 2479, 3.68458725000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[138] = {&preCalcRowLengthP62E5, &d_preCalcRowLengthP62E5, 1656, 21624, 781, 1.06329150000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[139] = {&preCalcRowLengthP62E6, &d_preCalcRowLengthP62E6, 1656, 20278, 736, 9.97106062500000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[133] = {&preCalcRowLengthP52V4, &d_preCalcRowLengthP52V4, 1751, 1973, 30, 1.67580000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[134] = {&preCalcRowLengthP52V5, &d_preCalcRowLengthP52V5, 1751, 334, 35, 2.14990000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[135] = {&preCalcRowLengthP52V6, &d_preCalcRowLengthP52V6, 1751, 302, 7, 8.53000000000000000e+02f};
+    mergedSynapseConnectivityHostInitGroup0[136] = {&preCalcRowLengthP62E23, &d_preCalcRowLengthP62E23, 1656, 51738, 1748, 2.54404800000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[137] = {&preCalcRowLengthP62E4, &d_preCalcRowLengthP62E4, 1656, 74933, 2479, 3.68458700000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[138] = {&preCalcRowLengthP62E5, &d_preCalcRowLengthP62E5, 1656, 21624, 781, 1.06329100000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[139] = {&preCalcRowLengthP62E6, &d_preCalcRowLengthP62E6, 1656, 20278, 736, 9.97106000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[140] = {&preCalcRowLengthP62H1, &d_preCalcRowLengthP62H1, 1656, 15545, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[141] = {&preCalcRowLengthP62P23, &d_preCalcRowLengthP62P23, 1656, 2610, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[142] = {&preCalcRowLengthP62P4, &d_preCalcRowLengthP62P4, 1656, 7037, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[143] = {&preCalcRowLengthP62P5, &d_preCalcRowLengthP62P5, 1656, 1751, 40, 2.55255058593750000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[144] = {&preCalcRowLengthP62P6, &d_preCalcRowLengthP62P6, 1656, 1656, 77, 6.49205585937500000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[143] = {&preCalcRowLengthP62P5, &d_preCalcRowLengthP62P5, 1656, 1751, 40, 2.55250000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[144] = {&preCalcRowLengthP62P6, &d_preCalcRowLengthP62P6, 1656, 1656, 77, 6.49200000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[145] = {&preCalcRowLengthP62S23, &d_preCalcRowLengthP62S23, 1656, 1892, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[146] = {&preCalcRowLengthP62S4, &d_preCalcRowLengthP62S4, 1656, 4041, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[147] = {&preCalcRowLengthP62S5, &d_preCalcRowLengthP62S5, 1656, 1586, 38, 2.31188964843750000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[148] = {&preCalcRowLengthP62S6, &d_preCalcRowLengthP62S6, 1656, 1667, 91, 8.19696250000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[147] = {&preCalcRowLengthP62S5, &d_preCalcRowLengthP62S5, 1656, 1586, 38, 2.31180000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[148] = {&preCalcRowLengthP62S6, &d_preCalcRowLengthP62S6, 1656, 1667, 91, 8.19690000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[149] = {&preCalcRowLengthP62V23, &d_preCalcRowLengthP62V23, 1656, 4514, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[150] = {&preCalcRowLengthP62V4, &d_preCalcRowLengthP62V4, 1656, 1973, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[151] = {&preCalcRowLengthP62V5, &d_preCalcRowLengthP62V5, 1656, 334, 16, 4.86911523437500000e+03f};
-    mergedSynapseConnectivityHostInitGroup0[152] = {&preCalcRowLengthP62V6, &d_preCalcRowLengthP62V6, 1656, 302, 25, 1.18395009765625000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[151] = {&preCalcRowLengthP62V5, &d_preCalcRowLengthP62V5, 1656, 334, 16, 4.86900000000000000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[152] = {&preCalcRowLengthP62V6, &d_preCalcRowLengthP62V6, 1656, 302, 25, 1.18390000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[153] = {&preCalcRowLengthS232E23, &d_preCalcRowLengthS232E23, 1892, 51738, 2945, 5.04460500000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[154] = {&preCalcRowLengthS232E4, &d_preCalcRowLengthS232E4, 1892, 74933, 540, 8.05656000000000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[155] = {&preCalcRowLengthS232E5, &d_preCalcRowLengthS232E5, 1892, 21624, 94, 9.71714765625000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[155] = {&preCalcRowLengthS232E5, &d_preCalcRowLengthS232E5, 1892, 21624, 94, 9.71710000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[156] = {&preCalcRowLengthS232E6, &d_preCalcRowLengthS232E6, 1892, 20278, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[157] = {&preCalcRowLengthS232H1, &d_preCalcRowLengthS232H1, 1892, 15545, 638, 9.70856312500000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[158] = {&preCalcRowLengthS232P23, &d_preCalcRowLengthS232P23, 1892, 2610, 393, 5.62073875000000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[159] = {&preCalcRowLengthS232P4, &d_preCalcRowLengthS232P4, 1892, 7037, 78, 7.56559140625000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[157] = {&preCalcRowLengthS232H1, &d_preCalcRowLengthS232H1, 1892, 15545, 638, 9.70856000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[158] = {&preCalcRowLengthS232P23, &d_preCalcRowLengthS232P23, 1892, 2610, 393, 5.62073000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[159] = {&preCalcRowLengthS232P4, &d_preCalcRowLengthS232P4, 1892, 7037, 78, 7.56550000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[160] = {&preCalcRowLengthS232P5, &d_preCalcRowLengthS232P5, 1892, 1751, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[161] = {&preCalcRowLengthS232P6, &d_preCalcRowLengthS232P6, 1892, 1656, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[162] = {&preCalcRowLengthS232S23, &d_preCalcRowLengthS232S23, 1892, 1892, 44, 3.35426875000000000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[163] = {&preCalcRowLengthS232S4, &d_preCalcRowLengthS232S4, 1892, 4041, 53, 4.34429375000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[162] = {&preCalcRowLengthS232S23, &d_preCalcRowLengthS232S23, 1892, 1892, 44, 3.35420000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[163] = {&preCalcRowLengthS232S4, &d_preCalcRowLengthS232S4, 1892, 4041, 53, 4.34420000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[164] = {&preCalcRowLengthS232S5, &d_preCalcRowLengthS232S5, 1892, 1586, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[165] = {&preCalcRowLengthS232S6, &d_preCalcRowLengthS232S6, 1892, 1667, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[166] = {&preCalcRowLengthS232V23, &d_preCalcRowLengthS232V23, 1892, 4514, 571, 8.57028500000000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[167] = {&preCalcRowLengthS232V4, &d_preCalcRowLengthS232V4, 1892, 1973, 33, 2.12146640625000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[166] = {&preCalcRowLengthS232V23, &d_preCalcRowLengthS232V23, 1892, 4514, 571, 8.57028000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[167] = {&preCalcRowLengthS232V4, &d_preCalcRowLengthS232V4, 1892, 1973, 33, 2.12140000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[168] = {&preCalcRowLengthS232V5, &d_preCalcRowLengthS232V5, 1892, 334, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[169] = {&preCalcRowLengthS232V6, &d_preCalcRowLengthS232V6, 1892, 302, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[170] = {&preCalcRowLengthS42E23, &d_preCalcRowLengthS42E23, 4041, 51738, 1013, 3.43271875000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[171] = {&preCalcRowLengthS42E4, &d_preCalcRowLengthS42E4, 4041, 74933, 1993, 7.11025350000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[172] = {&preCalcRowLengthS42E5, &d_preCalcRowLengthS42E5, 4041, 21624, 72, 1.43503203125000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[170] = {&preCalcRowLengthS42E23, &d_preCalcRowLengthS42E23, 4041, 51738, 1013, 3.43271800000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[171] = {&preCalcRowLengthS42E4, &d_preCalcRowLengthS42E4, 4041, 74933, 1993, 7.11025300000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[172] = {&preCalcRowLengthS42E5, &d_preCalcRowLengthS42E5, 4041, 21624, 72, 1.43503000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[173] = {&preCalcRowLengthS42E6, &d_preCalcRowLengthS42E6, 4041, 20278, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[174] = {&preCalcRowLengthS42H1, &d_preCalcRowLengthS42H1, 4041, 15545, 336, 9.92653125000000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[175] = {&preCalcRowLengthS42P23, &d_preCalcRowLengthS42P23, 4041, 2610, 28, 3.34463085937500000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[176] = {&preCalcRowLengthS42P4, &d_preCalcRowLengthS42P4, 4041, 7037, 567, 1.80611812500000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[177] = {&preCalcRowLengthS42P5, &d_preCalcRowLengthS42P5, 4041, 1751, 17, 1.34158945312500000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[174] = {&preCalcRowLengthS42H1, &d_preCalcRowLengthS42H1, 4041, 15545, 336, 9.92653000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[175] = {&preCalcRowLengthS42P23, &d_preCalcRowLengthS42P23, 4041, 2610, 28, 3.34460000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[176] = {&preCalcRowLengthS42P4, &d_preCalcRowLengthS42P4, 4041, 7037, 567, 1.80611800000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[177] = {&preCalcRowLengthS42P5, &d_preCalcRowLengthS42P5, 4041, 1751, 17, 1.34150000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[178] = {&preCalcRowLengthS42P6, &d_preCalcRowLengthS42P6, 4041, 1656, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[179] = {&preCalcRowLengthS42S23, &d_preCalcRowLengthS42S23, 4041, 1892, 23, 2.42414511718750000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[180] = {&preCalcRowLengthS42S4, &d_preCalcRowLengthS42S4, 4041, 4041, 51, 8.53906093750000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[179] = {&preCalcRowLengthS42S23, &d_preCalcRowLengthS42S23, 4041, 1892, 23, 2.42410000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[180] = {&preCalcRowLengthS42S4, &d_preCalcRowLengthS42S4, 4041, 4041, 51, 8.53900000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[181] = {&preCalcRowLengthS42S5, &d_preCalcRowLengthS42S5, 4041, 1586, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[182] = {&preCalcRowLengthS42S6, &d_preCalcRowLengthS42S6, 4041, 1667, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[183] = {&preCalcRowLengthS42V23, &d_preCalcRowLengthS42V23, 4041, 4514, 39, 5.78415703125000000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[184] = {&preCalcRowLengthS42V4, &d_preCalcRowLengthS42V4, 4041, 1973, 172, 4.46441250000000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[185] = {&preCalcRowLengthS42V5, &d_preCalcRowLengthS42V5, 4041, 334, 9, 2.56001000976562500e+03f};
+    mergedSynapseConnectivityHostInitGroup0[183] = {&preCalcRowLengthS42V23, &d_preCalcRowLengthS42V23, 4041, 4514, 39, 5.78410000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[184] = {&preCalcRowLengthS42V4, &d_preCalcRowLengthS42V4, 4041, 1973, 172, 4.46441000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[185] = {&preCalcRowLengthS42V5, &d_preCalcRowLengthS42V5, 4041, 334, 9, 2.56000000000000000e+03f};
     mergedSynapseConnectivityHostInitGroup0[186] = {&preCalcRowLengthS42V6, &d_preCalcRowLengthS42V6, 4041, 302, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[187] = {&preCalcRowLengthS52E23, &d_preCalcRowLengthS52E23, 1586, 51738, 1653, 2.29562025000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[188] = {&preCalcRowLengthS52E4, &d_preCalcRowLengthS52E4, 1586, 74933, 823, 1.08040337500000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[189] = {&preCalcRowLengthS52E5, &d_preCalcRowLengthS52E5, 1586, 21624, 1350, 1.84816875000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[190] = {&preCalcRowLengthS52E6, &d_preCalcRowLengthS52E6, 1586, 20278, 155, 1.55941515625000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[191] = {&preCalcRowLengthS52H1, &d_preCalcRowLengthS52H1, 1586, 15545, 651, 8.33472187500000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[187] = {&preCalcRowLengthS52E23, &d_preCalcRowLengthS52E23, 1586, 51738, 1653, 2.29562000000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[188] = {&preCalcRowLengthS52E4, &d_preCalcRowLengthS52E4, 1586, 74933, 823, 1.08040300000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[189] = {&preCalcRowLengthS52E5, &d_preCalcRowLengthS52E5, 1586, 21624, 1350, 1.84816800000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[190] = {&preCalcRowLengthS52E6, &d_preCalcRowLengthS52E6, 1586, 20278, 155, 1.55941000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[191] = {&preCalcRowLengthS52H1, &d_preCalcRowLengthS52H1, 1586, 15545, 651, 8.33472000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[192] = {&preCalcRowLengthS52P23, &d_preCalcRowLengthS52P23, 1586, 2610, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[193] = {&preCalcRowLengthS52P4, &d_preCalcRowLengthS52P4, 1586, 7037, 69, 5.41202187500000000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[194] = {&preCalcRowLengthS52P5, &d_preCalcRowLengthS52P5, 1586, 1751, 378, 4.51036906250000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[195] = {&preCalcRowLengthS52P6, &d_preCalcRowLengthS52P6, 1586, 1656, 15, 4.23061279296875000e+03f};
-    mergedSynapseConnectivityHostInitGroup0[196] = {&preCalcRowLengthS52S23, &d_preCalcRowLengthS52S23, 1586, 1892, 21, 8.22607812500000000e+03f};
-    mergedSynapseConnectivityHostInitGroup0[197] = {&preCalcRowLengthS52S4, &d_preCalcRowLengthS52S4, 1586, 4041, 18, 6.19179785156250000e+03f};
-    mergedSynapseConnectivityHostInitGroup0[198] = {&preCalcRowLengthS52S5, &d_preCalcRowLengthS52S5, 1586, 1586, 31, 1.62903642578125000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[199] = {&preCalcRowLengthS52S6, &d_preCalcRowLengthS52S6, 1586, 1667, 15, 4.25866748046875000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[193] = {&preCalcRowLengthS52P4, &d_preCalcRowLengthS52P4, 1586, 7037, 69, 5.41200000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[194] = {&preCalcRowLengthS52P5, &d_preCalcRowLengthS52P5, 1586, 1751, 378, 4.51036000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[195] = {&preCalcRowLengthS52P6, &d_preCalcRowLengthS52P6, 1586, 1656, 15, 4.23000000000000000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[196] = {&preCalcRowLengthS52S23, &d_preCalcRowLengthS52S23, 1586, 1892, 21, 8.22600000000000000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[197] = {&preCalcRowLengthS52S4, &d_preCalcRowLengthS52S4, 1586, 4041, 18, 6.19100000000000000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[198] = {&preCalcRowLengthS52S5, &d_preCalcRowLengthS52S5, 1586, 1586, 31, 1.62900000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[199] = {&preCalcRowLengthS52S6, &d_preCalcRowLengthS52S6, 1586, 1667, 15, 4.25800000000000000e+03f};
     mergedSynapseConnectivityHostInitGroup0[200] = {&preCalcRowLengthS52V23, &d_preCalcRowLengthS52V23, 1586, 4514, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[201] = {&preCalcRowLengthS52V4, &d_preCalcRowLengthS52V4, 1586, 1973, 30, 1.51734023437500000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[202] = {&preCalcRowLengthS52V5, &d_preCalcRowLengthS52V5, 1586, 334, 89, 7.58476484375000000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[203] = {&preCalcRowLengthS52V6, &d_preCalcRowLengthS52V6, 1586, 302, 7, 7.71155212402343750e+02f};
+    mergedSynapseConnectivityHostInitGroup0[201] = {&preCalcRowLengthS52V4, &d_preCalcRowLengthS52V4, 1586, 1973, 30, 1.51730000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[202] = {&preCalcRowLengthS52V5, &d_preCalcRowLengthS52V5, 1586, 334, 89, 7.58470000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[203] = {&preCalcRowLengthS52V6, &d_preCalcRowLengthS52V6, 1586, 302, 7, 7.71000000000000000e+02f};
     mergedSynapseConnectivityHostInitGroup0[204] = {&preCalcRowLengthS62E23, &d_preCalcRowLengthS62E23, 1667, 51738, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[205] = {&preCalcRowLengthS62E4, &d_preCalcRowLengthS62E4, 1667, 74933, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[206] = {&preCalcRowLengthS62E5, &d_preCalcRowLengthS62E5, 1667, 21624, 268, 3.17303093750000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[207] = {&preCalcRowLengthS62E6, &d_preCalcRowLengthS62E6, 1667, 20278, 736, 1.00374056250000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[206] = {&preCalcRowLengthS62E5, &d_preCalcRowLengthS62E5, 1667, 21624, 268, 3.17303000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[207] = {&preCalcRowLengthS62E6, &d_preCalcRowLengthS62E6, 1667, 20278, 736, 1.00374000000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[208] = {&preCalcRowLengthS62H1, &d_preCalcRowLengthS62H1, 1667, 15545, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[209] = {&preCalcRowLengthS62P23, &d_preCalcRowLengthS62P23, 1667, 2610, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[210] = {&preCalcRowLengthS62P4, &d_preCalcRowLengthS62P4, 1667, 7037, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[211] = {&preCalcRowLengthS62P5, &d_preCalcRowLengthS62P5, 1667, 1751, 40, 2.56941855468750000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[212] = {&preCalcRowLengthS62P6, &d_preCalcRowLengthS62P6, 1667, 1656, 55, 4.06372304687500000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[211] = {&preCalcRowLengthS62P5, &d_preCalcRowLengthS62P5, 1667, 1751, 40, 2.56940000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[212] = {&preCalcRowLengthS62P6, &d_preCalcRowLengthS62P6, 1667, 1656, 55, 4.06370000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[213] = {&preCalcRowLengthS62S23, &d_preCalcRowLengthS62S23, 1667, 1892, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[214] = {&preCalcRowLengthS62S4, &d_preCalcRowLengthS62S4, 1667, 4041, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[215] = {&preCalcRowLengthS62S5, &d_preCalcRowLengthS62S5, 1667, 1586, 38, 2.32719492187500000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[216] = {&preCalcRowLengthS62S6, &d_preCalcRowLengthS62S6, 1667, 1667, 55, 4.09069882812500000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[215] = {&preCalcRowLengthS62S5, &d_preCalcRowLengthS62S5, 1667, 1586, 38, 2.32710000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[216] = {&preCalcRowLengthS62S6, &d_preCalcRowLengthS62S6, 1667, 1667, 55, 4.09060000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[217] = {&preCalcRowLengthS62V23, &d_preCalcRowLengthS62V23, 1667, 4514, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[218] = {&preCalcRowLengthS62V4, &d_preCalcRowLengthS62V4, 1667, 1973, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[219] = {&preCalcRowLengthS62V5, &d_preCalcRowLengthS62V5, 1667, 334, 16, 4.90047851562500000e+03f};
-    mergedSynapseConnectivityHostInitGroup0[220] = {&preCalcRowLengthS62V6, &d_preCalcRowLengthS62V6, 1667, 302, 19, 7.41129833984375000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[219] = {&preCalcRowLengthS62V5, &d_preCalcRowLengthS62V5, 1667, 334, 16, 4.90000000000000000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[220] = {&preCalcRowLengthS62V6, &d_preCalcRowLengthS62V6, 1667, 302, 19, 7.41100000000000000e+03f};
     mergedSynapseConnectivityHostInitGroup0[221] = {&preCalcRowLengthV232E23, &d_preCalcRowLengthV232E23, 4514, 51738, 644, 2.32384200000000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[222] = {&preCalcRowLengthV232E4, &d_preCalcRowLengthV232E4, 4514, 74933, 543, 1.92211762500000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[222] = {&preCalcRowLengthV232E4, &d_preCalcRowLengthV232E4, 4514, 74933, 543, 1.92211700000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[223] = {&preCalcRowLengthV232E5, &d_preCalcRowLengthV232E5, 4514, 21624, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[224] = {&preCalcRowLengthV232E6, &d_preCalcRowLengthV232E6, 4514, 20278, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[225] = {&preCalcRowLengthV232H1, &d_preCalcRowLengthV232H1, 4514, 15545, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[226] = {&preCalcRowLengthV232P23, &d_preCalcRowLengthV232P23, 4514, 2610, 23, 2.66416777343750000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[227] = {&preCalcRowLengthV232P4, &d_preCalcRowLengthV232P4, 4514, 7037, 79, 1.80504437500000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[226] = {&preCalcRowLengthV232P23, &d_preCalcRowLengthV232P23, 4514, 2610, 23, 2.66410000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[227] = {&preCalcRowLengthV232P4, &d_preCalcRowLengthV232P4, 4514, 7037, 79, 1.80504000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[228] = {&preCalcRowLengthV232P5, &d_preCalcRowLengthV232P5, 4514, 1751, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[229] = {&preCalcRowLengthV232P6, &d_preCalcRowLengthV232P6, 4514, 1656, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[230] = {&preCalcRowLengthV232S23, &d_preCalcRowLengthV232S23, 4514, 1892, 221, 6.74891187500000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[231] = {&preCalcRowLengthV232S4, &d_preCalcRowLengthV232S4, 4514, 4041, 54, 1.03654906250000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[230] = {&preCalcRowLengthV232S23, &d_preCalcRowLengthV232S23, 4514, 1892, 221, 6.74891000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[231] = {&preCalcRowLengthV232S4, &d_preCalcRowLengthV232S4, 4514, 4041, 54, 1.03654000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[232] = {&preCalcRowLengthV232S5, &d_preCalcRowLengthV232S5, 4514, 1586, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[233] = {&preCalcRowLengthV232S6, &d_preCalcRowLengthV232S6, 4514, 1667, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[234] = {&preCalcRowLengthV232V23, &d_preCalcRowLengthV232V23, 4514, 4514, 39, 6.46006757812500000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[235] = {&preCalcRowLengthV232V4, &d_preCalcRowLengthV232V4, 4514, 1973, 34, 5.06081132812500000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[234] = {&preCalcRowLengthV232V23, &d_preCalcRowLengthV232V23, 4514, 4514, 39, 6.46000000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[235] = {&preCalcRowLengthV232V4, &d_preCalcRowLengthV232V4, 4514, 1973, 34, 5.06080000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[236] = {&preCalcRowLengthV232V5, &d_preCalcRowLengthV232V5, 4514, 334, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[237] = {&preCalcRowLengthV232V6, &d_preCalcRowLengthV232V6, 4514, 302, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[238] = {&preCalcRowLengthV42E23, &d_preCalcRowLengthV42E23, 1973, 51738, 1009, 1.67601212500000000e+06f};
-    mergedSynapseConnectivityHostInitGroup0[239] = {&preCalcRowLengthV42E4, &d_preCalcRowLengthV42E4, 1973, 74933, 1987, 3.47154950000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[238] = {&preCalcRowLengthV42E23, &d_preCalcRowLengthV42E23, 1973, 51738, 1009, 1.67601200000000000e+06f};
+    mergedSynapseConnectivityHostInitGroup0[239] = {&preCalcRowLengthV42E4, &d_preCalcRowLengthV42E4, 1973, 74933, 1987, 3.47154900000000000e+06f};
     mergedSynapseConnectivityHostInitGroup0[240] = {&preCalcRowLengthV42E5, &d_preCalcRowLengthV42E5, 1973, 21624, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[241] = {&preCalcRowLengthV42E6, &d_preCalcRowLengthV42E6, 1973, 20278, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[242] = {&preCalcRowLengthV42H1, &d_preCalcRowLengthV42H1, 1973, 15545, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[243] = {&preCalcRowLengthV42P23, &d_preCalcRowLengthV42P23, 1973, 2610, 28, 1.63311181640625000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[244] = {&preCalcRowLengthV42P4, &d_preCalcRowLengthV42P4, 1973, 7037, 29, 1.75215839843750000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[245] = {&preCalcRowLengthV42P5, &d_preCalcRowLengthV42P5, 1973, 1751, 17, 6.55103662109375000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[243] = {&preCalcRowLengthV42P23, &d_preCalcRowLengthV42P23, 1973, 2610, 28, 1.63310000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[244] = {&preCalcRowLengthV42P4, &d_preCalcRowLengthV42P4, 1973, 7037, 29, 1.75210000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[245] = {&preCalcRowLengthV42P5, &d_preCalcRowLengthV42P5, 1973, 1751, 17, 6.55100000000000000e+03f};
     mergedSynapseConnectivityHostInitGroup0[246] = {&preCalcRowLengthV42P6, &d_preCalcRowLengthV42P6, 1973, 1656, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[247] = {&preCalcRowLengthV42S23, &d_preCalcRowLengthV42S23, 1973, 1892, 23, 1.18379365234375000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[248] = {&preCalcRowLengthV42S4, &d_preCalcRowLengthV42S4, 1973, 4041, 254, 3.51577687500000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[249] = {&preCalcRowLengthV42S5, &d_preCalcRowLengthV42S5, 1973, 1586, 16, 5.93375830078125000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[247] = {&preCalcRowLengthV42S23, &d_preCalcRowLengthV42S23, 1973, 1892, 23, 1.18370000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[248] = {&preCalcRowLengthV42S4, &d_preCalcRowLengthV42S4, 1973, 4041, 254, 3.51577000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[249] = {&preCalcRowLengthV42S5, &d_preCalcRowLengthV42S5, 1973, 1586, 16, 5.93300000000000000e+03f};
     mergedSynapseConnectivityHostInitGroup0[250] = {&preCalcRowLengthV42S6, &d_preCalcRowLengthV42S6, 1973, 1667, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[251] = {&preCalcRowLengthV42V23, &d_preCalcRowLengthV42V23, 1973, 4514, 39, 2.82403945312500000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[252] = {&preCalcRowLengthV42V4, &d_preCalcRowLengthV42V4, 1973, 1973, 17, 6.88422900390625000e+03f};
-    mergedSynapseConnectivityHostInitGroup0[253] = {&preCalcRowLengthV42V5, &d_preCalcRowLengthV42V5, 1973, 334, 8, 1.25060217285156250e+03f};
+    mergedSynapseConnectivityHostInitGroup0[251] = {&preCalcRowLengthV42V23, &d_preCalcRowLengthV42V23, 1973, 4514, 39, 2.82400000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[252] = {&preCalcRowLengthV42V4, &d_preCalcRowLengthV42V4, 1973, 1973, 17, 6.88400000000000000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[253] = {&preCalcRowLengthV42V5, &d_preCalcRowLengthV42V5, 1973, 334, 8, 1.25000000000000000e+03f};
     mergedSynapseConnectivityHostInitGroup0[254] = {&preCalcRowLengthV42V6, &d_preCalcRowLengthV42V6, 1973, 302, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[255] = {&preCalcRowLengthV52E23, &d_preCalcRowLengthV52E23, 334, 51738, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[256] = {&preCalcRowLengthV52E4, &d_preCalcRowLengthV52E4, 334, 74933, 463, 1.21482148437500000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[257] = {&preCalcRowLengthV52E5, &d_preCalcRowLengthV52E5, 334, 21624, 553, 1.48458500000000000e+05f};
-    mergedSynapseConnectivityHostInitGroup0[258] = {&preCalcRowLengthV52E6, &d_preCalcRowLengthV52E6, 334, 20278, 152, 3.28740507812500000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[256] = {&preCalcRowLengthV52E4, &d_preCalcRowLengthV52E4, 334, 74933, 463, 1.21482000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[257] = {&preCalcRowLengthV52E5, &d_preCalcRowLengthV52E5, 334, 21624, 553, 1.48458000000000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[258] = {&preCalcRowLengthV52E6, &d_preCalcRowLengthV52E6, 334, 20278, 152, 3.28740000000000000e+04f};
     mergedSynapseConnectivityHostInitGroup0[259] = {&preCalcRowLengthV52H1, &d_preCalcRowLengthV52H1, 334, 15545, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[260] = {&preCalcRowLengthV52P23, &d_preCalcRowLengthV52P23, 334, 2610, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[261] = {&preCalcRowLengthV52P4, &d_preCalcRowLengthV52P4, 334, 7037, 67, 1.14101035156250000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[262] = {&preCalcRowLengthV52P5, &d_preCalcRowLengthV52P5, 334, 1751, 21, 1.89077819824218750e+03f};
-    mergedSynapseConnectivityHostInitGroup0[263] = {&preCalcRowLengthV52P6, &d_preCalcRowLengthV52P6, 334, 1656, 14, 8.92817138671875000e+02f};
+    mergedSynapseConnectivityHostInitGroup0[261] = {&preCalcRowLengthV52P4, &d_preCalcRowLengthV52P4, 334, 7037, 67, 1.14100000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[262] = {&preCalcRowLengthV52P5, &d_preCalcRowLengthV52P5, 334, 1751, 21, 1.89000000000000000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[263] = {&preCalcRowLengthV52P6, &d_preCalcRowLengthV52P6, 334, 1656, 14, 8.92000000000000000e+02f};
     mergedSynapseConnectivityHostInitGroup0[264] = {&preCalcRowLengthV52S23, &d_preCalcRowLengthV52S23, 334, 1892, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[265] = {&preCalcRowLengthV52S4, &d_preCalcRowLengthV52S4, 334, 4041, 45, 6.55306933593750000e+03f};
-    mergedSynapseConnectivityHostInitGroup0[266] = {&preCalcRowLengthV52S5, &d_preCalcRowLengthV52S5, 334, 1586, 250, 5.97928203125000000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[267] = {&preCalcRowLengthV52S6, &d_preCalcRowLengthV52S6, 334, 1667, 14, 8.97130493164062500e+02f};
+    mergedSynapseConnectivityHostInitGroup0[265] = {&preCalcRowLengthV52S4, &d_preCalcRowLengthV52S4, 334, 4041, 45, 6.55300000000000000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[266] = {&preCalcRowLengthV52S5, &d_preCalcRowLengthV52S5, 334, 1586, 250, 5.97920000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[267] = {&preCalcRowLengthV52S6, &d_preCalcRowLengthV52S6, 334, 1667, 14, 8.97000000000000000e+02f};
     mergedSynapseConnectivityHostInitGroup0[268] = {&preCalcRowLengthV52V23, &d_preCalcRowLengthV52V23, 334, 4514, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[269] = {&preCalcRowLengthV52V4, &d_preCalcRowLengthV52V4, 334, 1973, 29, 3.20126684570312500e+03f};
-    mergedSynapseConnectivityHostInitGroup0[270] = {&preCalcRowLengthV52V5, &d_preCalcRowLengthV52V5, 334, 334, 9, 3.60675231933593750e+02f};
-    mergedSynapseConnectivityHostInitGroup0[271] = {&preCalcRowLengthV52V6, &d_preCalcRowLengthV52V6, 334, 302, 7, 1.62007400512695312e+02f};
+    mergedSynapseConnectivityHostInitGroup0[269] = {&preCalcRowLengthV52V4, &d_preCalcRowLengthV52V4, 334, 1973, 29, 3.20100000000000000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[270] = {&preCalcRowLengthV52V5, &d_preCalcRowLengthV52V5, 334, 334, 9, 3.60000000000000000e+02f};
+    mergedSynapseConnectivityHostInitGroup0[271] = {&preCalcRowLengthV52V6, &d_preCalcRowLengthV52V6, 334, 302, 7, 1.62000000000000000e+02f};
     mergedSynapseConnectivityHostInitGroup0[272] = {&preCalcRowLengthV62E23, &d_preCalcRowLengthV62E23, 302, 51738, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[273] = {&preCalcRowLengthV62E4, &d_preCalcRowLengthV62E4, 302, 74933, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[274] = {&preCalcRowLengthV62E5, &d_preCalcRowLengthV62E5, 302, 21624, 263, 5.75291875000000000e+04f};
-    mergedSynapseConnectivityHostInitGroup0[275] = {&preCalcRowLengthV62E6, &d_preCalcRowLengthV62E6, 302, 20278, 728, 1.81982203125000000e+05f};
+    mergedSynapseConnectivityHostInitGroup0[274] = {&preCalcRowLengthV62E5, &d_preCalcRowLengthV62E5, 302, 21624, 263, 5.75290000000000000e+04f};
+    mergedSynapseConnectivityHostInitGroup0[275] = {&preCalcRowLengthV62E6, &d_preCalcRowLengthV62E6, 302, 20278, 728, 1.81982000000000000e+05f};
     mergedSynapseConnectivityHostInitGroup0[276] = {&preCalcRowLengthV62H1, &d_preCalcRowLengthV62H1, 302, 15545, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[277] = {&preCalcRowLengthV62P23, &d_preCalcRowLengthV62P23, 302, 2610, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[278] = {&preCalcRowLengthV62P4, &d_preCalcRowLengthV62P4, 302, 7037, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[279] = {&preCalcRowLengthV62P5, &d_preCalcRowLengthV62P5, 302, 1751, 38, 4.65633544921875000e+03f};
-    mergedSynapseConnectivityHostInitGroup0[280] = {&preCalcRowLengthV62P6, &d_preCalcRowLengthV62P6, 302, 1656, 53, 7.36736279296875000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[279] = {&preCalcRowLengthV62P5, &d_preCalcRowLengthV62P5, 302, 1751, 38, 4.65600000000000000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[280] = {&preCalcRowLengthV62P6, &d_preCalcRowLengthV62P6, 302, 1656, 53, 7.36700000000000000e+03f};
     mergedSynapseConnectivityHostInitGroup0[281] = {&preCalcRowLengthV62S23, &d_preCalcRowLengthV62S23, 302, 1892, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[282] = {&preCalcRowLengthV62S4, &d_preCalcRowLengthV62S4, 302, 4041, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[283] = {&preCalcRowLengthV62S5, &d_preCalcRowLengthV62S5, 302, 1586, 36, 4.21877685546875000e+03f};
-    mergedSynapseConnectivityHostInitGroup0[284] = {&preCalcRowLengthV62S6, &d_preCalcRowLengthV62S6, 302, 1667, 53, 7.41699902343750000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[283] = {&preCalcRowLengthV62S5, &d_preCalcRowLengthV62S5, 302, 1586, 36, 4.21800000000000000e+03f};
+    mergedSynapseConnectivityHostInitGroup0[284] = {&preCalcRowLengthV62S6, &d_preCalcRowLengthV62S6, 302, 1667, 53, 7.41600000000000000e+03f};
     mergedSynapseConnectivityHostInitGroup0[285] = {&preCalcRowLengthV62V23, &d_preCalcRowLengthV62V23, 302, 4514, 0, 0.00000000000000000e+00f};
     mergedSynapseConnectivityHostInitGroup0[286] = {&preCalcRowLengthV62V4, &d_preCalcRowLengthV62V4, 302, 1973, 0, 0.00000000000000000e+00f};
-    mergedSynapseConnectivityHostInitGroup0[287] = {&preCalcRowLengthV62V5, &d_preCalcRowLengthV62V5, 302, 334, 15, 8.89926879882812500e+02f};
-    mergedSynapseConnectivityHostInitGroup0[288] = {&preCalcRowLengthV62V6, &d_preCalcRowLengthV62V6, 302, 302, 14, 8.03556701660156250e+02f};
+    mergedSynapseConnectivityHostInitGroup0[287] = {&preCalcRowLengthV62V5, &d_preCalcRowLengthV62V5, 302, 334, 15, 8.89000000000000000e+02f};
+    mergedSynapseConnectivityHostInitGroup0[288] = {&preCalcRowLengthV62V6, &d_preCalcRowLengthV62V6, 302, 302, 14, 8.03000000000000000e+02f};
      {
         // merged synapse connectivity host init group 0
         for(unsigned int g = 0; g < 289; g++) {
@@ -28552,23 +28835,23 @@ void allocateMem() {
     pushMergedSynapseSparseInitGroup0ToDevice(286, d_rowLengthV62V4, d_indV62V4, d_gV62V4, d_dV62V4, 302, 1973, 0, 0, -1.31904530525207520e+00f, 1.31904527544975281e-01f, 0.00000000000000000e+00f, 3.40282346638528860e+38f, 1.50000000000000000e+01f, 7.50000000000000000e+00f, 3.90000009536743164e+01f);
     pushMergedSynapseSparseInitGroup0ToDevice(287, d_rowLengthV62V5, d_indV62V5, d_gV62V5, d_dV62V5, 302, 334, 15, 14, -1.31904530525207520e+00f, 1.31904527544975281e-01f, 0.00000000000000000e+00f, 3.40282346638528860e+38f, 1.50000000000000000e+01f, 7.50000000000000000e+00f, 3.90000009536743164e+01f);
     pushMergedSynapseSparseInitGroup0ToDevice(288, d_rowLengthV62V6, d_indV62V6, d_gV62V6, d_dV62V6, 302, 302, 14, 14, -1.31904530525207520e+00f, 1.31904527544975281e-01f, 0.00000000000000000e+00f, 3.40282346638528860e+38f, 1.50000000000000000e+01f, 7.50000000000000000e+00f, 3.90000009536743164e+01f);
-    pushMergedNeuronUpdateGroup0ToDevice(0, d_denDelayPtrS52E23, d_denDelayPtrE42E23, d_inSynS42E23, d_denDelayS42E23, d_denDelayPtrS42E23, d_inSynP42E23, d_denDelayP42E23, d_denDelayPtrP42E23, d_inSynV62E23, d_denDelayV62E23, d_denDelayPtrV62E23, d_inSynE52E23, d_denDelayE52E23, d_denDelayPtrE52E23, d_inSynS52E23, d_denDelayS52E23, d_denDelayE42E23, d_inSynP52E23, d_denDelayP52E23, d_denDelayPtrP52E23, d_inSynV52E23, d_denDelayV52E23, d_denDelayPtrV52E23, d_inSynE62E23, d_denDelayE62E23, d_denDelayPtrE62E23, d_inSynS62E23, d_denDelayS62E23, d_denDelayPtrS62E23, d_inSynP62E23, d_denDelayP62E23, d_denDelayPtrP62E23, d_inSynH12E23, d_glbSpkCntE23, d_glbSpkE23, d_VE23, d_RefracTimeE23, d_inSynV42E23, d_denDelayV42E23, d_denDelayPtrV42E23, d_denDelayH12E23, d_denDelayPtrH12E23, d_inSynE232E23, d_denDelayE232E23, d_inSynS232E23, d_inSynE42E23, d_denDelayPtrV232E23, d_denDelayV232E23, d_inSynV232E23, d_denDelayPtrP232E23, d_denDelayP232E23, d_inSynP232E23, d_denDelayPtrS232E23, d_denDelayS232E23, d_denDelayPtrE232E23, 4.00000000000000000e+01f, 9.95012479192682320e-01f, 2.00000000000000000e+00f, 5.50999999046325684e-01f, -6.00000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 5.00000000000000000e-01f, 51738);
-    pushMergedNeuronUpdateGroup0ToDevice(1, d_denDelayPtrS52E4, d_denDelayPtrE42E4, d_inSynS42E4, d_denDelayS42E4, d_denDelayPtrS42E4, d_inSynP42E4, d_denDelayP42E4, d_denDelayPtrP42E4, d_inSynV62E4, d_denDelayV62E4, d_denDelayPtrV62E4, d_inSynE52E4, d_denDelayE52E4, d_denDelayPtrE52E4, d_inSynS52E4, d_denDelayS52E4, d_denDelayE42E4, d_inSynP52E4, d_denDelayP52E4, d_denDelayPtrP52E4, d_inSynV52E4, d_denDelayV52E4, d_denDelayPtrV52E4, d_inSynE62E4, d_denDelayE62E4, d_denDelayPtrE62E4, d_inSynS62E4, d_denDelayS62E4, d_denDelayPtrS62E4, d_inSynP62E4, d_denDelayP62E4, d_denDelayPtrP62E4, d_inSynH12E4, d_glbSpkCntE4, d_glbSpkE4, d_VE4, d_RefracTimeE4, d_inSynV42E4, d_denDelayV42E4, d_denDelayPtrV42E4, d_denDelayH12E4, d_denDelayPtrH12E4, d_inSynE232E4, d_denDelayE232E4, d_inSynS232E4, d_inSynE42E4, d_denDelayPtrV232E4, d_denDelayV232E4, d_inSynV232E4, d_denDelayPtrP232E4, d_denDelayP232E4, d_inSynP232E4, d_denDelayPtrS232E4, d_denDelayS232E4, d_denDelayPtrE232E4, 4.00000000000000000e+01f, 9.95012479192682320e-01f, 2.00000000000000000e+00f, 6.01000010967254639e-01f, -6.00000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 5.00000000000000000e-01f, 74933);
-    pushMergedNeuronUpdateGroup0ToDevice(2, d_denDelayPtrS52E5, d_denDelayPtrE42E5, d_inSynS42E5, d_denDelayS42E5, d_denDelayPtrS42E5, d_inSynP42E5, d_denDelayP42E5, d_denDelayPtrP42E5, d_inSynV62E5, d_denDelayV62E5, d_denDelayPtrV62E5, d_inSynE52E5, d_denDelayE52E5, d_denDelayPtrE52E5, d_inSynS52E5, d_denDelayS52E5, d_denDelayE42E5, d_inSynP52E5, d_denDelayP52E5, d_denDelayPtrP52E5, d_inSynV52E5, d_denDelayV52E5, d_denDelayPtrV52E5, d_inSynE62E5, d_denDelayE62E5, d_denDelayPtrE62E5, d_inSynS62E5, d_denDelayS62E5, d_denDelayPtrS62E5, d_inSynP62E5, d_denDelayP62E5, d_denDelayPtrP62E5, d_inSynH12E5, d_glbSpkCntE5, d_glbSpkE5, d_VE5, d_RefracTimeE5, d_inSynV42E5, d_denDelayV42E5, d_denDelayPtrV42E5, d_denDelayH12E5, d_denDelayPtrH12E5, d_inSynE232E5, d_denDelayE232E5, d_inSynS232E5, d_inSynE42E5, d_denDelayPtrV232E5, d_denDelayV232E5, d_inSynV232E5, d_denDelayPtrP232E5, d_denDelayP232E5, d_inSynP232E5, d_denDelayPtrS232E5, d_denDelayS232E5, d_denDelayPtrE232E5, 4.00000000000000000e+01f, 9.95012479192682320e-01f, 2.00000000000000000e+00f, 5.50999999046325684e-01f, -6.00000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 5.00000000000000000e-01f, 21624);
-    pushMergedNeuronUpdateGroup0ToDevice(3, d_denDelayPtrS52E6, d_denDelayPtrE42E6, d_inSynS42E6, d_denDelayS42E6, d_denDelayPtrS42E6, d_inSynP42E6, d_denDelayP42E6, d_denDelayPtrP42E6, d_inSynV62E6, d_denDelayV62E6, d_denDelayPtrV62E6, d_inSynE52E6, d_denDelayE52E6, d_denDelayPtrE52E6, d_inSynS52E6, d_denDelayS52E6, d_denDelayE42E6, d_inSynP52E6, d_denDelayP52E6, d_denDelayPtrP52E6, d_inSynV52E6, d_denDelayV52E6, d_denDelayPtrV52E6, d_inSynE62E6, d_denDelayE62E6, d_denDelayPtrE62E6, d_inSynS62E6, d_denDelayS62E6, d_denDelayPtrS62E6, d_inSynP62E6, d_denDelayP62E6, d_denDelayPtrP62E6, d_inSynH12E6, d_glbSpkCntE6, d_glbSpkE6, d_VE6, d_RefracTimeE6, d_inSynV42E6, d_denDelayV42E6, d_denDelayPtrV42E6, d_denDelayH12E6, d_denDelayPtrH12E6, d_inSynE232E6, d_denDelayE232E6, d_inSynS232E6, d_inSynE42E6, d_denDelayPtrV232E6, d_denDelayV232E6, d_inSynV232E6, d_denDelayPtrP232E6, d_denDelayP232E6, d_inSynP232E6, d_denDelayPtrS232E6, d_denDelayS232E6, d_denDelayPtrE232E6, 4.00000000000000000e+01f, 9.95012479192682320e-01f, 2.00000000000000000e+00f, 5.50999999046325684e-01f, -6.00000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 5.00000000000000000e-01f, 20278);
-    pushMergedNeuronUpdateGroup0ToDevice(4, d_denDelayPtrS52H1, d_denDelayPtrE42H1, d_inSynS42H1, d_denDelayS42H1, d_denDelayPtrS42H1, d_inSynP42H1, d_denDelayP42H1, d_denDelayPtrP42H1, d_inSynV62H1, d_denDelayV62H1, d_denDelayPtrV62H1, d_inSynE52H1, d_denDelayE52H1, d_denDelayPtrE52H1, d_inSynS52H1, d_denDelayS52H1, d_denDelayE42H1, d_inSynP52H1, d_denDelayP52H1, d_denDelayPtrP52H1, d_inSynV52H1, d_denDelayV52H1, d_denDelayPtrV52H1, d_inSynE62H1, d_denDelayE62H1, d_denDelayPtrE62H1, d_inSynS62H1, d_denDelayS62H1, d_denDelayPtrS62H1, d_inSynP62H1, d_denDelayP62H1, d_denDelayPtrP62H1, d_inSynH12H1, d_glbSpkCntH1, d_glbSpkH1, d_VH1, d_RefracTimeH1, d_inSynV42H1, d_denDelayV42H1, d_denDelayPtrV42H1, d_denDelayH12H1, d_denDelayPtrH12H1, d_inSynE232H1, d_denDelayE232H1, d_inSynS232H1, d_inSynE42H1, d_denDelayPtrV232H1, d_denDelayV232H1, d_inSynV232H1, d_denDelayPtrP232H1, d_denDelayP232H1, d_inSynP232H1, d_denDelayPtrS232H1, d_denDelayS232H1, d_denDelayPtrE232H1, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, 5.50999999046325684e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 15545);
-    pushMergedNeuronUpdateGroup0ToDevice(5, d_denDelayPtrS52P23, d_denDelayPtrE42P23, d_inSynS42P23, d_denDelayS42P23, d_denDelayPtrS42P23, d_inSynP42P23, d_denDelayP42P23, d_denDelayPtrP42P23, d_inSynV62P23, d_denDelayV62P23, d_denDelayPtrV62P23, d_inSynE52P23, d_denDelayE52P23, d_denDelayPtrE52P23, d_inSynS52P23, d_denDelayS52P23, d_denDelayE42P23, d_inSynP52P23, d_denDelayP52P23, d_denDelayPtrP52P23, d_inSynV52P23, d_denDelayV52P23, d_denDelayPtrV52P23, d_inSynE62P23, d_denDelayE62P23, d_denDelayPtrE62P23, d_inSynS62P23, d_denDelayS62P23, d_denDelayPtrS62P23, d_inSynP62P23, d_denDelayP62P23, d_denDelayPtrP62P23, d_inSynH12P23, d_glbSpkCntP23, d_glbSpkP23, d_VP23, d_RefracTimeP23, d_inSynV42P23, d_denDelayV42P23, d_denDelayPtrV42P23, d_denDelayH12P23, d_denDelayPtrH12P23, d_inSynE232P23, d_denDelayE232P23, d_inSynS232P23, d_inSynE42P23, d_denDelayPtrV232P23, d_denDelayV232P23, d_inSynV232P23, d_denDelayPtrP232P23, d_denDelayP232P23, d_inSynP232P23, d_denDelayPtrS232P23, d_denDelayS232P23, d_denDelayPtrE232P23, 5.00000000000000000e+01f, 9.90049833749168107e-01f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.00000000000000000e+01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f, 2610);
-    pushMergedNeuronUpdateGroup0ToDevice(6, d_denDelayPtrS52P4, d_denDelayPtrE42P4, d_inSynS42P4, d_denDelayS42P4, d_denDelayPtrS42P4, d_inSynP42P4, d_denDelayP42P4, d_denDelayPtrP42P4, d_inSynV62P4, d_denDelayV62P4, d_denDelayPtrV62P4, d_inSynE52P4, d_denDelayE52P4, d_denDelayPtrE52P4, d_inSynS52P4, d_denDelayS52P4, d_denDelayE42P4, d_inSynP52P4, d_denDelayP52P4, d_denDelayPtrP52P4, d_inSynV52P4, d_denDelayV52P4, d_denDelayPtrV52P4, d_inSynE62P4, d_denDelayE62P4, d_denDelayPtrE62P4, d_inSynS62P4, d_denDelayS62P4, d_denDelayPtrS62P4, d_inSynP62P4, d_denDelayP62P4, d_denDelayPtrP62P4, d_inSynH12P4, d_glbSpkCntP4, d_glbSpkP4, d_VP4, d_RefracTimeP4, d_inSynV42P4, d_denDelayV42P4, d_denDelayPtrV42P4, d_denDelayH12P4, d_denDelayPtrH12P4, d_inSynE232P4, d_denDelayE232P4, d_inSynS232P4, d_inSynE42P4, d_denDelayPtrV232P4, d_denDelayV232P4, d_inSynV232P4, d_denDelayPtrP232P4, d_denDelayP232P4, d_inSynP232P4, d_denDelayPtrS232P4, d_denDelayS232P4, d_denDelayPtrE232P4, 5.00000000000000000e+01f, 9.90049833749168107e-01f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.00000000000000000e+01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f, 7037);
-    pushMergedNeuronUpdateGroup0ToDevice(7, d_denDelayPtrS52P5, d_denDelayPtrE42P5, d_inSynS42P5, d_denDelayS42P5, d_denDelayPtrS42P5, d_inSynP42P5, d_denDelayP42P5, d_denDelayPtrP42P5, d_inSynV62P5, d_denDelayV62P5, d_denDelayPtrV62P5, d_inSynE52P5, d_denDelayE52P5, d_denDelayPtrE52P5, d_inSynS52P5, d_denDelayS52P5, d_denDelayE42P5, d_inSynP52P5, d_denDelayP52P5, d_denDelayPtrP52P5, d_inSynV52P5, d_denDelayV52P5, d_denDelayPtrV52P5, d_inSynE62P5, d_denDelayE62P5, d_denDelayPtrE62P5, d_inSynS62P5, d_denDelayS62P5, d_denDelayPtrS62P5, d_inSynP62P5, d_denDelayP62P5, d_denDelayPtrP62P5, d_inSynH12P5, d_glbSpkCntP5, d_glbSpkP5, d_VP5, d_RefracTimeP5, d_inSynV42P5, d_denDelayV42P5, d_denDelayPtrV42P5, d_denDelayH12P5, d_denDelayPtrH12P5, d_inSynE232P5, d_denDelayE232P5, d_inSynS232P5, d_inSynE42P5, d_denDelayPtrV232P5, d_denDelayV232P5, d_inSynV232P5, d_denDelayPtrP232P5, d_denDelayP232P5, d_inSynP232P5, d_denDelayPtrS232P5, d_denDelayS232P5, d_denDelayPtrE232P5, 5.00000000000000000e+01f, 9.90049833749168107e-01f, 1.00000000000000000e+00f, 4.81000006198883057e-01f, -6.00000000000000000e+01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f, 1751);
-    pushMergedNeuronUpdateGroup0ToDevice(8, d_denDelayPtrS52P6, d_denDelayPtrE42P6, d_inSynS42P6, d_denDelayS42P6, d_denDelayPtrS42P6, d_inSynP42P6, d_denDelayP42P6, d_denDelayPtrP42P6, d_inSynV62P6, d_denDelayV62P6, d_denDelayPtrV62P6, d_inSynE52P6, d_denDelayE52P6, d_denDelayPtrE52P6, d_inSynS52P6, d_denDelayS52P6, d_denDelayE42P6, d_inSynP52P6, d_denDelayP52P6, d_denDelayPtrP52P6, d_inSynV52P6, d_denDelayV52P6, d_denDelayPtrV52P6, d_inSynE62P6, d_denDelayE62P6, d_denDelayPtrE62P6, d_inSynS62P6, d_denDelayS62P6, d_denDelayPtrS62P6, d_inSynP62P6, d_denDelayP62P6, d_denDelayPtrP62P6, d_inSynH12P6, d_glbSpkCntP6, d_glbSpkP6, d_VP6, d_RefracTimeP6, d_inSynV42P6, d_denDelayV42P6, d_denDelayPtrV42P6, d_denDelayH12P6, d_denDelayPtrH12P6, d_inSynE232P6, d_denDelayE232P6, d_inSynS232P6, d_inSynE42P6, d_denDelayPtrV232P6, d_denDelayV232P6, d_inSynV232P6, d_denDelayPtrP232P6, d_denDelayP232P6, d_inSynP232P6, d_denDelayPtrS232P6, d_denDelayS232P6, d_denDelayPtrE232P6, 5.00000000000000000e+01f, 9.90049833749168107e-01f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.00000000000000000e+01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f, 1656);
-    pushMergedNeuronUpdateGroup0ToDevice(9, d_denDelayPtrS52S23, d_denDelayPtrE42S23, d_inSynS42S23, d_denDelayS42S23, d_denDelayPtrS42S23, d_inSynP42S23, d_denDelayP42S23, d_denDelayPtrP42S23, d_inSynV62S23, d_denDelayV62S23, d_denDelayPtrV62S23, d_inSynE52S23, d_denDelayE52S23, d_denDelayPtrE52S23, d_inSynS52S23, d_denDelayS52S23, d_denDelayE42S23, d_inSynP52S23, d_denDelayP52S23, d_denDelayPtrP52S23, d_inSynV52S23, d_denDelayV52S23, d_denDelayPtrV52S23, d_inSynE62S23, d_denDelayE62S23, d_denDelayPtrE62S23, d_inSynS62S23, d_denDelayS62S23, d_denDelayPtrS62S23, d_inSynP62S23, d_denDelayP62S23, d_denDelayPtrP62S23, d_inSynH12S23, d_glbSpkCntS23, d_glbSpkS23, d_VS23, d_RefracTimeS23, d_inSynV42S23, d_denDelayV42S23, d_denDelayPtrV42S23, d_denDelayH12S23, d_denDelayPtrH12S23, d_inSynE232S23, d_denDelayE232S23, d_inSynS232S23, d_inSynE42S23, d_denDelayPtrV232S23, d_denDelayV232S23, d_inSynV232S23, d_denDelayPtrP232S23, d_denDelayP232S23, d_inSynP232S23, d_denDelayPtrS232S23, d_denDelayS232S23, d_denDelayPtrE232S23, 6.25000000000000000e+01f, 9.98001998667333079e-01f, 1.00000000000000000e+00f, 4.51000005006790161e-01f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f, 1892);
-    pushMergedNeuronUpdateGroup0ToDevice(10, d_denDelayPtrS52S4, d_denDelayPtrE42S4, d_inSynS42S4, d_denDelayS42S4, d_denDelayPtrS42S4, d_inSynP42S4, d_denDelayP42S4, d_denDelayPtrP42S4, d_inSynV62S4, d_denDelayV62S4, d_denDelayPtrV62S4, d_inSynE52S4, d_denDelayE52S4, d_denDelayPtrE52S4, d_inSynS52S4, d_denDelayS52S4, d_denDelayE42S4, d_inSynP52S4, d_denDelayP52S4, d_denDelayPtrP52S4, d_inSynV52S4, d_denDelayV52S4, d_denDelayPtrV52S4, d_inSynE62S4, d_denDelayE62S4, d_denDelayPtrE62S4, d_inSynS62S4, d_denDelayS62S4, d_denDelayPtrS62S4, d_inSynP62S4, d_denDelayP62S4, d_denDelayPtrP62S4, d_inSynH12S4, d_glbSpkCntS4, d_glbSpkS4, d_VS4, d_RefracTimeS4, d_inSynV42S4, d_denDelayV42S4, d_denDelayPtrV42S4, d_denDelayH12S4, d_denDelayPtrH12S4, d_inSynE232S4, d_denDelayE232S4, d_inSynS232S4, d_inSynE42S4, d_denDelayPtrV232S4, d_denDelayV232S4, d_inSynV232S4, d_denDelayPtrP232S4, d_denDelayP232S4, d_inSynP232S4, d_denDelayPtrS232S4, d_denDelayS232S4, d_denDelayPtrE232S4, 6.25000000000000000e+01f, 9.98001998667333079e-01f, 1.00000000000000000e+00f, 4.90999996662139893e-01f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f, 4041);
-    pushMergedNeuronUpdateGroup0ToDevice(11, d_denDelayPtrS52S5, d_denDelayPtrE42S5, d_inSynS42S5, d_denDelayS42S5, d_denDelayPtrS42S5, d_inSynP42S5, d_denDelayP42S5, d_denDelayPtrP42S5, d_inSynV62S5, d_denDelayV62S5, d_denDelayPtrV62S5, d_inSynE52S5, d_denDelayE52S5, d_denDelayPtrE52S5, d_inSynS52S5, d_denDelayS52S5, d_denDelayE42S5, d_inSynP52S5, d_denDelayP52S5, d_denDelayPtrP52S5, d_inSynV52S5, d_denDelayV52S5, d_denDelayPtrV52S5, d_inSynE62S5, d_denDelayE62S5, d_denDelayPtrE62S5, d_inSynS62S5, d_denDelayS62S5, d_denDelayPtrS62S5, d_inSynP62S5, d_denDelayP62S5, d_denDelayPtrP62S5, d_inSynH12S5, d_glbSpkCntS5, d_glbSpkS5, d_VS5, d_RefracTimeS5, d_inSynV42S5, d_denDelayV42S5, d_denDelayPtrV42S5, d_denDelayH12S5, d_denDelayPtrH12S5, d_inSynE232S5, d_denDelayE232S5, d_inSynS232S5, d_inSynE42S5, d_denDelayPtrV232S5, d_denDelayV232S5, d_inSynV232S5, d_denDelayPtrP232S5, d_denDelayP232S5, d_inSynP232S5, d_denDelayPtrS232S5, d_denDelayS232S5, d_denDelayPtrE232S5, 6.25000000000000000e+01f, 9.98001998667333079e-01f, 1.00000000000000000e+00f, 4.81000006198883057e-01f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f, 1586);
-    pushMergedNeuronUpdateGroup0ToDevice(12, d_denDelayPtrS52S6, d_denDelayPtrE42S6, d_inSynS42S6, d_denDelayS42S6, d_denDelayPtrS42S6, d_inSynP42S6, d_denDelayP42S6, d_denDelayPtrP42S6, d_inSynV62S6, d_denDelayV62S6, d_denDelayPtrV62S6, d_inSynE52S6, d_denDelayE52S6, d_denDelayPtrE52S6, d_inSynS52S6, d_denDelayS52S6, d_denDelayE42S6, d_inSynP52S6, d_denDelayP52S6, d_denDelayPtrP52S6, d_inSynV52S6, d_denDelayV52S6, d_denDelayPtrV52S6, d_inSynE62S6, d_denDelayE62S6, d_denDelayPtrE62S6, d_inSynS62S6, d_denDelayS62S6, d_denDelayPtrS62S6, d_inSynP62S6, d_denDelayP62S6, d_denDelayPtrP62S6, d_inSynH12S6, d_glbSpkCntS6, d_glbSpkS6, d_VS6, d_RefracTimeS6, d_inSynV42S6, d_denDelayV42S6, d_denDelayPtrV42S6, d_denDelayH12S6, d_denDelayPtrH12S6, d_inSynE232S6, d_denDelayE232S6, d_inSynS232S6, d_inSynE42S6, d_denDelayPtrV232S6, d_denDelayV232S6, d_inSynV232S6, d_denDelayPtrP232S6, d_denDelayP232S6, d_inSynP232S6, d_denDelayPtrS232S6, d_denDelayS232S6, d_denDelayPtrE232S6, 6.25000000000000000e+01f, 9.98001998667333079e-01f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f, 1667);
-    pushMergedNeuronUpdateGroup0ToDevice(13, d_denDelayPtrS52V23, d_denDelayPtrE42V23, d_inSynS42V23, d_denDelayS42V23, d_denDelayPtrS42V23, d_inSynP42V23, d_denDelayP42V23, d_denDelayPtrP42V23, d_inSynV62V23, d_denDelayV62V23, d_denDelayPtrV62V23, d_inSynE52V23, d_denDelayE52V23, d_denDelayPtrE52V23, d_inSynS52V23, d_denDelayS52V23, d_denDelayE42V23, d_inSynP52V23, d_denDelayP52V23, d_denDelayPtrP52V23, d_inSynV52V23, d_denDelayV52V23, d_denDelayPtrV52V23, d_inSynE62V23, d_denDelayE62V23, d_denDelayPtrE62V23, d_inSynS62V23, d_denDelayS62V23, d_denDelayPtrS62V23, d_inSynP62V23, d_denDelayP62V23, d_denDelayPtrP62V23, d_inSynH12V23, d_glbSpkCntV23, d_glbSpkV23, d_VV23, d_RefracTimeV23, d_inSynV42V23, d_denDelayV42V23, d_denDelayPtrV42V23, d_denDelayH12V23, d_denDelayPtrH12V23, d_inSynE232V23, d_denDelayE232V23, d_inSynS232V23, d_inSynE42V23, d_denDelayPtrV232V23, d_denDelayV232V23, d_inSynV232V23, d_denDelayPtrP232V23, d_denDelayP232V23, d_inSynP232V23, d_denDelayPtrS232V23, d_denDelayS232V23, d_denDelayPtrE232V23, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, 5.21000027656555176e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 4514);
-    pushMergedNeuronUpdateGroup0ToDevice(14, d_denDelayPtrS52V4, d_denDelayPtrE42V4, d_inSynS42V4, d_denDelayS42V4, d_denDelayPtrS42V4, d_inSynP42V4, d_denDelayP42V4, d_denDelayPtrP42V4, d_inSynV62V4, d_denDelayV62V4, d_denDelayPtrV62V4, d_inSynE52V4, d_denDelayE52V4, d_denDelayPtrE52V4, d_inSynS52V4, d_denDelayS52V4, d_denDelayE42V4, d_inSynP52V4, d_denDelayP52V4, d_denDelayPtrP52V4, d_inSynV52V4, d_denDelayV52V4, d_denDelayPtrV52V4, d_inSynE62V4, d_denDelayE62V4, d_denDelayPtrE62V4, d_inSynS62V4, d_denDelayS62V4, d_denDelayPtrS62V4, d_inSynP62V4, d_denDelayP62V4, d_denDelayPtrP62V4, d_inSynH12V4, d_glbSpkCntV4, d_glbSpkV4, d_VV4, d_RefracTimeV4, d_inSynV42V4, d_denDelayV42V4, d_denDelayPtrV42V4, d_denDelayH12V4, d_denDelayPtrH12V4, d_inSynE232V4, d_denDelayE232V4, d_inSynS232V4, d_inSynE42V4, d_denDelayPtrV232V4, d_denDelayV232V4, d_inSynV232V4, d_denDelayPtrP232V4, d_denDelayP232V4, d_inSynP232V4, d_denDelayPtrS232V4, d_denDelayS232V4, d_denDelayPtrE232V4, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, 4.90999996662139893e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 1973);
-    pushMergedNeuronUpdateGroup0ToDevice(15, d_denDelayPtrS52V5, d_denDelayPtrE42V5, d_inSynS42V5, d_denDelayS42V5, d_denDelayPtrS42V5, d_inSynP42V5, d_denDelayP42V5, d_denDelayPtrP42V5, d_inSynV62V5, d_denDelayV62V5, d_denDelayPtrV62V5, d_inSynE52V5, d_denDelayE52V5, d_denDelayPtrE52V5, d_inSynS52V5, d_denDelayS52V5, d_denDelayE42V5, d_inSynP52V5, d_denDelayP52V5, d_denDelayPtrP52V5, d_inSynV52V5, d_denDelayV52V5, d_denDelayPtrV52V5, d_inSynE62V5, d_denDelayE62V5, d_denDelayPtrE62V5, d_inSynS62V5, d_denDelayS62V5, d_denDelayPtrS62V5, d_inSynP62V5, d_denDelayP62V5, d_denDelayPtrP62V5, d_inSynH12V5, d_glbSpkCntV5, d_glbSpkV5, d_VV5, d_RefracTimeV5, d_inSynV42V5, d_denDelayV42V5, d_denDelayPtrV42V5, d_denDelayH12V5, d_denDelayPtrH12V5, d_inSynE232V5, d_denDelayE232V5, d_inSynS232V5, d_inSynE42V5, d_denDelayPtrV232V5, d_denDelayV232V5, d_inSynV232V5, d_denDelayPtrP232V5, d_denDelayP232V5, d_inSynP232V5, d_denDelayPtrS232V5, d_denDelayS232V5, d_denDelayPtrE232V5, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, 4.90999996662139893e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 334);
-    pushMergedNeuronUpdateGroup0ToDevice(16, d_denDelayPtrS52V6, d_denDelayPtrE42V6, d_inSynS42V6, d_denDelayS42V6, d_denDelayPtrS42V6, d_inSynP42V6, d_denDelayP42V6, d_denDelayPtrP42V6, d_inSynV62V6, d_denDelayV62V6, d_denDelayPtrV62V6, d_inSynE52V6, d_denDelayE52V6, d_denDelayPtrE52V6, d_inSynS52V6, d_denDelayS52V6, d_denDelayE42V6, d_inSynP52V6, d_denDelayP52V6, d_denDelayPtrP52V6, d_inSynV52V6, d_denDelayV52V6, d_denDelayPtrV52V6, d_inSynE62V6, d_denDelayE62V6, d_denDelayPtrE62V6, d_inSynS62V6, d_denDelayS62V6, d_denDelayPtrS62V6, d_inSynP62V6, d_denDelayP62V6, d_denDelayPtrP62V6, d_inSynH12V6, d_glbSpkCntV6, d_glbSpkV6, d_VV6, d_RefracTimeV6, d_inSynV42V6, d_denDelayV42V6, d_denDelayPtrV42V6, d_denDelayH12V6, d_denDelayPtrH12V6, d_inSynE232V6, d_denDelayE232V6, d_inSynS232V6, d_inSynE42V6, d_denDelayPtrV232V6, d_denDelayV232V6, d_inSynV232V6, d_denDelayPtrP232V6, d_denDelayP232V6, d_inSynP232V6, d_denDelayPtrS232V6, d_denDelayS232V6, d_denDelayPtrE232V6, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 302);
+    pushMergedNeuronUpdateGroup0ToDevice(0, d_inSynV62E23, d_denDelayPtrS52E23, d_denDelayS52E23, d_inSynS52E23, d_denDelayPtrE52E23, d_denDelayE52E23, d_inSynE52E23, d_denDelayPtrV62E23, d_denDelayV62E23, d_inSynP52E23, d_denDelayPtrP42E23, d_denDelayP42E23, d_inSynP42E23, d_denDelayPtrS42E23, d_denDelayS42E23, d_inSynS42E23, d_denDelayPtrE42E23, d_denDelayE42E23, d_denDelayP52E23, d_denDelayPtrP52E23, d_inSynV52E23, d_denDelayV52E23, d_denDelayPtrV52E23, d_inSynE62E23, d_denDelayE62E23, d_denDelayPtrE62E23, d_inSynS62E23, d_denDelayS62E23, d_denDelayPtrS62E23, d_inSynP62E23, d_denDelayP62E23, d_denDelayPtrP62E23, d_recordSpkE23, d_inSynH12E23, d_glbSpkCntE23, d_glbSpkE23, d_VE23, d_RefracTimeE23, d_inSynV42E23, d_denDelayV42E23, d_denDelayPtrV42E23, d_denDelayH12E23, d_denDelayPtrH12E23, d_inSynE232E23, d_denDelayE232E23, d_inSynS232E23, d_inSynE42E23, d_denDelayPtrV232E23, d_denDelayV232E23, d_inSynV232E23, d_denDelayPtrP232E23, d_denDelayP232E23, d_inSynP232E23, d_denDelayPtrS232E23, d_denDelayS232E23, d_denDelayPtrE232E23, 4.00000000000000000e+01f, 9.95012479192682320e-01f, 2.00000000000000000e+00f, 5.50999999046325684e-01f, -6.00000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 5.00000000000000000e-01f, 51738);
+    pushMergedNeuronUpdateGroup0ToDevice(1, d_inSynV62E4, d_denDelayPtrS52E4, d_denDelayS52E4, d_inSynS52E4, d_denDelayPtrE52E4, d_denDelayE52E4, d_inSynE52E4, d_denDelayPtrV62E4, d_denDelayV62E4, d_inSynP52E4, d_denDelayPtrP42E4, d_denDelayP42E4, d_inSynP42E4, d_denDelayPtrS42E4, d_denDelayS42E4, d_inSynS42E4, d_denDelayPtrE42E4, d_denDelayE42E4, d_denDelayP52E4, d_denDelayPtrP52E4, d_inSynV52E4, d_denDelayV52E4, d_denDelayPtrV52E4, d_inSynE62E4, d_denDelayE62E4, d_denDelayPtrE62E4, d_inSynS62E4, d_denDelayS62E4, d_denDelayPtrS62E4, d_inSynP62E4, d_denDelayP62E4, d_denDelayPtrP62E4, d_recordSpkE4, d_inSynH12E4, d_glbSpkCntE4, d_glbSpkE4, d_VE4, d_RefracTimeE4, d_inSynV42E4, d_denDelayV42E4, d_denDelayPtrV42E4, d_denDelayH12E4, d_denDelayPtrH12E4, d_inSynE232E4, d_denDelayE232E4, d_inSynS232E4, d_inSynE42E4, d_denDelayPtrV232E4, d_denDelayV232E4, d_inSynV232E4, d_denDelayPtrP232E4, d_denDelayP232E4, d_inSynP232E4, d_denDelayPtrS232E4, d_denDelayS232E4, d_denDelayPtrE232E4, 4.00000000000000000e+01f, 9.95012479192682320e-01f, 2.00000000000000000e+00f, 6.01000010967254639e-01f, -6.00000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 5.00000000000000000e-01f, 74933);
+    pushMergedNeuronUpdateGroup0ToDevice(2, d_inSynV62E5, d_denDelayPtrS52E5, d_denDelayS52E5, d_inSynS52E5, d_denDelayPtrE52E5, d_denDelayE52E5, d_inSynE52E5, d_denDelayPtrV62E5, d_denDelayV62E5, d_inSynP52E5, d_denDelayPtrP42E5, d_denDelayP42E5, d_inSynP42E5, d_denDelayPtrS42E5, d_denDelayS42E5, d_inSynS42E5, d_denDelayPtrE42E5, d_denDelayE42E5, d_denDelayP52E5, d_denDelayPtrP52E5, d_inSynV52E5, d_denDelayV52E5, d_denDelayPtrV52E5, d_inSynE62E5, d_denDelayE62E5, d_denDelayPtrE62E5, d_inSynS62E5, d_denDelayS62E5, d_denDelayPtrS62E5, d_inSynP62E5, d_denDelayP62E5, d_denDelayPtrP62E5, d_recordSpkE5, d_inSynH12E5, d_glbSpkCntE5, d_glbSpkE5, d_VE5, d_RefracTimeE5, d_inSynV42E5, d_denDelayV42E5, d_denDelayPtrV42E5, d_denDelayH12E5, d_denDelayPtrH12E5, d_inSynE232E5, d_denDelayE232E5, d_inSynS232E5, d_inSynE42E5, d_denDelayPtrV232E5, d_denDelayV232E5, d_inSynV232E5, d_denDelayPtrP232E5, d_denDelayP232E5, d_inSynP232E5, d_denDelayPtrS232E5, d_denDelayS232E5, d_denDelayPtrE232E5, 4.00000000000000000e+01f, 9.95012479192682320e-01f, 2.00000000000000000e+00f, 5.50999999046325684e-01f, -6.00000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 5.00000000000000000e-01f, 21624);
+    pushMergedNeuronUpdateGroup0ToDevice(3, d_inSynV62E6, d_denDelayPtrS52E6, d_denDelayS52E6, d_inSynS52E6, d_denDelayPtrE52E6, d_denDelayE52E6, d_inSynE52E6, d_denDelayPtrV62E6, d_denDelayV62E6, d_inSynP52E6, d_denDelayPtrP42E6, d_denDelayP42E6, d_inSynP42E6, d_denDelayPtrS42E6, d_denDelayS42E6, d_inSynS42E6, d_denDelayPtrE42E6, d_denDelayE42E6, d_denDelayP52E6, d_denDelayPtrP52E6, d_inSynV52E6, d_denDelayV52E6, d_denDelayPtrV52E6, d_inSynE62E6, d_denDelayE62E6, d_denDelayPtrE62E6, d_inSynS62E6, d_denDelayS62E6, d_denDelayPtrS62E6, d_inSynP62E6, d_denDelayP62E6, d_denDelayPtrP62E6, d_recordSpkE6, d_inSynH12E6, d_glbSpkCntE6, d_glbSpkE6, d_VE6, d_RefracTimeE6, d_inSynV42E6, d_denDelayV42E6, d_denDelayPtrV42E6, d_denDelayH12E6, d_denDelayPtrH12E6, d_inSynE232E6, d_denDelayE232E6, d_inSynS232E6, d_inSynE42E6, d_denDelayPtrV232E6, d_denDelayV232E6, d_inSynV232E6, d_denDelayPtrP232E6, d_denDelayP232E6, d_inSynP232E6, d_denDelayPtrS232E6, d_denDelayS232E6, d_denDelayPtrE232E6, 4.00000000000000000e+01f, 9.95012479192682320e-01f, 2.00000000000000000e+00f, 5.50999999046325684e-01f, -6.00000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 5.00000000000000000e-01f, 20278);
+    pushMergedNeuronUpdateGroup0ToDevice(4, d_inSynV62H1, d_denDelayPtrS52H1, d_denDelayS52H1, d_inSynS52H1, d_denDelayPtrE52H1, d_denDelayE52H1, d_inSynE52H1, d_denDelayPtrV62H1, d_denDelayV62H1, d_inSynP52H1, d_denDelayPtrP42H1, d_denDelayP42H1, d_inSynP42H1, d_denDelayPtrS42H1, d_denDelayS42H1, d_inSynS42H1, d_denDelayPtrE42H1, d_denDelayE42H1, d_denDelayP52H1, d_denDelayPtrP52H1, d_inSynV52H1, d_denDelayV52H1, d_denDelayPtrV52H1, d_inSynE62H1, d_denDelayE62H1, d_denDelayPtrE62H1, d_inSynS62H1, d_denDelayS62H1, d_denDelayPtrS62H1, d_inSynP62H1, d_denDelayP62H1, d_denDelayPtrP62H1, d_recordSpkH1, d_inSynH12H1, d_glbSpkCntH1, d_glbSpkH1, d_VH1, d_RefracTimeH1, d_inSynV42H1, d_denDelayV42H1, d_denDelayPtrV42H1, d_denDelayH12H1, d_denDelayPtrH12H1, d_inSynE232H1, d_denDelayE232H1, d_inSynS232H1, d_inSynE42H1, d_denDelayPtrV232H1, d_denDelayV232H1, d_inSynV232H1, d_denDelayPtrP232H1, d_denDelayP232H1, d_inSynP232H1, d_denDelayPtrS232H1, d_denDelayS232H1, d_denDelayPtrE232H1, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, 5.50999999046325684e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 15545);
+    pushMergedNeuronUpdateGroup0ToDevice(5, d_inSynV62P23, d_denDelayPtrS52P23, d_denDelayS52P23, d_inSynS52P23, d_denDelayPtrE52P23, d_denDelayE52P23, d_inSynE52P23, d_denDelayPtrV62P23, d_denDelayV62P23, d_inSynP52P23, d_denDelayPtrP42P23, d_denDelayP42P23, d_inSynP42P23, d_denDelayPtrS42P23, d_denDelayS42P23, d_inSynS42P23, d_denDelayPtrE42P23, d_denDelayE42P23, d_denDelayP52P23, d_denDelayPtrP52P23, d_inSynV52P23, d_denDelayV52P23, d_denDelayPtrV52P23, d_inSynE62P23, d_denDelayE62P23, d_denDelayPtrE62P23, d_inSynS62P23, d_denDelayS62P23, d_denDelayPtrS62P23, d_inSynP62P23, d_denDelayP62P23, d_denDelayPtrP62P23, d_recordSpkP23, d_inSynH12P23, d_glbSpkCntP23, d_glbSpkP23, d_VP23, d_RefracTimeP23, d_inSynV42P23, d_denDelayV42P23, d_denDelayPtrV42P23, d_denDelayH12P23, d_denDelayPtrH12P23, d_inSynE232P23, d_denDelayE232P23, d_inSynS232P23, d_inSynE42P23, d_denDelayPtrV232P23, d_denDelayV232P23, d_inSynV232P23, d_denDelayPtrP232P23, d_denDelayP232P23, d_inSynP232P23, d_denDelayPtrS232P23, d_denDelayS232P23, d_denDelayPtrE232P23, 5.00000000000000000e+01f, 9.90049833749168107e-01f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.00000000000000000e+01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f, 2610);
+    pushMergedNeuronUpdateGroup0ToDevice(6, d_inSynV62P4, d_denDelayPtrS52P4, d_denDelayS52P4, d_inSynS52P4, d_denDelayPtrE52P4, d_denDelayE52P4, d_inSynE52P4, d_denDelayPtrV62P4, d_denDelayV62P4, d_inSynP52P4, d_denDelayPtrP42P4, d_denDelayP42P4, d_inSynP42P4, d_denDelayPtrS42P4, d_denDelayS42P4, d_inSynS42P4, d_denDelayPtrE42P4, d_denDelayE42P4, d_denDelayP52P4, d_denDelayPtrP52P4, d_inSynV52P4, d_denDelayV52P4, d_denDelayPtrV52P4, d_inSynE62P4, d_denDelayE62P4, d_denDelayPtrE62P4, d_inSynS62P4, d_denDelayS62P4, d_denDelayPtrS62P4, d_inSynP62P4, d_denDelayP62P4, d_denDelayPtrP62P4, d_recordSpkP4, d_inSynH12P4, d_glbSpkCntP4, d_glbSpkP4, d_VP4, d_RefracTimeP4, d_inSynV42P4, d_denDelayV42P4, d_denDelayPtrV42P4, d_denDelayH12P4, d_denDelayPtrH12P4, d_inSynE232P4, d_denDelayE232P4, d_inSynS232P4, d_inSynE42P4, d_denDelayPtrV232P4, d_denDelayV232P4, d_inSynV232P4, d_denDelayPtrP232P4, d_denDelayP232P4, d_inSynP232P4, d_denDelayPtrS232P4, d_denDelayS232P4, d_denDelayPtrE232P4, 5.00000000000000000e+01f, 9.90049833749168107e-01f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.00000000000000000e+01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f, 7037);
+    pushMergedNeuronUpdateGroup0ToDevice(7, d_inSynV62P5, d_denDelayPtrS52P5, d_denDelayS52P5, d_inSynS52P5, d_denDelayPtrE52P5, d_denDelayE52P5, d_inSynE52P5, d_denDelayPtrV62P5, d_denDelayV62P5, d_inSynP52P5, d_denDelayPtrP42P5, d_denDelayP42P5, d_inSynP42P5, d_denDelayPtrS42P5, d_denDelayS42P5, d_inSynS42P5, d_denDelayPtrE42P5, d_denDelayE42P5, d_denDelayP52P5, d_denDelayPtrP52P5, d_inSynV52P5, d_denDelayV52P5, d_denDelayPtrV52P5, d_inSynE62P5, d_denDelayE62P5, d_denDelayPtrE62P5, d_inSynS62P5, d_denDelayS62P5, d_denDelayPtrS62P5, d_inSynP62P5, d_denDelayP62P5, d_denDelayPtrP62P5, d_recordSpkP5, d_inSynH12P5, d_glbSpkCntP5, d_glbSpkP5, d_VP5, d_RefracTimeP5, d_inSynV42P5, d_denDelayV42P5, d_denDelayPtrV42P5, d_denDelayH12P5, d_denDelayPtrH12P5, d_inSynE232P5, d_denDelayE232P5, d_inSynS232P5, d_inSynE42P5, d_denDelayPtrV232P5, d_denDelayV232P5, d_inSynV232P5, d_denDelayPtrP232P5, d_denDelayP232P5, d_inSynP232P5, d_denDelayPtrS232P5, d_denDelayS232P5, d_denDelayPtrE232P5, 5.00000000000000000e+01f, 9.90049833749168107e-01f, 1.00000000000000000e+00f, 4.81000006198883057e-01f, -6.00000000000000000e+01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f, 1751);
+    pushMergedNeuronUpdateGroup0ToDevice(8, d_inSynV62P6, d_denDelayPtrS52P6, d_denDelayS52P6, d_inSynS52P6, d_denDelayPtrE52P6, d_denDelayE52P6, d_inSynE52P6, d_denDelayPtrV62P6, d_denDelayV62P6, d_inSynP52P6, d_denDelayPtrP42P6, d_denDelayP42P6, d_inSynP42P6, d_denDelayPtrS42P6, d_denDelayS42P6, d_inSynS42P6, d_denDelayPtrE42P6, d_denDelayE42P6, d_denDelayP52P6, d_denDelayPtrP52P6, d_inSynV52P6, d_denDelayV52P6, d_denDelayPtrV52P6, d_inSynE62P6, d_denDelayE62P6, d_denDelayPtrE62P6, d_inSynS62P6, d_denDelayS62P6, d_denDelayPtrS62P6, d_inSynP62P6, d_denDelayP62P6, d_denDelayPtrP62P6, d_recordSpkP6, d_inSynH12P6, d_glbSpkCntP6, d_glbSpkP6, d_VP6, d_RefracTimeP6, d_inSynV42P6, d_denDelayV42P6, d_denDelayPtrV42P6, d_denDelayH12P6, d_denDelayPtrH12P6, d_inSynE232P6, d_denDelayE232P6, d_inSynS232P6, d_inSynE42P6, d_denDelayPtrV232P6, d_denDelayV232P6, d_inSynV232P6, d_denDelayPtrP232P6, d_denDelayP232P6, d_inSynP232P6, d_denDelayPtrS232P6, d_denDelayS232P6, d_denDelayPtrE232P6, 5.00000000000000000e+01f, 9.90049833749168107e-01f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.00000000000000000e+01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f, 1656);
+    pushMergedNeuronUpdateGroup0ToDevice(9, d_inSynV62S23, d_denDelayPtrS52S23, d_denDelayS52S23, d_inSynS52S23, d_denDelayPtrE52S23, d_denDelayE52S23, d_inSynE52S23, d_denDelayPtrV62S23, d_denDelayV62S23, d_inSynP52S23, d_denDelayPtrP42S23, d_denDelayP42S23, d_inSynP42S23, d_denDelayPtrS42S23, d_denDelayS42S23, d_inSynS42S23, d_denDelayPtrE42S23, d_denDelayE42S23, d_denDelayP52S23, d_denDelayPtrP52S23, d_inSynV52S23, d_denDelayV52S23, d_denDelayPtrV52S23, d_inSynE62S23, d_denDelayE62S23, d_denDelayPtrE62S23, d_inSynS62S23, d_denDelayS62S23, d_denDelayPtrS62S23, d_inSynP62S23, d_denDelayP62S23, d_denDelayPtrP62S23, d_recordSpkS23, d_inSynH12S23, d_glbSpkCntS23, d_glbSpkS23, d_VS23, d_RefracTimeS23, d_inSynV42S23, d_denDelayV42S23, d_denDelayPtrV42S23, d_denDelayH12S23, d_denDelayPtrH12S23, d_inSynE232S23, d_denDelayE232S23, d_inSynS232S23, d_inSynE42S23, d_denDelayPtrV232S23, d_denDelayV232S23, d_inSynV232S23, d_denDelayPtrP232S23, d_denDelayP232S23, d_inSynP232S23, d_denDelayPtrS232S23, d_denDelayS232S23, d_denDelayPtrE232S23, 6.25000000000000000e+01f, 9.98001998667333079e-01f, 1.00000000000000000e+00f, 4.51000005006790161e-01f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f, 1892);
+    pushMergedNeuronUpdateGroup0ToDevice(10, d_inSynV62S4, d_denDelayPtrS52S4, d_denDelayS52S4, d_inSynS52S4, d_denDelayPtrE52S4, d_denDelayE52S4, d_inSynE52S4, d_denDelayPtrV62S4, d_denDelayV62S4, d_inSynP52S4, d_denDelayPtrP42S4, d_denDelayP42S4, d_inSynP42S4, d_denDelayPtrS42S4, d_denDelayS42S4, d_inSynS42S4, d_denDelayPtrE42S4, d_denDelayE42S4, d_denDelayP52S4, d_denDelayPtrP52S4, d_inSynV52S4, d_denDelayV52S4, d_denDelayPtrV52S4, d_inSynE62S4, d_denDelayE62S4, d_denDelayPtrE62S4, d_inSynS62S4, d_denDelayS62S4, d_denDelayPtrS62S4, d_inSynP62S4, d_denDelayP62S4, d_denDelayPtrP62S4, d_recordSpkS4, d_inSynH12S4, d_glbSpkCntS4, d_glbSpkS4, d_VS4, d_RefracTimeS4, d_inSynV42S4, d_denDelayV42S4, d_denDelayPtrV42S4, d_denDelayH12S4, d_denDelayPtrH12S4, d_inSynE232S4, d_denDelayE232S4, d_inSynS232S4, d_inSynE42S4, d_denDelayPtrV232S4, d_denDelayV232S4, d_inSynV232S4, d_denDelayPtrP232S4, d_denDelayP232S4, d_inSynP232S4, d_denDelayPtrS232S4, d_denDelayS232S4, d_denDelayPtrE232S4, 6.25000000000000000e+01f, 9.98001998667333079e-01f, 1.00000000000000000e+00f, 4.90999996662139893e-01f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f, 4041);
+    pushMergedNeuronUpdateGroup0ToDevice(11, d_inSynV62S5, d_denDelayPtrS52S5, d_denDelayS52S5, d_inSynS52S5, d_denDelayPtrE52S5, d_denDelayE52S5, d_inSynE52S5, d_denDelayPtrV62S5, d_denDelayV62S5, d_inSynP52S5, d_denDelayPtrP42S5, d_denDelayP42S5, d_inSynP42S5, d_denDelayPtrS42S5, d_denDelayS42S5, d_inSynS42S5, d_denDelayPtrE42S5, d_denDelayE42S5, d_denDelayP52S5, d_denDelayPtrP52S5, d_inSynV52S5, d_denDelayV52S5, d_denDelayPtrV52S5, d_inSynE62S5, d_denDelayE62S5, d_denDelayPtrE62S5, d_inSynS62S5, d_denDelayS62S5, d_denDelayPtrS62S5, d_inSynP62S5, d_denDelayP62S5, d_denDelayPtrP62S5, d_recordSpkS5, d_inSynH12S5, d_glbSpkCntS5, d_glbSpkS5, d_VS5, d_RefracTimeS5, d_inSynV42S5, d_denDelayV42S5, d_denDelayPtrV42S5, d_denDelayH12S5, d_denDelayPtrH12S5, d_inSynE232S5, d_denDelayE232S5, d_inSynS232S5, d_inSynE42S5, d_denDelayPtrV232S5, d_denDelayV232S5, d_inSynV232S5, d_denDelayPtrP232S5, d_denDelayP232S5, d_inSynP232S5, d_denDelayPtrS232S5, d_denDelayS232S5, d_denDelayPtrE232S5, 6.25000000000000000e+01f, 9.98001998667333079e-01f, 1.00000000000000000e+00f, 4.81000006198883057e-01f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f, 1586);
+    pushMergedNeuronUpdateGroup0ToDevice(12, d_inSynV62S6, d_denDelayPtrS52S6, d_denDelayS52S6, d_inSynS52S6, d_denDelayPtrE52S6, d_denDelayE52S6, d_inSynE52S6, d_denDelayPtrV62S6, d_denDelayV62S6, d_inSynP52S6, d_denDelayPtrP42S6, d_denDelayP42S6, d_inSynP42S6, d_denDelayPtrS42S6, d_denDelayS42S6, d_inSynS42S6, d_denDelayPtrE42S6, d_denDelayE42S6, d_denDelayP52S6, d_denDelayPtrP52S6, d_inSynV52S6, d_denDelayV52S6, d_denDelayPtrV52S6, d_inSynE62S6, d_denDelayE62S6, d_denDelayPtrE62S6, d_inSynS62S6, d_denDelayS62S6, d_denDelayPtrS62S6, d_inSynP62S6, d_denDelayP62S6, d_denDelayPtrP62S6, d_recordSpkS6, d_inSynH12S6, d_glbSpkCntS6, d_glbSpkS6, d_VS6, d_RefracTimeS6, d_inSynV42S6, d_denDelayV42S6, d_denDelayPtrV42S6, d_denDelayH12S6, d_denDelayPtrH12S6, d_inSynE232S6, d_denDelayE232S6, d_inSynS232S6, d_inSynE42S6, d_denDelayPtrV232S6, d_denDelayV232S6, d_inSynV232S6, d_denDelayPtrP232S6, d_denDelayP232S6, d_inSynP232S6, d_denDelayPtrS232S6, d_denDelayS232S6, d_denDelayPtrE232S6, 6.25000000000000000e+01f, 9.98001998667333079e-01f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f, 1667);
+    pushMergedNeuronUpdateGroup0ToDevice(13, d_inSynV62V23, d_denDelayPtrS52V23, d_denDelayS52V23, d_inSynS52V23, d_denDelayPtrE52V23, d_denDelayE52V23, d_inSynE52V23, d_denDelayPtrV62V23, d_denDelayV62V23, d_inSynP52V23, d_denDelayPtrP42V23, d_denDelayP42V23, d_inSynP42V23, d_denDelayPtrS42V23, d_denDelayS42V23, d_inSynS42V23, d_denDelayPtrE42V23, d_denDelayE42V23, d_denDelayP52V23, d_denDelayPtrP52V23, d_inSynV52V23, d_denDelayV52V23, d_denDelayPtrV52V23, d_inSynE62V23, d_denDelayE62V23, d_denDelayPtrE62V23, d_inSynS62V23, d_denDelayS62V23, d_denDelayPtrS62V23, d_inSynP62V23, d_denDelayP62V23, d_denDelayPtrP62V23, d_recordSpkV23, d_inSynH12V23, d_glbSpkCntV23, d_glbSpkV23, d_VV23, d_RefracTimeV23, d_inSynV42V23, d_denDelayV42V23, d_denDelayPtrV42V23, d_denDelayH12V23, d_denDelayPtrH12V23, d_inSynE232V23, d_denDelayE232V23, d_inSynS232V23, d_inSynE42V23, d_denDelayPtrV232V23, d_denDelayV232V23, d_inSynV232V23, d_denDelayPtrP232V23, d_denDelayP232V23, d_inSynP232V23, d_denDelayPtrS232V23, d_denDelayS232V23, d_denDelayPtrE232V23, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, 5.21000027656555176e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 4514);
+    pushMergedNeuronUpdateGroup0ToDevice(14, d_inSynV62V4, d_denDelayPtrS52V4, d_denDelayS52V4, d_inSynS52V4, d_denDelayPtrE52V4, d_denDelayE52V4, d_inSynE52V4, d_denDelayPtrV62V4, d_denDelayV62V4, d_inSynP52V4, d_denDelayPtrP42V4, d_denDelayP42V4, d_inSynP42V4, d_denDelayPtrS42V4, d_denDelayS42V4, d_inSynS42V4, d_denDelayPtrE42V4, d_denDelayE42V4, d_denDelayP52V4, d_denDelayPtrP52V4, d_inSynV52V4, d_denDelayV52V4, d_denDelayPtrV52V4, d_inSynE62V4, d_denDelayE62V4, d_denDelayPtrE62V4, d_inSynS62V4, d_denDelayS62V4, d_denDelayPtrS62V4, d_inSynP62V4, d_denDelayP62V4, d_denDelayPtrP62V4, d_recordSpkV4, d_inSynH12V4, d_glbSpkCntV4, d_glbSpkV4, d_VV4, d_RefracTimeV4, d_inSynV42V4, d_denDelayV42V4, d_denDelayPtrV42V4, d_denDelayH12V4, d_denDelayPtrH12V4, d_inSynE232V4, d_denDelayE232V4, d_inSynS232V4, d_inSynE42V4, d_denDelayPtrV232V4, d_denDelayV232V4, d_inSynV232V4, d_denDelayPtrP232V4, d_denDelayP232V4, d_inSynP232V4, d_denDelayPtrS232V4, d_denDelayS232V4, d_denDelayPtrE232V4, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, 4.90999996662139893e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 1973);
+    pushMergedNeuronUpdateGroup0ToDevice(15, d_inSynV62V5, d_denDelayPtrS52V5, d_denDelayS52V5, d_inSynS52V5, d_denDelayPtrE52V5, d_denDelayE52V5, d_inSynE52V5, d_denDelayPtrV62V5, d_denDelayV62V5, d_inSynP52V5, d_denDelayPtrP42V5, d_denDelayP42V5, d_inSynP42V5, d_denDelayPtrS42V5, d_denDelayS42V5, d_inSynS42V5, d_denDelayPtrE42V5, d_denDelayE42V5, d_denDelayP52V5, d_denDelayPtrP52V5, d_inSynV52V5, d_denDelayV52V5, d_denDelayPtrV52V5, d_inSynE62V5, d_denDelayE62V5, d_denDelayPtrE62V5, d_inSynS62V5, d_denDelayS62V5, d_denDelayPtrS62V5, d_inSynP62V5, d_denDelayP62V5, d_denDelayPtrP62V5, d_recordSpkV5, d_inSynH12V5, d_glbSpkCntV5, d_glbSpkV5, d_VV5, d_RefracTimeV5, d_inSynV42V5, d_denDelayV42V5, d_denDelayPtrV42V5, d_denDelayH12V5, d_denDelayPtrH12V5, d_inSynE232V5, d_denDelayE232V5, d_inSynS232V5, d_inSynE42V5, d_denDelayPtrV232V5, d_denDelayV232V5, d_inSynV232V5, d_denDelayPtrP232V5, d_denDelayP232V5, d_inSynP232V5, d_denDelayPtrS232V5, d_denDelayS232V5, d_denDelayPtrE232V5, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, 4.90999996662139893e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 334);
+    pushMergedNeuronUpdateGroup0ToDevice(16, d_inSynV62V6, d_denDelayPtrS52V6, d_denDelayS52V6, d_inSynS52V6, d_denDelayPtrE52V6, d_denDelayE52V6, d_inSynE52V6, d_denDelayPtrV62V6, d_denDelayV62V6, d_inSynP52V6, d_denDelayPtrP42V6, d_denDelayP42V6, d_inSynP42V6, d_denDelayPtrS42V6, d_denDelayS42V6, d_inSynS42V6, d_denDelayPtrE42V6, d_denDelayE42V6, d_denDelayP52V6, d_denDelayPtrP52V6, d_inSynV52V6, d_denDelayV52V6, d_denDelayPtrV52V6, d_inSynE62V6, d_denDelayE62V6, d_denDelayPtrE62V6, d_inSynS62V6, d_denDelayS62V6, d_denDelayPtrS62V6, d_inSynP62V6, d_denDelayP62V6, d_denDelayPtrP62V6, d_recordSpkV6, d_inSynH12V6, d_glbSpkCntV6, d_glbSpkV6, d_VV6, d_RefracTimeV6, d_inSynV42V6, d_denDelayV42V6, d_denDelayPtrV42V6, d_denDelayH12V6, d_denDelayPtrH12V6, d_inSynE232V6, d_denDelayE232V6, d_inSynS232V6, d_inSynE42V6, d_denDelayPtrV232V6, d_denDelayV232V6, d_inSynV232V6, d_denDelayPtrP232V6, d_denDelayP232V6, d_inSynP232V6, d_denDelayPtrS232V6, d_denDelayS232V6, d_denDelayPtrE232V6, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 302);
     pushMergedPresynapticUpdateGroup0ToDevice(0, d_denDelayE232E23, d_denDelayPtrE232E23, d_glbSpkCntE23, d_glbSpkE23, d_rowLengthE232E23, d_indE232E23, d_gE232E23, d_dE232E23, 51738, 51738, 1147);
     pushMergedPresynapticUpdateGroup0ToDevice(1, d_denDelayE232E4, d_denDelayPtrE232E4, d_glbSpkCntE23, d_glbSpkE23, d_rowLengthE232E4, d_indE232E4, d_gE232E4, d_dE232E4, 51738, 74933, 209);
     pushMergedPresynapticUpdateGroup0ToDevice(2, d_denDelayE232E5, d_denDelayPtrE232E5, d_glbSpkCntE23, d_glbSpkE23, d_rowLengthE232E5, d_indE232E5, d_gE232E5, d_dE232E5, 51738, 21624, 295);
@@ -29181,6 +29464,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntE23));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkE23));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkE23));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkE23));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkE23));
     CHECK_CUDA_ERRORS(cudaFreeHost(VE23));
     CHECK_CUDA_ERRORS(cudaFree(d_VE23));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeE23));
@@ -29189,6 +29474,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntE4));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkE4));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkE4));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkE4));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkE4));
     CHECK_CUDA_ERRORS(cudaFreeHost(VE4));
     CHECK_CUDA_ERRORS(cudaFree(d_VE4));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeE4));
@@ -29197,6 +29484,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntE5));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkE5));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkE5));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkE5));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkE5));
     CHECK_CUDA_ERRORS(cudaFreeHost(VE5));
     CHECK_CUDA_ERRORS(cudaFree(d_VE5));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeE5));
@@ -29205,6 +29494,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntE6));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkE6));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkE6));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkE6));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkE6));
     CHECK_CUDA_ERRORS(cudaFreeHost(VE6));
     CHECK_CUDA_ERRORS(cudaFree(d_VE6));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeE6));
@@ -29213,6 +29504,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntH1));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkH1));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkH1));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkH1));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkH1));
     CHECK_CUDA_ERRORS(cudaFreeHost(VH1));
     CHECK_CUDA_ERRORS(cudaFree(d_VH1));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeH1));
@@ -29221,6 +29514,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntP23));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkP23));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkP23));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkP23));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkP23));
     CHECK_CUDA_ERRORS(cudaFreeHost(VP23));
     CHECK_CUDA_ERRORS(cudaFree(d_VP23));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeP23));
@@ -29229,6 +29524,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntP4));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkP4));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkP4));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkP4));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkP4));
     CHECK_CUDA_ERRORS(cudaFreeHost(VP4));
     CHECK_CUDA_ERRORS(cudaFree(d_VP4));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeP4));
@@ -29237,6 +29534,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntP5));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkP5));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkP5));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkP5));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkP5));
     CHECK_CUDA_ERRORS(cudaFreeHost(VP5));
     CHECK_CUDA_ERRORS(cudaFree(d_VP5));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeP5));
@@ -29245,6 +29544,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntP6));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkP6));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkP6));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkP6));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkP6));
     CHECK_CUDA_ERRORS(cudaFreeHost(VP6));
     CHECK_CUDA_ERRORS(cudaFree(d_VP6));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeP6));
@@ -29253,6 +29554,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntS23));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkS23));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkS23));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkS23));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkS23));
     CHECK_CUDA_ERRORS(cudaFreeHost(VS23));
     CHECK_CUDA_ERRORS(cudaFree(d_VS23));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeS23));
@@ -29261,6 +29564,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntS4));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkS4));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkS4));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkS4));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkS4));
     CHECK_CUDA_ERRORS(cudaFreeHost(VS4));
     CHECK_CUDA_ERRORS(cudaFree(d_VS4));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeS4));
@@ -29269,6 +29574,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntS5));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkS5));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkS5));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkS5));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkS5));
     CHECK_CUDA_ERRORS(cudaFreeHost(VS5));
     CHECK_CUDA_ERRORS(cudaFree(d_VS5));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeS5));
@@ -29277,6 +29584,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntS6));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkS6));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkS6));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkS6));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkS6));
     CHECK_CUDA_ERRORS(cudaFreeHost(VS6));
     CHECK_CUDA_ERRORS(cudaFree(d_VS6));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeS6));
@@ -29285,6 +29594,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntV23));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkV23));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkV23));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkV23));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkV23));
     CHECK_CUDA_ERRORS(cudaFreeHost(VV23));
     CHECK_CUDA_ERRORS(cudaFree(d_VV23));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeV23));
@@ -29293,6 +29604,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntV4));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkV4));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkV4));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkV4));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkV4));
     CHECK_CUDA_ERRORS(cudaFreeHost(VV4));
     CHECK_CUDA_ERRORS(cudaFree(d_VV4));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeV4));
@@ -29301,6 +29614,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntV5));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkV5));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkV5));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkV5));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkV5));
     CHECK_CUDA_ERRORS(cudaFreeHost(VV5));
     CHECK_CUDA_ERRORS(cudaFree(d_VV5));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeV5));
@@ -29309,6 +29624,8 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntV6));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkV6));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkV6));
+    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkV6));
+    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkV6));
     CHECK_CUDA_ERRORS(cudaFreeHost(VV6));
     CHECK_CUDA_ERRORS(cudaFree(d_VV6));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeV6));
@@ -33098,7 +33415,7 @@ size_t getFreeDeviceMemBytes() {
 
 void stepTime() {
     updateSynapses(t);
-    updateNeurons(t); 
+    updateNeurons(t, (unsigned int)(iT % numRecordingTimesteps)); 
     denDelayPtrV62E23 = (denDelayPtrV62E23 + 1) % 1;
     denDelayPtrP62E23 = (denDelayPtrP62E23 + 1) % 1;
     denDelayPtrS62E23 = (denDelayPtrS62E23 + 1) % 1;
