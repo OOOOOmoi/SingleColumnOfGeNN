@@ -13,6 +13,7 @@
 using namespace std;
 #define TOTAL_TIME 1000.0f
 #define REPORT_TIME 100.0f
+#define CALL_PULL_SPIKE(popName) pull##popName##StateFromDevice()
 int main(){
     const string outDir="/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/output";
     vector<string> NeuronType={"E","S","P","V"};
@@ -86,17 +87,17 @@ int main(){
             // Get pointer to recording data
             const string name = PopList[i];
             const uint32_t *recordSpk = model.getArray<uint32_t>("recordSpk" + name);
-            unsigned int recordNum=neuron_number[PopList[i]]*0.5;
+            unsigned int recordNum=neuron_number[PopList[i]]*0.05;
             // Write to text file
             writeTextSpikeRecording(outDir + "/" + name + ".st", recordSpk, recordNum, timesteps, dt);
         }
     }
-    // cout << "Timing:" << endl;
-    // cout << "\tInit:" << *model.getScalar<double>("initTime") * 1000.0 << endl;
-    // cout << "\tSparse init:" << *model.getScalar<double>("initSparseTime") * 1000.0 << endl;
-    // cout << "\tNeuron simulation:" << *model.getScalar<double>("neuronUpdateTime") * 1000.0 << endl;
-    // cout << "\tSynapse simulation:" << *model.getScalar<double>("presynapticUpdateTime") * 1000.0 << endl;
-    // cout << "Record:" << recordS << "s" << endl;
+    cout << "Timing:" << endl;
+    cout << "\tInit:" << *model.getScalar<double>("initTime") * 1000.0 << endl;
+    cout << "\tSparse init:" << *model.getScalar<double>("initSparseTime") * 1000.0 << endl;
+    cout << "\tNeuron simulation:" << *model.getScalar<double>("neuronUpdateTime") * 1000.0 << endl;
+    cout << "\tSynapse simulation:" << *model.getScalar<double>("presynapticUpdateTime") * 1000.0 << endl;
+    cout << "Record:" << recordS << "s" << endl;
 }
 
 
@@ -122,20 +123,15 @@ int main(){
 //     };
 //     allocateMem();
 //     initialize();
-//     ofstream file("outputE23VoltageTime");
-//     SpikeRecorder<> H1Spikes(&getH1CurrentSpikes, &getH1CurrentSpikeCount, "outputH1SpikeTime");
-//     SpikeRecorder<> E23Spikes(&getE23CurrentSpikes, &getE23CurrentSpikeCount, "outputE23SpikeTime");
-//     SpikeRecorder<> E6Spikes(&getE6CurrentSpikes, &getE6CurrentSpikeCount, "outputE6SpikeTime");
+//     ofstream file("outputE23VoltageTime.st");
+//     ofstream file_rowLengthE232E23("rowLengthE232E23.st");
+//     ofstream file_indE232E23("indE232E23.st");
+//     SpikeRecorder<> H1Spikes(&getH1CurrentSpikes, &getH1CurrentSpikeCount, "outputH1SpikeTime.st");
+//     SpikeRecorder<> E23Spikes(&getE23CurrentSpikes, &getE23CurrentSpikeCount, "outputE23SpikeTime.st");
+//     SpikeRecorder<> E6Spikes(&getE6CurrentSpikes, &getE6CurrentSpikeCount, "outputE6SpikeTime.st");
 //     while (t<TOTAL_TIME){
-//         stepTime();
-//         pullH1CurrentSpikesFromDevice();
-//         pullE23CurrentSpikesFromDevice();
-//         pullE6CurrentSpikesFromDevice();
 //         pullCurrentVE23FromDevice();
-//         H1Spikes.record(t);
-//         E23Spikes.record(t);
-//         E6Spikes.record(t);
-//         if(t>=10.0 and t<=100.0){
+//         if(t==0.0){
 //             for (int i=0;i<neuron_number["E23"];i++){
 //                 file<<VE23[i];
 //                 if(i<neuron_number["E23"]-1){
@@ -144,10 +140,34 @@ int main(){
 //             }
 //             file<<endl;
 //         }
+//         stepTime();
+//         pullH1CurrentSpikesFromDevice();
+//         pullE23CurrentSpikesFromDevice();
+//         pullE6CurrentSpikesFromDevice();
+//         H1Spikes.record(t);
+//         E23Spikes.record(t);
+//         E6Spikes.record(t);
 //         // cout<<VE23[0]<<endl;
-//         cout<<"step: "<<t<<endl;
+//         // cout<<"step: "<<t<<endl;
 //     }
     
+//     pullE232E23ConnectivityFromDevice();
+//     for (int i=0;i<neuron_number["E23"];i++){
+//         file_rowLengthE232E23<<rowLengthE232E23[i];
+//         if(i<neuron_number["E23"]){
+//             file_rowLengthE232E23<<" ";
+//         }
+//         for (int j=0;j<1147;j++){
+//             file_indE232E23<<indE232E23[i*1147+j];
+//             if(j<1146){
+//                 file_indE232E23<<" ";
+//             }
+//         }
+//         file_indE232E23<<endl;
+//     }
+//     file_rowLengthE232E23<<endl;
+//     file_rowLengthE232E23.close();
+//     file_indE232E23.close();
 //     file.close();
 //     freeMem();
 //     return EXIT_SUCCESS;

@@ -11,6 +11,7 @@
 #include <chrono>
 using namespace std;
 const bool PoissionInput=false;
+const bool SpikeRecord=true;
 const char *FileWeight="/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/SynapsesWeight.txt";
 const char *FilePoissonWeight="/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/ExternalSynapses.txt";
 const char *FileSynapseNumber="/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/SynapsesNumber.txt";
@@ -108,7 +109,7 @@ void modelDefinition(ModelSpec &model){
         {"V6", 302}
     };
     map<string,float> input={
-        {"H1", 551},
+        {"H1", 451.0},
         {"V23", 521.0},
         {"S23", 451.0},
         {"E23", 551.0},
@@ -150,9 +151,9 @@ void modelDefinition(ModelSpec &model){
             ParaList=ParamH;
         }
         float ioffset=0.0;
-        if (PoissionInput==false){
-            ioffset=input[PopList[i]]/1000.0;
-        }
+        // if (PoissionInput==false){
+        //     ioffset=input[PopList[i]]/1000.0;
+        // }
         NeuronModels::LIF::ParamValues lifParams(
             ParaList.Cm/1000.0,//C
             ParaList.taum,//TauM
@@ -163,7 +164,9 @@ void modelDefinition(ModelSpec &model){
             ParaList.t_ref);//refractor
         cout<<"Building Population: "<<PopList[i]<<" ,NeuronNumber: "<<neuron_number[PopList[i]]<<endl;
         auto *Neu=model.addNeuronPopulation<NeuronModels::LIF>(PopList[i],neuron_number[PopList[i]],lifParams,lifInit);
-        Neu->setSpikeRecordingEnabled(true);
+        if(SpikeRecord==true){
+            Neu->setSpikeRecordingEnabled(true);
+        }
         if (PoissionInput==true){
             string popPoisson;
             float weightPoisson;

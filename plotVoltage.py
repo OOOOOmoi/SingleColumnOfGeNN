@@ -53,7 +53,7 @@ def plot_membrane_potentials(data, neuron_indices, output_file=None):
         plt.show()
 
 # 示例用法
-file_path = "/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/outputE23VoltageTime"  # 替换为实际文件路径
+file_path = "/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/outputE23VoltageTime.st"  # 替换为实际文件路径
 data = read_membrane_potentials(file_path)
 
 # 指定要绘制的神经元索引
