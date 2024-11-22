@@ -8,6 +8,7 @@
 #include <vector>
 #include <fstream>
 #include <limits>
+#include <chrono>
 using namespace std;
 const bool PoissionInput=false;
 const char *FileWeight="/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/SynapsesWeight.txt";
@@ -60,6 +61,8 @@ LIFParams NeuronParamInit(string name, float EL, float Vth, float Vreset, float 
 void modelDefinition(ModelSpec &model){
     model.setDT(0.1);
     model.setName("SingleColumn");
+    unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
+    model.setSeed(seed);
     ifstream PoissonWeight(FilePoissonWeight,ios::in);
     ifstream SynapsesNumber(FileSynapseNumber,ios::in);
     LIFParams ParamE;
@@ -146,7 +149,7 @@ void modelDefinition(ModelSpec &model){
         }else if (PopList[i].find("H")!=string::npos){
             ParaList=ParamH;
         }
-        float ioffset;
+        float ioffset=0.0;
         if (PoissionInput==false){
             ioffset=input[PopList[i]]/1000.0;
         }
@@ -178,6 +181,10 @@ void modelDefinition(ModelSpec &model){
     for (auto srcPop=begin(PopList);srcPop!=end(PopList);srcPop++){
         for (auto tarPop=begin(PopList);tarPop!=end(PopList);tarPop++){
             SynapsesNumber>>temp1>>temp2>>syn_num;
+            if(syn_num==0.0){
+                cout<<"There are no connection from "<<*srcPop<<" to "<<*tarPop<<endl;
+                continue;
+            }
             cout<<"Creating Connect of "<<*srcPop<<" to "<<*tarPop<<", SynapseNumber="<<static_cast<int>(syn_num)<<endl;
             InitSparseConnectivitySnippet::FixedNumberTotalWithReplacement::ParamValues synapseNum(
                 static_cast<int>(syn_num));

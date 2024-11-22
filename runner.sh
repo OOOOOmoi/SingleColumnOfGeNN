@@ -1,6 +1,6 @@
 #!/bin/bash
-genn-buildmodel.sh SingleColumn.cc -d
+genn-buildmodel.sh SingleColumn.cc
 genn-create-user-project.sh SingleColumn SingleColumnSim.cc
-# make
+make
 # ./SingleColumn
 # python plot.py

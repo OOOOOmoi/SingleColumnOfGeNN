@@ -67,9 +67,9 @@ int main(){
         const unsigned int tenPercentTimestep = timesteps / 10;
         for(unsigned int i = 0; i < timesteps; i++) {
             // Indicate every 10%
-            // if((i % tenPercentTimestep) == 0) {
-            //     cout << i / 100 << "%" << endl;
-            // }
+            if((i % tenPercentTimestep) == 0) {
+                cout << i / 100 << "%" << endl;
+            }
             // Simulate
             cout<<"step: "<<i<<endl;
             model.stepTime();
@@ -101,9 +101,28 @@ int main(){
 
 
 // int main(){
+//     map<string,int> neuron_number={
+//         {"H1", 15545},
+//         {"E23", 51738},
+//         {"S23", 1892},
+//         {"P23", 2610},
+//         {"V23", 4514},
+//         {"E4", 74933},
+//         {"S4", 4041},
+//         {"P4", 7037},
+//         {"V4", 1973},
+//         {"E5", 21624},
+//         {"S5", 1586},
+//         {"P5", 1751},
+//         {"V5", 334},
+//         {"E6", 20278},
+//         {"S6", 1667},
+//         {"P6", 1656},
+//         {"V6", 302}
+//     };
 //     allocateMem();
 //     initialize();
-    
+//     ofstream file("outputE23VoltageTime");
 //     SpikeRecorder<> H1Spikes(&getH1CurrentSpikes, &getH1CurrentSpikeCount, "outputH1SpikeTime");
 //     SpikeRecorder<> E23Spikes(&getE23CurrentSpikes, &getE23CurrentSpikeCount, "outputE23SpikeTime");
 //     SpikeRecorder<> E6Spikes(&getE6CurrentSpikes, &getE6CurrentSpikeCount, "outputE6SpikeTime");
@@ -112,14 +131,24 @@ int main(){
 //         pullH1CurrentSpikesFromDevice();
 //         pullE23CurrentSpikesFromDevice();
 //         pullE6CurrentSpikesFromDevice();
+//         pullCurrentVE23FromDevice();
 //         H1Spikes.record(t);
 //         E23Spikes.record(t);
 //         E6Spikes.record(t);
-//         // if(fmod(t, REPORT_TIME) < 1e-3f) {
-//         //     std::cout << "time " << t << std::endl;
-//         // }
+//         if(t>=10.0 and t<=100.0){
+//             for (int i=0;i<neuron_number["E23"];i++){
+//                 file<<VE23[i];
+//                 if(i<neuron_number["E23"]-1){
+//                     file<<" ";
+//                 }
+//             }
+//             file<<endl;
+//         }
+//         // cout<<VE23[0]<<endl;
 //         cout<<"step: "<<t<<endl;
 //     }
+    
+//     file.close();
 //     freeMem();
 //     return EXIT_SUCCESS;
 // }

@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 import glob
 import os
 import copy
+from datetime import datetime
+import random
+import string
 
 # 获取文件路径列表，假设文件的路径模式是 'data/*.txt'，可以根据实际情况修改
 file_paths = glob.glob('/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/output/*.st')
@@ -24,6 +27,15 @@ def read_spike_data(file_name):
                 neuron_ids.append(int(neuron_id))
     
     return np.array(times), np.array(neuron_ids)
+
+# 创建一个随机字符串作为标签
+def generate_random_label():
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M")  # 当前时间
+    random_str = ''.join(random.choices(string.ascii_letters + string.digits, k=6))  # 6位随机字符串
+    return f"{timestamp}_{random_str}"
+
+# 生成随机标签
+random_label = generate_random_label()
 
 # 创建图形
 plt.figure(figsize=(30,15))
@@ -55,5 +67,6 @@ plt.yticks(y_ticks, group_labels,fontsize=16)
 plt.xlabel('Time',fontsize=16)
 
 # 添加图例
+outputPath=f"/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/output/Fig/V1_{random_label}.png"
 plt.tight_layout()
-plt.savefig('/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/output/output2.png')
+plt.savefig(outputPath)
