@@ -1461,7 +1461,7 @@ extern "C" __global__ void initializeSparseKernel() {
 }
 void initialize() {
     unsigned long long deviceRNGSeed = 0;
-    deviceRNGSeed = 1793958118;
+    deviceRNGSeed = 4223108873;
     initializeRNGKernel<<<1, 1>>>(deviceRNGSeed);
     CHECK_CUDA_ERRORS(cudaPeekAtLastError());
      {

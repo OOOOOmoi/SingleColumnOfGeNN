@@ -1,0 +1,136 @@
+pullH1SpikesFromDevice();
+for (int i=0;i<*glbSpkCntH1;i++){
+    outPuts[0]<<glbSpkH1[i];
+    if(i<*glbSpkCntH1-1){
+        outPuts[0]<<" ";
+    }
+}
+outPuts[0]<<endl;
+pullE23SpikesFromDevice();
+for (int i=0;i<*glbSpkCntE23;i++){
+    outPuts[1]<<glbSpkE23[i];
+    if(i<*glbSpkCntE23-1){
+        outPuts[1]<<" ";
+    }
+}
+outPuts[1]<<endl;
+pullS23SpikesFromDevice();
+for (int i=0;i<*glbSpkCntS23;i++){
+    outPuts[2]<<glbSpkS23[i];
+    if(i<*glbSpkCntS23-1){
+        outPuts[2]<<" ";
+    }
+}
+outPuts[2]<<endl;
+pullP23SpikesFromDevice();
+for (int i=0;i<*glbSpkCntP23;i++){
+    outPuts[3]<<glbSpkP23[i];
+    if(i<*glbSpkCntP23-1){
+        outPuts[3]<<" ";
+    }
+}
+outPuts[3]<<endl;
+pullV23SpikesFromDevice();
+for (int i=0;i<*glbSpkCntV23;i++){
+    outPuts[4]<<glbSpkV23[i];
+    if(i<*glbSpkCntV23-1){
+        outPuts[4]<<" ";
+    }
+}
+outPuts[4]<<endl;
+pullE4SpikesFromDevice();
+for (int i=0;i<*glbSpkCntE4;i++){
+    outPuts[5]<<glbSpkE4[i];
+    if(i<*glbSpkCntE4-1){
+        outPuts[5]<<" ";
+    }
+}
+outPuts[5]<<endl;
+pullS4SpikesFromDevice();
+for (int i=0;i<*glbSpkCntS4;i++){
+    outPuts[6]<<glbSpkS4[i];
+    if(i<*glbSpkCntS4-1){
+        outPuts[6]<<" ";
+    }
+}
+outPuts[6]<<endl;
+pullP4SpikesFromDevice();
+for (int i=0;i<*glbSpkCntP4;i++){
+    outPuts[7]<<glbSpkP4[i];
+    if(i<*glbSpkCntP4-1){
+        outPuts[7]<<" ";
+    }
+}
+outPuts[7]<<endl;
+pullV4SpikesFromDevice();
+for (int i=0;i<*glbSpkCntV4;i++){
+    outPuts[8]<<glbSpkV4[i];
+    if(i<*glbSpkCntV4-1){
+        outPuts[8]<<" ";
+    }
+}
+outPuts[8]<<endl;
+pullE5SpikesFromDevice();
+for (int i=0;i<*glbSpkCntE5;i++){
+    outPuts[9]<<glbSpkE5[i];
+    if(i<*glbSpkCntE5-1){
+        outPuts[9]<<" ";
+    }
+}
+outPuts[9]<<endl;
+pullS5SpikesFromDevice();
+for (int i=0;i<*glbSpkCntS5;i++){
+    outPuts[10]<<glbSpkS5[i];
+    if(i<*glbSpkCntS5-1){
+        outPuts[10]<<" ";
+    }
+}
+outPuts[10]<<endl;
+pullP5SpikesFromDevice();
+for (int i=0;i<*glbSpkCntP5;i++){
+    outPuts[11]<<glbSpkP5[i];
+    if(i<*glbSpkCntP5-1){
+        outPuts[11]<<" ";
+    }
+}
+outPuts[11]<<endl;
+pullV5SpikesFromDevice();
+for (int i=0;i<*glbSpkCntV5;i++){
+    outPuts[12]<<glbSpkV5[i];
+    if(i<*glbSpkCntV5-1){
+        outPuts[12]<<" ";
+    }
+}
+outPuts[12]<<endl;
+pullE6SpikesFromDevice();
+for (int i=0;i<*glbSpkCntE6;i++){
+    outPuts[13]<<glbSpkE6[i];
+    if(i<*glbSpkCntE6-1){
+        outPuts[13]<<" ";
+    }
+}
+outPuts[13]<<endl;
+pullS6SpikesFromDevice();
+for (int i=0;i<*glbSpkCntS6;i++){
+    outPuts[14]<<glbSpkS6[i];
+    if(i<*glbSpkCntS6-1){
+        outPuts[14]<<" ";
+    }
+}
+outPuts[14]<<endl;
+pullP6SpikesFromDevice();
+for (int i=0;i<*glbSpkCntP6;i++){
+    outPuts[15]<<glbSpkP6[i];
+    if(i<*glbSpkCntP6-1){
+        outPuts[15]<<" ";
+    }
+}
+outPuts[15]<<endl;
+pullV6SpikesFromDevice();
+for (int i=0;i<*glbSpkCntV6;i++){
+    outPuts[16]<<glbSpkV6[i];
+    if(i<*glbSpkCntV6-1){
+        outPuts[16]<<" ";
+    }
+}
+outPuts[16]<<endl;

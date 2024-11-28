@@ -11,11 +11,24 @@
 #include <chrono>
 using namespace std;
 const bool PoissionInput=false;
-const bool SpikeRecord=true;
+const bool SpikeRecord=false;
 const char *FileWeight="/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/SynapsesWeight.txt";
 const char *FilePoissonWeight="/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/ExternalSynapses.txt";
 const char *FileSynapseNumber="/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/SynapsesNumber.txt";
 const char *FileSynapseNumberExternal="/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/SynapsesNumberEx.txt";
+const char *FileInd="/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/SynapsesInd.txt";
+
+void SaveInd(map<string,map<string,float>>& K, string PopList[]){
+    ofstream file(FileInd);
+    for (int i=0;i<17;i++){
+        string src=PopList[i];
+        for (int j=0;j<17;j++){
+            string tar=PopList[j];
+            file<<src<<" "<<tar<<" "<<K[src][tar]<<endl;
+        }
+    }
+    file.close();
+}
 
 map<string,map<string,float>> IndCompute(map<string,int> NeuronCount){
     map<string,map<string,float>> K;
@@ -109,26 +122,24 @@ void modelDefinition(ModelSpec &model){
         {"V6", 302}
     };
     map<string,float> input={
-        {"H1", 451.0},
-        {"V23", 521.0},
-        {"S23", 451.0},
-        {"E23", 551.0},
+        {"H1", 501.0},
+        {"V23", 501.0},
+        {"S23", 501.0},
+        {"E23", 501.0+50.0},
         {"P23", 501.0},
-        {"V4", 491.0},
-        {"S4", 491.0},
-        {"E4", 601.0},
-        {"P4", 501.0},
-        {"V5", 491.0},
-        {"S5", 481.0},
-        {"E5", 551.0},
-        {"P5", 481.0},
+        {"V4", 501.0+10.0},
+        {"S4", 501.0},
+        {"E4", 501.0+50.0},
+        {"P4", 501.0+10.0},
+        {"V5", 501.0},
+        {"S5", 501.0},
+        {"E5", 501.0+10.0},
+        {"P5", 501.0},
         {"V6", 501.0},
         {"S6", 501.0},
         {"E6", 551.0},
         {"P6", 501.0}
     };
-    map<string,map<string,float>> Ind;
-    Ind=IndCompute(neuron_number);
     InitVarSnippet::Normal::ParamValues vDist(
         InitVoltage.Vmean, //mean
         InitVoltage.Vstd);  //sd
@@ -137,6 +148,8 @@ void modelDefinition(ModelSpec &model){
         0.0);//refractor
     map<string,map<string,float>> K;
     K=IndCompute(neuron_number);
+    SaveInd(K,PopList);
+
     for (int i = 0; i < 17; i++){
         LIFParams ParaList;
         if (PopList[i].find("E")!=string::npos){
@@ -151,9 +164,9 @@ void modelDefinition(ModelSpec &model){
             ParaList=ParamH;
         }
         float ioffset=0.0;
-        // if (PoissionInput==false){
-        //     ioffset=input[PopList[i]]/1000.0;
-        // }
+        if (PoissionInput==false){
+            ioffset=input[PopList[i]]/1000.0;
+        }
         NeuronModels::LIF::ParamValues lifParams(
             ParaList.Cm/1000.0,//C
             ParaList.taum,//TauM

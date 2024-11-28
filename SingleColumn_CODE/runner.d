@@ -11,6 +11,15 @@ runner.o : runner.cc \
     /usr/local/cuda/bin/../targets/x86_64-linux/include/builtin_types.h \
     /usr/local/cuda/bin/../targets/x86_64-linux/include/device_types.h \
     /usr/local/cuda/bin/../targets/x86_64-linux/include/crt/host_defines.h \
+    /usr/include/ctype.h \
+    /usr/include/x86_64-linux-gnu/bits/types.h \
+    /usr/include/x86_64-linux-gnu/bits/timesize.h \
+    /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+    /usr/include/x86_64-linux-gnu/bits/time64.h \
+    /usr/include/x86_64-linux-gnu/bits/endian.h \
+    /usr/include/x86_64-linux-gnu/bits/endianness.h \
+    /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
     /usr/local/cuda/bin/../targets/x86_64-linux/include/driver_types.h \
     /usr/local/cuda/bin/../targets/x86_64-linux/include/vector_types.h \
     /usr/lib/gcc/x86_64-linux-gnu/9/include/limits.h \
@@ -40,21 +49,13 @@ runner.o : runner.cc \
     /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
     /usr/include/x86_64-linux-gnu/bits/floatn.h \
     /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
-    /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
     /usr/include/x86_64-linux-gnu/sys/types.h \
-    /usr/include/x86_64-linux-gnu/bits/types.h \
-    /usr/include/x86_64-linux-gnu/bits/timesize.h \
-    /usr/include/x86_64-linux-gnu/bits/typesizes.h \
-    /usr/include/x86_64-linux-gnu/bits/time64.h \
     /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
     /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
     /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
     /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
     /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
     /usr/include/endian.h \
-    /usr/include/x86_64-linux-gnu/bits/endian.h \
-    /usr/include/x86_64-linux-gnu/bits/endianness.h \
     /usr/include/x86_64-linux-gnu/bits/byteswap.h \
     /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
     /usr/include/x86_64-linux-gnu/sys/select.h \
@@ -195,7 +196,6 @@ runner.o : runner.cc \
     /usr/include/x86_64-linux-gnu/bits/locale.h \
     /usr/include/c++/9/iosfwd \
     /usr/include/c++/9/cctype \
-    /usr/include/ctype.h \
     /usr/include/c++/9/bits/ostream_insert.h \
     /usr/include/c++/9/bits/cxxabi_forced.h \
     /usr/include/c++/9/bits/stl_function.h \

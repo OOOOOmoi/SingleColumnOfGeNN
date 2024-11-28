@@ -6,7 +6,6 @@ extern "C" {
 // ------------------------------------------------------------------------
 unsigned long long iT;
 float t;
-unsigned long long numRecordingTimesteps = 0;
 __device__ curandStatePhilox4_32_10_t d_rng;
 std::mt19937 hostRNG;
 
@@ -30,8 +29,6 @@ unsigned int* glbSpkCntE23;
 unsigned int* d_glbSpkCntE23;
 unsigned int* glbSpkE23;
 unsigned int* d_glbSpkE23;
-uint32_t* recordSpkE23;
-uint32_t* d_recordSpkE23;
 scalar* VE23;
 scalar* d_VE23;
 scalar* RefracTimeE23;
@@ -40,8 +37,6 @@ unsigned int* glbSpkCntE4;
 unsigned int* d_glbSpkCntE4;
 unsigned int* glbSpkE4;
 unsigned int* d_glbSpkE4;
-uint32_t* recordSpkE4;
-uint32_t* d_recordSpkE4;
 scalar* VE4;
 scalar* d_VE4;
 scalar* RefracTimeE4;
@@ -50,8 +45,6 @@ unsigned int* glbSpkCntE5;
 unsigned int* d_glbSpkCntE5;
 unsigned int* glbSpkE5;
 unsigned int* d_glbSpkE5;
-uint32_t* recordSpkE5;
-uint32_t* d_recordSpkE5;
 scalar* VE5;
 scalar* d_VE5;
 scalar* RefracTimeE5;
@@ -60,8 +53,6 @@ unsigned int* glbSpkCntE6;
 unsigned int* d_glbSpkCntE6;
 unsigned int* glbSpkE6;
 unsigned int* d_glbSpkE6;
-uint32_t* recordSpkE6;
-uint32_t* d_recordSpkE6;
 scalar* VE6;
 scalar* d_VE6;
 scalar* RefracTimeE6;
@@ -70,8 +61,6 @@ unsigned int* glbSpkCntH1;
 unsigned int* d_glbSpkCntH1;
 unsigned int* glbSpkH1;
 unsigned int* d_glbSpkH1;
-uint32_t* recordSpkH1;
-uint32_t* d_recordSpkH1;
 scalar* VH1;
 scalar* d_VH1;
 scalar* RefracTimeH1;
@@ -80,8 +69,6 @@ unsigned int* glbSpkCntP23;
 unsigned int* d_glbSpkCntP23;
 unsigned int* glbSpkP23;
 unsigned int* d_glbSpkP23;
-uint32_t* recordSpkP23;
-uint32_t* d_recordSpkP23;
 scalar* VP23;
 scalar* d_VP23;
 scalar* RefracTimeP23;
@@ -90,8 +77,6 @@ unsigned int* glbSpkCntP4;
 unsigned int* d_glbSpkCntP4;
 unsigned int* glbSpkP4;
 unsigned int* d_glbSpkP4;
-uint32_t* recordSpkP4;
-uint32_t* d_recordSpkP4;
 scalar* VP4;
 scalar* d_VP4;
 scalar* RefracTimeP4;
@@ -100,8 +85,6 @@ unsigned int* glbSpkCntP5;
 unsigned int* d_glbSpkCntP5;
 unsigned int* glbSpkP5;
 unsigned int* d_glbSpkP5;
-uint32_t* recordSpkP5;
-uint32_t* d_recordSpkP5;
 scalar* VP5;
 scalar* d_VP5;
 scalar* RefracTimeP5;
@@ -110,8 +93,6 @@ unsigned int* glbSpkCntP6;
 unsigned int* d_glbSpkCntP6;
 unsigned int* glbSpkP6;
 unsigned int* d_glbSpkP6;
-uint32_t* recordSpkP6;
-uint32_t* d_recordSpkP6;
 scalar* VP6;
 scalar* d_VP6;
 scalar* RefracTimeP6;
@@ -120,8 +101,6 @@ unsigned int* glbSpkCntS23;
 unsigned int* d_glbSpkCntS23;
 unsigned int* glbSpkS23;
 unsigned int* d_glbSpkS23;
-uint32_t* recordSpkS23;
-uint32_t* d_recordSpkS23;
 scalar* VS23;
 scalar* d_VS23;
 scalar* RefracTimeS23;
@@ -130,8 +109,6 @@ unsigned int* glbSpkCntS4;
 unsigned int* d_glbSpkCntS4;
 unsigned int* glbSpkS4;
 unsigned int* d_glbSpkS4;
-uint32_t* recordSpkS4;
-uint32_t* d_recordSpkS4;
 scalar* VS4;
 scalar* d_VS4;
 scalar* RefracTimeS4;
@@ -140,8 +117,6 @@ unsigned int* glbSpkCntS5;
 unsigned int* d_glbSpkCntS5;
 unsigned int* glbSpkS5;
 unsigned int* d_glbSpkS5;
-uint32_t* recordSpkS5;
-uint32_t* d_recordSpkS5;
 scalar* VS5;
 scalar* d_VS5;
 scalar* RefracTimeS5;
@@ -150,8 +125,6 @@ unsigned int* glbSpkCntS6;
 unsigned int* d_glbSpkCntS6;
 unsigned int* glbSpkS6;
 unsigned int* d_glbSpkS6;
-uint32_t* recordSpkS6;
-uint32_t* d_recordSpkS6;
 scalar* VS6;
 scalar* d_VS6;
 scalar* RefracTimeS6;
@@ -160,8 +133,6 @@ unsigned int* glbSpkCntV23;
 unsigned int* d_glbSpkCntV23;
 unsigned int* glbSpkV23;
 unsigned int* d_glbSpkV23;
-uint32_t* recordSpkV23;
-uint32_t* d_recordSpkV23;
 scalar* VV23;
 scalar* d_VV23;
 scalar* RefracTimeV23;
@@ -170,8 +141,6 @@ unsigned int* glbSpkCntV4;
 unsigned int* d_glbSpkCntV4;
 unsigned int* glbSpkV4;
 unsigned int* d_glbSpkV4;
-uint32_t* recordSpkV4;
-uint32_t* d_recordSpkV4;
 scalar* VV4;
 scalar* d_VV4;
 scalar* RefracTimeV4;
@@ -180,8 +149,6 @@ unsigned int* glbSpkCntV5;
 unsigned int* d_glbSpkCntV5;
 unsigned int* glbSpkV5;
 unsigned int* d_glbSpkV5;
-uint32_t* recordSpkV5;
-uint32_t* d_recordSpkV5;
 scalar* VV5;
 scalar* d_VV5;
 scalar* RefracTimeV5;
@@ -190,8 +157,6 @@ unsigned int* glbSpkCntV6;
 unsigned int* d_glbSpkCntV6;
 unsigned int* glbSpkV6;
 unsigned int* d_glbSpkV6;
-uint32_t* recordSpkV6;
-uint32_t* d_recordSpkV6;
 scalar* VV6;
 scalar* d_VV6;
 scalar* RefracTimeV6;
@@ -15894,254 +15859,6 @@ void copyCurrentSpikesFromDevice() {
 void copyCurrentSpikeEventsFromDevice() {
 }
 
-void allocateRecordingBuffers(unsigned int timesteps) {
-    numRecordingTimesteps = timesteps;
-     {
-        const unsigned int numWords = 1617 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkE23, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkE23, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate7recordSpkToDevice(0, d_recordSpkE23);
-        }
-    }
-     {
-        const unsigned int numWords = 2342 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkE4, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkE4, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate6recordSpkToDevice(0, d_recordSpkE4);
-        }
-    }
-     {
-        const unsigned int numWords = 676 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkE5, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkE5, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate5recordSpkToDevice(0, d_recordSpkE5);
-        }
-    }
-     {
-        const unsigned int numWords = 634 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkE6, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkE6, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate4recordSpkToDevice(0, d_recordSpkE6);
-        }
-    }
-     {
-        const unsigned int numWords = 486 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkH1, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkH1, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate2recordSpkToDevice(0, d_recordSpkH1);
-        }
-    }
-     {
-        const unsigned int numWords = 82 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkP23, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkP23, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate3recordSpkToDevice(0, d_recordSpkP23);
-        }
-    }
-     {
-        const unsigned int numWords = 220 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkP4, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkP4, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate7recordSpkToDevice(1, d_recordSpkP4);
-        }
-    }
-     {
-        const unsigned int numWords = 55 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkP5, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkP5, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate1recordSpkToDevice(0, d_recordSpkP5);
-        }
-    }
-     {
-        const unsigned int numWords = 52 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkP6, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkP6, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate0recordSpkToDevice(0, d_recordSpkP6);
-        }
-    }
-     {
-        const unsigned int numWords = 60 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkS23, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkS23, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate3recordSpkToDevice(1, d_recordSpkS23);
-        }
-    }
-     {
-        const unsigned int numWords = 127 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkS4, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkS4, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate7recordSpkToDevice(2, d_recordSpkS4);
-        }
-    }
-     {
-        const unsigned int numWords = 50 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkS5, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkS5, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate7recordSpkToDevice(3, d_recordSpkS5);
-        }
-    }
-     {
-        const unsigned int numWords = 53 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkS6, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkS6, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate0recordSpkToDevice(1, d_recordSpkS6);
-        }
-    }
-     {
-        const unsigned int numWords = 142 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkV23, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkV23, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate4recordSpkToDevice(1, d_recordSpkV23);
-        }
-    }
-     {
-        const unsigned int numWords = 62 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkV4, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkV4, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate7recordSpkToDevice(4, d_recordSpkV4);
-        }
-    }
-     {
-        const unsigned int numWords = 11 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkV5, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkV5, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate7recordSpkToDevice(5, d_recordSpkV5);
-        }
-    }
-     {
-        const unsigned int numWords = 10 * timesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaHostAlloc(&recordSpkV6, numWords * sizeof(uint32_t), cudaHostAllocPortable));
-            CHECK_CUDA_ERRORS(cudaMalloc(&d_recordSpkV6, numWords * sizeof(uint32_t)));
-            pushMergedNeuronUpdate0recordSpkToDevice(2, d_recordSpkV6);
-        }
-    }
-}
-
-void pullRecordingBuffersFromDevice() {
-    if(numRecordingTimesteps == 0) {
-        throw std::runtime_error("Recording buffer not allocated - cannot pull from device");
-    }
-     {
-        const unsigned int numWords = 1617 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkE23, d_recordSpkE23, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 2342 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkE4, d_recordSpkE4, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 676 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkE5, d_recordSpkE5, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 634 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkE6, d_recordSpkE6, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 486 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkH1, d_recordSpkH1, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 82 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkP23, d_recordSpkP23, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 220 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkP4, d_recordSpkP4, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 55 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkP5, d_recordSpkP5, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 52 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkP6, d_recordSpkP6, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 60 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkS23, d_recordSpkS23, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 127 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkS4, d_recordSpkS4, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 50 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkS5, d_recordSpkS5, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 53 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkS6, d_recordSpkS6, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 142 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkV23, d_recordSpkV23, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 62 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkV4, d_recordSpkV4, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 11 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkV5, d_recordSpkV5, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-     {
-        const unsigned int numWords = 10 * numRecordingTimesteps;
-         {
-            CHECK_CUDA_ERRORS(cudaMemcpy(recordSpkV6, d_recordSpkV6, numWords * sizeof(uint32_t), cudaMemcpyDeviceToHost));
-        }
-    }
-}
-
 void allocateMem() {
     int deviceID;
     CHECK_CUDA_ERRORS(cudaDeviceGetByPCIBusId(&deviceID, "0000:3B:00.0"));
@@ -16151,7 +15868,7 @@ void allocateMem() {
     // global variables
     // ------------------------------------------------------------------------
      {
-        std::seed_seq seeds{1793958118};
+        std::seed_seq seeds{4223108873};
         hostRNG.seed(seeds);
     }
     
@@ -19354,23 +19071,23 @@ void allocateMem() {
     pushMergedSynapseSparseInitGroup0ToDevice(183, d_rowLengthV62S6, d_indV62S6, d_gV62S6, d_dV62S6, 302, 1667, 53, 19, -1.31904530525207520e+00f, 1.31904527544975281e-01f, 0.00000000000000000e+00f, 3.40282346638528860e+38f, 1.50000000000000000e+01f, 7.50000000000000000e+00f, 3.90000009536743164e+01f);
     pushMergedSynapseSparseInitGroup0ToDevice(184, d_rowLengthV62V5, d_indV62V5, d_gV62V5, d_dV62V5, 302, 334, 15, 14, -1.31904530525207520e+00f, 1.31904527544975281e-01f, 0.00000000000000000e+00f, 3.40282346638528860e+38f, 1.50000000000000000e+01f, 7.50000000000000000e+00f, 3.90000009536743164e+01f);
     pushMergedSynapseSparseInitGroup0ToDevice(185, d_rowLengthV62V6, d_indV62V6, d_gV62V6, d_dV62V6, 302, 302, 14, 14, -1.31904530525207520e+00f, 1.31904527544975281e-01f, 0.00000000000000000e+00f, 3.40282346638528860e+38f, 1.50000000000000000e+01f, 7.50000000000000000e+00f, 3.90000009536743164e+01f);
-    pushMergedNeuronUpdateGroup0ToDevice(0, d_denDelayP52P6, d_denDelayPtrS62P6, d_inSynE62P6, d_denDelayE62P6, d_denDelayPtrE62P6, d_inSynV52P6, d_denDelayV52P6, d_denDelayPtrV52P6, d_inSynP52P6, d_denDelayS62P6, d_denDelayPtrP52P6, d_inSynS52P6, d_denDelayS52P6, d_denDelayPtrS52P6, d_inSynE52P6, d_denDelayE52P6, d_denDelayPtrE52P6, d_recordSpkP6, d_inSynS62P6, d_glbSpkCntP6, d_glbSpkP6, d_VP6, d_RefracTimeP6, d_inSynV62P6, d_denDelayV62P6, d_denDelayPtrV62P6, d_inSynP62P6, d_denDelayP62P6, d_denDelayPtrP62P6, 5.00000000000000000e+01f, 9.90049833749168107e-01f, -6.00000000000000000e+01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f, 1656);
-    pushMergedNeuronUpdateGroup0ToDevice(1, d_denDelayP52S6, d_denDelayPtrS62S6, d_inSynE62S6, d_denDelayE62S6, d_denDelayPtrE62S6, d_inSynV52S6, d_denDelayV52S6, d_denDelayPtrV52S6, d_inSynP52S6, d_denDelayS62S6, d_denDelayPtrP52S6, d_inSynS52S6, d_denDelayS52S6, d_denDelayPtrS52S6, d_inSynE52S6, d_denDelayE52S6, d_denDelayPtrE52S6, d_recordSpkS6, d_inSynS62S6, d_glbSpkCntS6, d_glbSpkS6, d_VS6, d_RefracTimeS6, d_inSynV62S6, d_denDelayV62S6, d_denDelayPtrV62S6, d_inSynP62S6, d_denDelayP62S6, d_denDelayPtrP62S6, 6.25000000000000000e+01f, 9.98001998667333079e-01f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f, 1667);
-    pushMergedNeuronUpdateGroup0ToDevice(2, d_denDelayP52V6, d_denDelayPtrS62V6, d_inSynE62V6, d_denDelayE62V6, d_denDelayPtrE62V6, d_inSynV52V6, d_denDelayV52V6, d_denDelayPtrV52V6, d_inSynP52V6, d_denDelayS62V6, d_denDelayPtrP52V6, d_inSynS52V6, d_denDelayS52V6, d_denDelayPtrS52V6, d_inSynE52V6, d_denDelayE52V6, d_denDelayPtrE52V6, d_recordSpkV6, d_inSynS62V6, d_glbSpkCntV6, d_glbSpkV6, d_VV6, d_RefracTimeV6, d_inSynV62V6, d_denDelayV62V6, d_denDelayPtrV62V6, d_inSynP62V6, d_denDelayP62V6, d_denDelayPtrP62V6, 2.00000000000000000e+02f, 9.95012479192682320e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 302);
-    pushMergedNeuronUpdateGroup1ToDevice(0, d_denDelayS42P5, d_denDelayPtrS52P5, d_inSynE52P5, d_denDelayE52P5, d_denDelayPtrE52P5, d_inSynV42P5, d_denDelayV42P5, d_denDelayPtrV42P5, d_inSynP42P5, d_denDelayP42P5, d_denDelayPtrP42P5, d_inSynS42P5, d_denDelayS52P5, d_denDelayPtrS42P5, d_inSynE42P5, d_denDelayE42P5, d_denDelayPtrE42P5, d_inSynP232P5, d_denDelayP232P5, d_denDelayPtrP232P5, d_inSynE232P5, d_denDelayE232P5, d_denDelayPtrE232P5, d_recordSpkP5, d_denDelayS62P5, d_glbSpkCntP5, d_glbSpkP5, d_VP5, d_RefracTimeP5, d_inSynV62P5, d_denDelayV62P5, d_denDelayPtrV62P5, d_inSynP62P5, d_denDelayP62P5, d_denDelayPtrP62P5, d_inSynS62P5, d_denDelayPtrS62P5, d_inSynE62P5, d_denDelayE62P5, d_denDelayPtrE62P5, d_inSynV52P5, d_denDelayV52P5, d_denDelayPtrV52P5, d_inSynP52P5, d_denDelayP52P5, d_denDelayPtrP52P5, d_inSynS52P5, 1751);
-    pushMergedNeuronUpdateGroup2ToDevice(0, d_denDelayS42H1, d_recordSpkH1, d_denDelayPtrH12H1, d_denDelayH12H1, d_inSynH12H1, d_denDelayPtrS232H1, d_denDelayS232H1, d_inSynS232H1, d_denDelayPtrP232H1, d_denDelayP232H1, d_inSynP232H1, d_denDelayPtrS42H1, d_inSynS42H1, d_denDelayPtrE52H1, d_denDelayE52H1, d_inSynE52H1, d_denDelayPtrS52H1, d_denDelayS52H1, d_inSynS52H1, d_RefracTimeH1, d_VH1, d_glbSpkH1, d_glbSpkCntH1, 15545);
-    pushMergedNeuronUpdateGroup3ToDevice(0, d_denDelayPtrP232P23, d_denDelayS42P23, d_denDelayPtrS42P23, d_inSynE42P23, d_denDelayE42P23, d_denDelayPtrE42P23, d_inSynV232P23, d_denDelayV232P23, d_denDelayPtrV232P23, d_inSynP232P23, d_denDelayP232P23, d_inSynS42P23, d_inSynS232P23, d_denDelayS232P23, d_denDelayPtrS232P23, d_inSynE232P23, d_denDelayE232P23, d_denDelayPtrE232P23, d_inSynH12P23, d_denDelayH12P23, d_denDelayPtrH12P23, d_recordSpkP23, d_denDelayP52P23, d_glbSpkCntP23, d_glbSpkP23, d_VP23, d_RefracTimeP23, d_inSynP52P23, d_denDelayPtrP52P23, d_inSynE52P23, d_denDelayE52P23, d_denDelayPtrE52P23, d_inSynV42P23, d_denDelayV42P23, d_denDelayPtrV42P23, d_inSynP42P23, d_denDelayP42P23, d_denDelayPtrP42P23, 2610, 5.00000000000000000e+01f, 9.90049833749168107e-01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f);
-    pushMergedNeuronUpdateGroup3ToDevice(1, d_denDelayPtrP232S23, d_denDelayS42S23, d_denDelayPtrS42S23, d_inSynE42S23, d_denDelayE42S23, d_denDelayPtrE42S23, d_inSynV232S23, d_denDelayV232S23, d_denDelayPtrV232S23, d_inSynP232S23, d_denDelayP232S23, d_inSynS42S23, d_inSynS232S23, d_denDelayS232S23, d_denDelayPtrS232S23, d_inSynE232S23, d_denDelayE232S23, d_denDelayPtrE232S23, d_inSynH12S23, d_denDelayH12S23, d_denDelayPtrH12S23, d_recordSpkS23, d_denDelayS52S23, d_glbSpkCntS23, d_glbSpkS23, d_VS23, d_RefracTimeS23, d_inSynS52S23, d_denDelayPtrS52S23, d_inSynE52S23, d_denDelayE52S23, d_denDelayPtrE52S23, d_inSynV42S23, d_denDelayV42S23, d_denDelayPtrV42S23, d_inSynP42S23, d_denDelayP42S23, d_denDelayPtrP42S23, 1892, 6.25000000000000000e+01f, 9.98001998667333079e-01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f);
-    pushMergedNeuronUpdateGroup4ToDevice(0, d_inSynE52E6, d_inSynV52E6, d_denDelayV52E6, d_denDelayPtrV52E6, d_inSynP52E6, d_denDelayP52E6, d_denDelayPtrP52E6, d_inSynS52E6, d_denDelayS52E6, d_denDelayPtrS52E6, d_denDelayPtrE62E6, d_denDelayE52E6, d_denDelayPtrE52E6, d_inSynE42E6, d_denDelayE42E6, d_denDelayPtrE42E6, d_inSynH12E6, d_denDelayH12E6, d_denDelayPtrH12E6, d_recordSpkE6, d_denDelayV62E6, d_glbSpkCntE6, d_glbSpkE6, d_VE6, d_RefracTimeE6, d_inSynV62E6, d_denDelayPtrV62E6, d_inSynP62E6, d_denDelayP62E6, d_denDelayPtrP62E6, d_inSynS62E6, d_denDelayS62E6, d_denDelayPtrS62E6, d_inSynE62E6, d_denDelayE62E6, 20278, 4.00000000000000000e+01f, 2.00000000000000000e+00f, -6.00000000000000000e+01f, 5.00000000000000000e-01f);
-    pushMergedNeuronUpdateGroup4ToDevice(1, d_inSynS232V23, d_inSynE42V23, d_denDelayE42V23, d_denDelayPtrE42V23, d_inSynV232V23, d_denDelayV232V23, d_denDelayPtrV232V23, d_inSynP232V23, d_denDelayP232V23, d_denDelayPtrP232V23, d_denDelayPtrS42V23, d_denDelayS232V23, d_denDelayPtrS232V23, d_inSynE232V23, d_denDelayE232V23, d_denDelayPtrE232V23, d_inSynH12V23, d_denDelayH12V23, d_denDelayPtrH12V23, d_recordSpkV23, d_denDelayE52V23, d_glbSpkCntV23, d_glbSpkV23, d_VV23, d_RefracTimeV23, d_inSynE52V23, d_denDelayPtrE52V23, d_inSynV42V23, d_denDelayV42V23, d_denDelayPtrV42V23, d_inSynP42V23, d_denDelayP42V23, d_denDelayPtrP42V23, d_inSynS42V23, d_denDelayS42V23, 4514, 2.00000000000000000e+02f, 1.00000000000000000e+00f, -6.50000000000000000e+01f, 1.00000000000000006e-01f);
-    pushMergedNeuronUpdateGroup5ToDevice(0, d_inSynP232E5, d_inSynE52E5, d_denDelayE52E5, d_denDelayPtrE52E5, d_inSynP42E5, d_denDelayP42E5, d_denDelayPtrP42E5, d_inSynS42E5, d_denDelayS42E5, d_denDelayPtrS42E5, d_inSynE42E5, d_denDelayE42E5, d_denDelayPtrE42E5, d_denDelayPtrS52E5, d_denDelayP232E5, d_denDelayPtrP232E5, d_inSynS232E5, d_denDelayS232E5, d_denDelayPtrS232E5, d_inSynE232E5, d_denDelayE232E5, d_denDelayPtrE232E5, d_inSynH12E5, d_denDelayH12E5, d_denDelayPtrH12E5, d_recordSpkE5, d_denDelayPtrS62E5, d_glbSpkCntE5, d_glbSpkE5, d_VE5, d_RefracTimeE5, d_inSynV62E5, d_denDelayV62E5, d_denDelayPtrV62E5, d_inSynP62E5, d_denDelayP62E5, d_denDelayPtrP62E5, d_inSynS62E5, d_denDelayS62E5, d_inSynE62E5, d_denDelayE62E5, d_denDelayPtrE62E5, d_inSynV52E5, d_denDelayV52E5, d_denDelayPtrV52E5, d_inSynP52E5, d_denDelayP52E5, d_denDelayPtrP52E5, d_inSynS52E5, d_denDelayS52E5, 21624);
-    pushMergedNeuronUpdateGroup6ToDevice(0, d_denDelayPtrP232E4, d_inSynS42E4, d_denDelayS42E4, d_denDelayPtrS42E4, d_inSynE42E4, d_denDelayE42E4, d_denDelayPtrE42E4, d_inSynV232E4, d_denDelayV232E4, d_denDelayPtrV232E4, d_inSynP232E4, d_denDelayP232E4, d_denDelayPtrP42E4, d_inSynS232E4, d_denDelayS232E4, d_denDelayPtrS232E4, d_inSynE232E4, d_denDelayE232E4, d_denDelayPtrE232E4, d_inSynH12E4, d_denDelayH12E4, d_denDelayPtrH12E4, d_recordSpkE4, d_inSynS52E4, d_glbSpkCntE4, d_glbSpkE4, d_VE4, d_RefracTimeE4, d_inSynP62E4, d_denDelayP62E4, d_denDelayPtrP62E4, d_inSynV52E4, d_denDelayV52E4, d_denDelayPtrV52E4, d_denDelayS52E4, d_denDelayPtrS52E4, d_inSynE52E4, d_denDelayE52E4, d_denDelayPtrE52E4, d_inSynV42E4, d_denDelayV42E4, d_denDelayPtrV42E4, d_inSynP42E4, d_denDelayP42E4, 74933);
-    pushMergedNeuronUpdateGroup7ToDevice(0, d_denDelayP232E23, d_denDelayP42E23, d_denDelayPtrP42E23, d_inSynS42E23, d_denDelayS42E23, d_denDelayPtrS42E23, d_inSynE42E23, d_denDelayE42E23, d_denDelayPtrE42E23, d_inSynV232E23, d_denDelayV232E23, d_denDelayPtrV232E23, d_inSynP232E23, d_inSynP42E23, d_denDelayPtrP232E23, d_inSynS232E23, d_denDelayS232E23, d_denDelayPtrS232E23, d_inSynE232E23, d_denDelayE232E23, d_denDelayPtrE232E23, d_inSynH12E23, d_denDelayH12E23, d_denDelayPtrH12E23, d_recordSpkE23, d_inSynP62E23, d_glbSpkCntE23, d_glbSpkE23, d_VE23, d_RefracTimeE23, d_denDelayP62E23, d_denDelayPtrP62E23, d_inSynS52E23, d_denDelayS52E23, d_denDelayPtrS52E23, d_inSynE52E23, d_denDelayE52E23, d_denDelayPtrE52E23, d_inSynV42E23, d_denDelayV42E23, d_denDelayPtrV42E23, 51738, 4.00000000000000000e+01f, 9.95012479192682320e-01f, 2.00000000000000000e+00f, -6.00000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 5.00000000000000000e-01f);
-    pushMergedNeuronUpdateGroup7ToDevice(1, d_denDelayV232P4, d_denDelayV42P4, d_denDelayPtrV42P4, d_inSynP42P4, d_denDelayP42P4, d_denDelayPtrP42P4, d_inSynS42P4, d_denDelayS42P4, d_denDelayPtrS42P4, d_inSynE42P4, d_denDelayE42P4, d_denDelayPtrE42P4, d_inSynV232P4, d_inSynV42P4, d_denDelayPtrV232P4, d_inSynP232P4, d_denDelayP232P4, d_denDelayPtrP232P4, d_inSynS232P4, d_denDelayS232P4, d_denDelayPtrS232P4, d_inSynE232P4, d_denDelayE232P4, d_denDelayPtrE232P4, d_recordSpkP4, d_inSynV52P4, d_glbSpkCntP4, d_glbSpkP4, d_VP4, d_RefracTimeP4, d_denDelayV52P4, d_denDelayPtrV52P4, d_inSynP52P4, d_denDelayP52P4, d_denDelayPtrP52P4, d_inSynS52P4, d_denDelayS52P4, d_denDelayPtrS52P4, d_inSynE52P4, d_denDelayE52P4, d_denDelayPtrE52P4, 7037, 5.00000000000000000e+01f, 9.90049833749168107e-01f, 1.00000000000000000e+00f, -6.00000000000000000e+01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f);
-    pushMergedNeuronUpdateGroup7ToDevice(2, d_denDelayV232S4, d_denDelayV42S4, d_denDelayPtrV42S4, d_inSynP42S4, d_denDelayP42S4, d_denDelayPtrP42S4, d_inSynS42S4, d_denDelayS42S4, d_denDelayPtrS42S4, d_inSynE42S4, d_denDelayE42S4, d_denDelayPtrE42S4, d_inSynV232S4, d_inSynV42S4, d_denDelayPtrV232S4, d_inSynP232S4, d_denDelayP232S4, d_denDelayPtrP232S4, d_inSynS232S4, d_denDelayS232S4, d_denDelayPtrS232S4, d_inSynE232S4, d_denDelayE232S4, d_denDelayPtrE232S4, d_recordSpkS4, d_inSynV52S4, d_glbSpkCntS4, d_glbSpkS4, d_VS4, d_RefracTimeS4, d_denDelayV52S4, d_denDelayPtrV52S4, d_inSynP52S4, d_denDelayP52S4, d_denDelayPtrP52S4, d_inSynS52S4, d_denDelayS52S4, d_denDelayPtrS52S4, d_inSynE52S4, d_denDelayE52S4, d_denDelayPtrE52S4, 4041, 6.25000000000000000e+01f, 9.98001998667333079e-01f, 1.00000000000000000e+00f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f);
-    pushMergedNeuronUpdateGroup7ToDevice(3, d_denDelayV42S5, d_denDelayV52S5, d_denDelayPtrV52S5, d_inSynP52S5, d_denDelayP52S5, d_denDelayPtrP52S5, d_inSynS52S5, d_denDelayS52S5, d_denDelayPtrS52S5, d_inSynE52S5, d_denDelayE52S5, d_denDelayPtrE52S5, d_inSynV42S5, d_inSynV52S5, d_denDelayPtrV42S5, d_inSynP42S5, d_denDelayP42S5, d_denDelayPtrP42S5, d_inSynE42S5, d_denDelayE42S5, d_denDelayPtrE42S5, d_inSynE232S5, d_denDelayE232S5, d_denDelayPtrE232S5, d_recordSpkS5, d_inSynV62S5, d_glbSpkCntS5, d_glbSpkS5, d_VS5, d_RefracTimeS5, d_denDelayV62S5, d_denDelayPtrV62S5, d_inSynP62S5, d_denDelayP62S5, d_denDelayPtrP62S5, d_inSynS62S5, d_denDelayS62S5, d_denDelayPtrS62S5, d_inSynE62S5, d_denDelayE62S5, d_denDelayPtrE62S5, 1586, 6.25000000000000000e+01f, 9.98001998667333079e-01f, 1.00000000000000000e+00f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f);
-    pushMergedNeuronUpdateGroup7ToDevice(4, d_denDelayV232V4, d_denDelayV42V4, d_denDelayPtrV42V4, d_inSynP42V4, d_denDelayP42V4, d_denDelayPtrP42V4, d_inSynS42V4, d_denDelayS42V4, d_denDelayPtrS42V4, d_inSynE42V4, d_denDelayE42V4, d_denDelayPtrE42V4, d_inSynV232V4, d_inSynV42V4, d_denDelayPtrV232V4, d_inSynP232V4, d_denDelayP232V4, d_denDelayPtrP232V4, d_inSynS232V4, d_denDelayS232V4, d_denDelayPtrS232V4, d_inSynE232V4, d_denDelayE232V4, d_denDelayPtrE232V4, d_recordSpkV4, d_inSynV52V4, d_glbSpkCntV4, d_glbSpkV4, d_VV4, d_RefracTimeV4, d_denDelayV52V4, d_denDelayPtrV52V4, d_inSynP52V4, d_denDelayP52V4, d_denDelayPtrP52V4, d_inSynS52V4, d_denDelayS52V4, d_denDelayPtrS52V4, d_inSynE52V4, d_denDelayE52V4, d_denDelayPtrE52V4, 1973, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f);
-    pushMergedNeuronUpdateGroup7ToDevice(5, d_denDelayV42V5, d_denDelayV52V5, d_denDelayPtrV52V5, d_inSynP52V5, d_denDelayP52V5, d_denDelayPtrP52V5, d_inSynS52V5, d_denDelayS52V5, d_denDelayPtrS52V5, d_inSynE52V5, d_denDelayE52V5, d_denDelayPtrE52V5, d_inSynV42V5, d_inSynV52V5, d_denDelayPtrV42V5, d_inSynP42V5, d_denDelayP42V5, d_denDelayPtrP42V5, d_inSynS42V5, d_denDelayS42V5, d_denDelayPtrS42V5, d_inSynE42V5, d_denDelayE42V5, d_denDelayPtrE42V5, d_recordSpkV5, d_inSynV62V5, d_glbSpkCntV5, d_glbSpkV5, d_VV5, d_RefracTimeV5, d_denDelayV62V5, d_denDelayPtrV62V5, d_inSynP62V5, d_denDelayP62V5, d_denDelayPtrP62V5, d_inSynS62V5, d_denDelayS62V5, d_denDelayPtrS62V5, d_inSynE62V5, d_denDelayE62V5, d_denDelayPtrE62V5, 334, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f);
+    pushMergedNeuronUpdateGroup0ToDevice(0, d_inSynP52P6, d_denDelayS62P6, d_denDelayPtrS62P6, d_inSynE62P6, d_denDelayE62P6, d_denDelayPtrE62P6, d_inSynV52P6, d_denDelayV52P6, d_denDelayPtrV52P6, d_inSynS62P6, d_denDelayP52P6, d_denDelayPtrP52P6, d_inSynS52P6, d_denDelayS52P6, d_denDelayPtrS52P6, d_inSynE52P6, d_denDelayE52P6, d_denDelayPtrE52P6, d_denDelayPtrP62P6, d_glbSpkCntP6, d_glbSpkP6, d_VP6, d_RefracTimeP6, d_inSynV62P6, d_denDelayV62P6, d_denDelayPtrV62P6, d_inSynP62P6, d_denDelayP62P6, 5.00000000000000000e+01f, 9.90049833749168107e-01f, -6.00000000000000000e+01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f, 1656);
+    pushMergedNeuronUpdateGroup0ToDevice(1, d_inSynP52S6, d_denDelayS62S6, d_denDelayPtrS62S6, d_inSynE62S6, d_denDelayE62S6, d_denDelayPtrE62S6, d_inSynV52S6, d_denDelayV52S6, d_denDelayPtrV52S6, d_inSynS62S6, d_denDelayP52S6, d_denDelayPtrP52S6, d_inSynS52S6, d_denDelayS52S6, d_denDelayPtrS52S6, d_inSynE52S6, d_denDelayE52S6, d_denDelayPtrE52S6, d_denDelayPtrP62S6, d_glbSpkCntS6, d_glbSpkS6, d_VS6, d_RefracTimeS6, d_inSynV62S6, d_denDelayV62S6, d_denDelayPtrV62S6, d_inSynP62S6, d_denDelayP62S6, 6.25000000000000000e+01f, 9.98001998667333079e-01f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f, 1667);
+    pushMergedNeuronUpdateGroup0ToDevice(2, d_inSynP52V6, d_denDelayS62V6, d_denDelayPtrS62V6, d_inSynE62V6, d_denDelayE62V6, d_denDelayPtrE62V6, d_inSynV52V6, d_denDelayV52V6, d_denDelayPtrV52V6, d_inSynS62V6, d_denDelayP52V6, d_denDelayPtrP52V6, d_inSynS52V6, d_denDelayS52V6, d_denDelayPtrS52V6, d_inSynE52V6, d_denDelayE52V6, d_denDelayPtrE52V6, d_denDelayPtrP62V6, d_glbSpkCntV6, d_glbSpkV6, d_VV6, d_RefracTimeV6, d_inSynV62V6, d_denDelayV62V6, d_denDelayPtrV62V6, d_inSynP62V6, d_denDelayP62V6, 2.00000000000000000e+02f, 9.95012479192682320e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 302);
+    pushMergedNeuronUpdateGroup1ToDevice(0, d_denDelayP232P23, d_inSynS42P23, d_denDelayS42P23, d_denDelayPtrS42P23, d_inSynE42P23, d_denDelayE42P23, d_denDelayPtrE42P23, d_inSynV232P23, d_denDelayV232P23, d_denDelayPtrV232P23, d_inSynP232P23, d_denDelayPtrP42P23, d_denDelayPtrP232P23, d_inSynS232P23, d_denDelayS232P23, d_denDelayPtrS232P23, d_inSynE232P23, d_denDelayE232P23, d_denDelayPtrE232P23, d_inSynH12P23, d_denDelayH12P23, d_denDelayPtrH12P23, d_denDelayP52P23, d_glbSpkCntP23, d_glbSpkP23, d_VP23, d_RefracTimeP23, d_inSynP52P23, d_denDelayPtrP52P23, d_inSynE52P23, d_denDelayE52P23, d_denDelayPtrE52P23, d_inSynV42P23, d_denDelayV42P23, d_denDelayPtrV42P23, d_inSynP42P23, d_denDelayP42P23, 2610, 5.00000000000000000e+01f, 9.90049833749168107e-01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f);
+    pushMergedNeuronUpdateGroup1ToDevice(1, d_denDelayP232S23, d_inSynS42S23, d_denDelayS42S23, d_denDelayPtrS42S23, d_inSynE42S23, d_denDelayE42S23, d_denDelayPtrE42S23, d_inSynV232S23, d_denDelayV232S23, d_denDelayPtrV232S23, d_inSynP232S23, d_denDelayPtrP42S23, d_denDelayPtrP232S23, d_inSynS232S23, d_denDelayS232S23, d_denDelayPtrS232S23, d_inSynE232S23, d_denDelayE232S23, d_denDelayPtrE232S23, d_inSynH12S23, d_denDelayH12S23, d_denDelayPtrH12S23, d_denDelayS52S23, d_glbSpkCntS23, d_glbSpkS23, d_VS23, d_RefracTimeS23, d_inSynS52S23, d_denDelayPtrS52S23, d_inSynE52S23, d_denDelayE52S23, d_denDelayPtrE52S23, d_inSynV42S23, d_denDelayV42S23, d_denDelayPtrV42S23, d_inSynP42S23, d_denDelayP42S23, 1892, 6.25000000000000000e+01f, 9.98001998667333079e-01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f);
+    pushMergedNeuronUpdateGroup2ToDevice(0, d_inSynS42H1, d_denDelayPtrH12H1, d_denDelayH12H1, d_inSynH12H1, d_denDelayPtrS232H1, d_denDelayS232H1, d_inSynS232H1, d_denDelayPtrP232H1, d_denDelayP232H1, d_inSynP232H1, d_denDelayPtrS42H1, d_denDelayS42H1, d_denDelayPtrE52H1, d_denDelayE52H1, d_inSynE52H1, d_denDelayPtrS52H1, d_denDelayS52H1, d_inSynS52H1, d_RefracTimeH1, d_VH1, d_glbSpkH1, d_glbSpkCntH1, 15545);
+    pushMergedNeuronUpdateGroup3ToDevice(0, d_denDelayPtrS52E6, d_denDelayPtrE62E6, d_inSynV52E6, d_denDelayV52E6, d_denDelayPtrV52E6, d_inSynP52E6, d_denDelayP52E6, d_denDelayPtrP52E6, d_inSynS52E6, d_denDelayS52E6, d_denDelayE62E6, d_inSynE52E6, d_denDelayE52E6, d_denDelayPtrE52E6, d_inSynE42E6, d_denDelayE42E6, d_denDelayPtrE42E6, d_inSynH12E6, d_denDelayH12E6, d_denDelayPtrH12E6, d_inSynV62E6, d_glbSpkCntE6, d_glbSpkE6, d_VE6, d_RefracTimeE6, d_denDelayV62E6, d_denDelayPtrV62E6, d_inSynP62E6, d_denDelayP62E6, d_denDelayPtrP62E6, d_inSynS62E6, d_denDelayS62E6, d_denDelayPtrS62E6, d_inSynE62E6, 20278, 4.00000000000000000e+01f, 2.00000000000000000e+00f, 5.50999999046325684e-01f, -6.00000000000000000e+01f, 5.00000000000000000e-01f);
+    pushMergedNeuronUpdateGroup3ToDevice(1, d_denDelayPtrP232V23, d_denDelayPtrS42V23, d_inSynE42V23, d_denDelayE42V23, d_denDelayPtrE42V23, d_inSynV232V23, d_denDelayV232V23, d_denDelayPtrV232V23, d_inSynP232V23, d_denDelayP232V23, d_denDelayS42V23, d_inSynS232V23, d_denDelayS232V23, d_denDelayPtrS232V23, d_inSynE232V23, d_denDelayE232V23, d_denDelayPtrE232V23, d_inSynH12V23, d_denDelayH12V23, d_denDelayPtrH12V23, d_inSynE52V23, d_glbSpkCntV23, d_glbSpkV23, d_VV23, d_RefracTimeV23, d_denDelayE52V23, d_denDelayPtrE52V23, d_inSynV42V23, d_denDelayV42V23, d_denDelayPtrV42V23, d_inSynP42V23, d_denDelayP42V23, d_denDelayPtrP42V23, d_inSynS42V23, 4514, 2.00000000000000000e+02f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.50000000000000000e+01f, 1.00000000000000006e-01f);
+    pushMergedNeuronUpdateGroup4ToDevice(0, d_inSynP232E5, d_inSynE52E5, d_denDelayE52E5, d_denDelayPtrE52E5, d_inSynP42E5, d_denDelayP42E5, d_denDelayPtrP42E5, d_inSynS42E5, d_denDelayS42E5, d_denDelayPtrS42E5, d_inSynE42E5, d_denDelayE42E5, d_denDelayPtrE42E5, d_denDelayPtrS52E5, d_denDelayP232E5, d_denDelayPtrP232E5, d_inSynS232E5, d_denDelayS232E5, d_denDelayPtrS232E5, d_inSynE232E5, d_denDelayE232E5, d_denDelayPtrE232E5, d_inSynH12E5, d_denDelayH12E5, d_denDelayPtrH12E5, d_denDelayPtrS62E5, d_glbSpkCntE5, d_glbSpkE5, d_VE5, d_RefracTimeE5, d_inSynV62E5, d_denDelayV62E5, d_denDelayPtrV62E5, d_inSynP62E5, d_denDelayP62E5, d_denDelayPtrP62E5, d_inSynS62E5, d_denDelayS62E5, d_inSynE62E5, d_denDelayE62E5, d_denDelayPtrE62E5, d_inSynV52E5, d_denDelayV52E5, d_denDelayPtrV52E5, d_inSynP52E5, d_denDelayP52E5, d_denDelayPtrP52E5, d_inSynS52E5, d_denDelayS52E5, 21624);
+    pushMergedNeuronUpdateGroup5ToDevice(0, d_inSynS42P5, d_denDelayS52P5, d_denDelayPtrS52P5, d_inSynE52P5, d_denDelayE52P5, d_denDelayPtrE52P5, d_inSynV42P5, d_denDelayV42P5, d_denDelayPtrV42P5, d_inSynP42P5, d_denDelayP42P5, d_denDelayPtrP42P5, d_inSynS52P5, d_denDelayS42P5, d_denDelayPtrS42P5, d_inSynE42P5, d_denDelayE42P5, d_denDelayPtrE42P5, d_inSynP232P5, d_denDelayP232P5, d_denDelayPtrP232P5, d_inSynE232P5, d_denDelayE232P5, d_denDelayPtrE232P5, d_denDelayS62P5, d_glbSpkCntP5, d_glbSpkP5, d_VP5, d_RefracTimeP5, d_inSynV62P5, d_denDelayV62P5, d_denDelayPtrV62P5, d_inSynP62P5, d_denDelayP62P5, d_denDelayPtrP62P5, d_inSynS62P5, d_denDelayPtrS62P5, d_inSynE62P5, d_denDelayE62P5, d_denDelayPtrE62P5, d_inSynV52P5, d_denDelayV52P5, d_denDelayPtrV52P5, d_inSynP52P5, d_denDelayP52P5, d_denDelayPtrP52P5, 1751);
+    pushMergedNeuronUpdateGroup6ToDevice(0, d_denDelayP232E4, d_inSynS42E4, d_denDelayS42E4, d_denDelayPtrS42E4, d_inSynE42E4, d_denDelayE42E4, d_denDelayPtrE42E4, d_inSynV232E4, d_denDelayV232E4, d_denDelayPtrV232E4, d_inSynP232E4, d_denDelayPtrP42E4, d_denDelayPtrP232E4, d_inSynS232E4, d_denDelayS232E4, d_denDelayPtrS232E4, d_inSynE232E4, d_denDelayE232E4, d_denDelayPtrE232E4, d_inSynH12E4, d_denDelayH12E4, d_denDelayPtrH12E4, d_inSynS52E4, d_glbSpkCntE4, d_glbSpkE4, d_VE4, d_RefracTimeE4, d_inSynP62E4, d_denDelayP62E4, d_denDelayPtrP62E4, d_inSynV52E4, d_denDelayV52E4, d_denDelayPtrV52E4, d_denDelayS52E4, d_denDelayPtrS52E4, d_inSynE52E4, d_denDelayE52E4, d_denDelayPtrE52E4, d_inSynV42E4, d_denDelayV42E4, d_denDelayPtrV42E4, d_inSynP42E4, d_denDelayP42E4, 74933);
+    pushMergedNeuronUpdateGroup7ToDevice(0, d_inSynP232E23, d_inSynP42E23, d_denDelayP42E23, d_denDelayPtrP42E23, d_inSynS42E23, d_denDelayS42E23, d_denDelayPtrS42E23, d_inSynE42E23, d_denDelayE42E23, d_denDelayPtrE42E23, d_inSynV232E23, d_denDelayV232E23, d_denDelayPtrV232E23, d_denDelayPtrV42E23, d_denDelayP232E23, d_denDelayPtrP232E23, d_inSynS232E23, d_denDelayS232E23, d_denDelayPtrS232E23, d_inSynE232E23, d_denDelayE232E23, d_denDelayPtrE232E23, d_inSynH12E23, d_denDelayH12E23, d_denDelayPtrH12E23, d_denDelayV42E23, d_glbSpkCntE23, d_glbSpkE23, d_VE23, d_RefracTimeE23, d_inSynP62E23, d_denDelayP62E23, d_denDelayPtrP62E23, d_inSynS52E23, d_denDelayS52E23, d_denDelayPtrS52E23, d_inSynE52E23, d_denDelayE52E23, d_denDelayPtrE52E23, d_inSynV42E23, 4.00000000000000000e+01f, 9.95012479192682320e-01f, 2.00000000000000000e+00f, 5.50999999046325684e-01f, -6.00000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 5.00000000000000000e-01f, 51738);
+    pushMergedNeuronUpdateGroup7ToDevice(1, d_inSynV232P4, d_inSynV42P4, d_denDelayV42P4, d_denDelayPtrV42P4, d_inSynP42P4, d_denDelayP42P4, d_denDelayPtrP42P4, d_inSynS42P4, d_denDelayS42P4, d_denDelayPtrS42P4, d_inSynE42P4, d_denDelayE42P4, d_denDelayPtrE42P4, d_denDelayPtrE52P4, d_denDelayV232P4, d_denDelayPtrV232P4, d_inSynP232P4, d_denDelayP232P4, d_denDelayPtrP232P4, d_inSynS232P4, d_denDelayS232P4, d_denDelayPtrS232P4, d_inSynE232P4, d_denDelayE232P4, d_denDelayPtrE232P4, d_denDelayE52P4, d_glbSpkCntP4, d_glbSpkP4, d_VP4, d_RefracTimeP4, d_inSynV52P4, d_denDelayV52P4, d_denDelayPtrV52P4, d_inSynP52P4, d_denDelayP52P4, d_denDelayPtrP52P4, d_inSynS52P4, d_denDelayS52P4, d_denDelayPtrS52P4, d_inSynE52P4, 5.00000000000000000e+01f, 9.90049833749168107e-01f, 1.00000000000000000e+00f, 5.10999977588653564e-01f, -6.00000000000000000e+01f, -8.60000000000000000e+01f, 1.00000000000000000e+01f, 2.00000000000000011e-01f, 7037);
+    pushMergedNeuronUpdateGroup7ToDevice(2, d_inSynV232S4, d_inSynV42S4, d_denDelayV42S4, d_denDelayPtrV42S4, d_inSynP42S4, d_denDelayP42S4, d_denDelayPtrP42S4, d_inSynS42S4, d_denDelayS42S4, d_denDelayPtrS42S4, d_inSynE42S4, d_denDelayE42S4, d_denDelayPtrE42S4, d_denDelayPtrE52S4, d_denDelayV232S4, d_denDelayPtrV232S4, d_inSynP232S4, d_denDelayP232S4, d_denDelayPtrP232S4, d_inSynS232S4, d_denDelayS232S4, d_denDelayPtrS232S4, d_inSynE232S4, d_denDelayE232S4, d_denDelayPtrE232S4, d_denDelayE52S4, d_glbSpkCntS4, d_glbSpkS4, d_VS4, d_RefracTimeS4, d_inSynV52S4, d_denDelayV52S4, d_denDelayPtrV52S4, d_inSynP52S4, d_denDelayP52S4, d_denDelayPtrP52S4, d_inSynS52S4, d_denDelayS52S4, d_denDelayPtrS52S4, d_inSynE52S4, 6.25000000000000000e+01f, 9.98001998667333079e-01f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f, 4041);
+    pushMergedNeuronUpdateGroup7ToDevice(3, d_inSynV42S5, d_inSynV52S5, d_denDelayV52S5, d_denDelayPtrV52S5, d_inSynP52S5, d_denDelayP52S5, d_denDelayPtrP52S5, d_inSynS52S5, d_denDelayS52S5, d_denDelayPtrS52S5, d_inSynE52S5, d_denDelayE52S5, d_denDelayPtrE52S5, d_denDelayPtrE62S5, d_denDelayV42S5, d_denDelayPtrV42S5, d_inSynP42S5, d_denDelayP42S5, d_denDelayPtrP42S5, d_inSynE42S5, d_denDelayE42S5, d_denDelayPtrE42S5, d_inSynE232S5, d_denDelayE232S5, d_denDelayPtrE232S5, d_denDelayE62S5, d_glbSpkCntS5, d_glbSpkS5, d_VS5, d_RefracTimeS5, d_inSynV62S5, d_denDelayV62S5, d_denDelayPtrV62S5, d_inSynP62S5, d_denDelayP62S5, d_denDelayPtrP62S5, d_inSynS62S5, d_denDelayS62S5, d_denDelayPtrS62S5, d_inSynE62S5, 6.25000000000000000e+01f, 9.98001998667333079e-01f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.00000000000000000e+01f, -7.60000000000000000e+01f, 5.00000000000000000e+01f, 8.00000000000000044e-01f, 1586);
+    pushMergedNeuronUpdateGroup7ToDevice(4, d_inSynV232V4, d_inSynV42V4, d_denDelayV42V4, d_denDelayPtrV42V4, d_inSynP42V4, d_denDelayP42V4, d_denDelayPtrP42V4, d_inSynS42V4, d_denDelayS42V4, d_denDelayPtrS42V4, d_inSynE42V4, d_denDelayE42V4, d_denDelayPtrE42V4, d_denDelayPtrE52V4, d_denDelayV232V4, d_denDelayPtrV232V4, d_inSynP232V4, d_denDelayP232V4, d_denDelayPtrP232V4, d_inSynS232V4, d_denDelayS232V4, d_denDelayPtrS232V4, d_inSynE232V4, d_denDelayE232V4, d_denDelayPtrE232V4, d_denDelayE52V4, d_glbSpkCntV4, d_glbSpkV4, d_VV4, d_RefracTimeV4, d_inSynV52V4, d_denDelayV52V4, d_denDelayPtrV52V4, d_inSynP52V4, d_denDelayP52V4, d_denDelayPtrP52V4, d_inSynS52V4, d_denDelayS52V4, d_denDelayPtrS52V4, d_inSynE52V4, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, 5.10999977588653564e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 1973);
+    pushMergedNeuronUpdateGroup7ToDevice(5, d_inSynV42V5, d_inSynV52V5, d_denDelayV52V5, d_denDelayPtrV52V5, d_inSynP52V5, d_denDelayP52V5, d_denDelayPtrP52V5, d_inSynS52V5, d_denDelayS52V5, d_denDelayPtrS52V5, d_inSynE52V5, d_denDelayE52V5, d_denDelayPtrE52V5, d_denDelayPtrE62V5, d_denDelayV42V5, d_denDelayPtrV42V5, d_inSynP42V5, d_denDelayP42V5, d_denDelayPtrP42V5, d_inSynS42V5, d_denDelayS42V5, d_denDelayPtrS42V5, d_inSynE42V5, d_denDelayE42V5, d_denDelayPtrE42V5, d_denDelayE62V5, d_glbSpkCntV5, d_glbSpkV5, d_VV5, d_RefracTimeV5, d_inSynV62V5, d_denDelayV62V5, d_denDelayPtrV62V5, d_inSynP62V5, d_denDelayP62V5, d_denDelayPtrP62V5, d_inSynS62V5, d_denDelayS62V5, d_denDelayPtrS62V5, d_inSynE62V5, 2.00000000000000000e+02f, 9.95012479192682320e-01f, 1.00000000000000000e+00f, 5.00999987125396729e-01f, -6.50000000000000000e+01f, -7.00000000000000000e+01f, 2.00000000000000000e+01f, 1.00000000000000006e-01f, 334);
     pushMergedPresynapticUpdateGroup0ToDevice(0, d_denDelayE232E23, d_denDelayPtrE232E23, d_glbSpkCntE23, d_glbSpkE23, d_rowLengthE232E23, d_indE232E23, d_gE232E23, d_dE232E23, 51738, 51738, 1147);
     pushMergedPresynapticUpdateGroup0ToDevice(1, d_denDelayE232E4, d_denDelayPtrE232E4, d_glbSpkCntE23, d_glbSpkE23, d_rowLengthE232E4, d_indE232E4, d_gE232E4, d_dE232E4, 51738, 74933, 209);
     pushMergedPresynapticUpdateGroup0ToDevice(2, d_denDelayE232E5, d_denDelayPtrE232E5, d_glbSpkCntE23, d_glbSpkE23, d_rowLengthE232E5, d_indE232E5, d_gE232E5, d_dE232E5, 51738, 21624, 295);
@@ -19777,8 +19494,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntE23));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkE23));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkE23));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkE23));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkE23));
     CHECK_CUDA_ERRORS(cudaFreeHost(VE23));
     CHECK_CUDA_ERRORS(cudaFree(d_VE23));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeE23));
@@ -19787,8 +19502,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntE4));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkE4));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkE4));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkE4));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkE4));
     CHECK_CUDA_ERRORS(cudaFreeHost(VE4));
     CHECK_CUDA_ERRORS(cudaFree(d_VE4));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeE4));
@@ -19797,8 +19510,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntE5));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkE5));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkE5));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkE5));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkE5));
     CHECK_CUDA_ERRORS(cudaFreeHost(VE5));
     CHECK_CUDA_ERRORS(cudaFree(d_VE5));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeE5));
@@ -19807,8 +19518,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntE6));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkE6));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkE6));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkE6));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkE6));
     CHECK_CUDA_ERRORS(cudaFreeHost(VE6));
     CHECK_CUDA_ERRORS(cudaFree(d_VE6));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeE6));
@@ -19817,8 +19526,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntH1));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkH1));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkH1));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkH1));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkH1));
     CHECK_CUDA_ERRORS(cudaFreeHost(VH1));
     CHECK_CUDA_ERRORS(cudaFree(d_VH1));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeH1));
@@ -19827,8 +19534,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntP23));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkP23));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkP23));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkP23));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkP23));
     CHECK_CUDA_ERRORS(cudaFreeHost(VP23));
     CHECK_CUDA_ERRORS(cudaFree(d_VP23));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeP23));
@@ -19837,8 +19542,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntP4));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkP4));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkP4));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkP4));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkP4));
     CHECK_CUDA_ERRORS(cudaFreeHost(VP4));
     CHECK_CUDA_ERRORS(cudaFree(d_VP4));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeP4));
@@ -19847,8 +19550,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntP5));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkP5));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkP5));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkP5));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkP5));
     CHECK_CUDA_ERRORS(cudaFreeHost(VP5));
     CHECK_CUDA_ERRORS(cudaFree(d_VP5));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeP5));
@@ -19857,8 +19558,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntP6));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkP6));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkP6));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkP6));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkP6));
     CHECK_CUDA_ERRORS(cudaFreeHost(VP6));
     CHECK_CUDA_ERRORS(cudaFree(d_VP6));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeP6));
@@ -19867,8 +19566,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntS23));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkS23));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkS23));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkS23));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkS23));
     CHECK_CUDA_ERRORS(cudaFreeHost(VS23));
     CHECK_CUDA_ERRORS(cudaFree(d_VS23));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeS23));
@@ -19877,8 +19574,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntS4));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkS4));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkS4));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkS4));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkS4));
     CHECK_CUDA_ERRORS(cudaFreeHost(VS4));
     CHECK_CUDA_ERRORS(cudaFree(d_VS4));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeS4));
@@ -19887,8 +19582,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntS5));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkS5));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkS5));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkS5));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkS5));
     CHECK_CUDA_ERRORS(cudaFreeHost(VS5));
     CHECK_CUDA_ERRORS(cudaFree(d_VS5));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeS5));
@@ -19897,8 +19590,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntS6));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkS6));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkS6));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkS6));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkS6));
     CHECK_CUDA_ERRORS(cudaFreeHost(VS6));
     CHECK_CUDA_ERRORS(cudaFree(d_VS6));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeS6));
@@ -19907,8 +19598,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntV23));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkV23));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkV23));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkV23));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkV23));
     CHECK_CUDA_ERRORS(cudaFreeHost(VV23));
     CHECK_CUDA_ERRORS(cudaFree(d_VV23));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeV23));
@@ -19917,8 +19606,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntV4));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkV4));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkV4));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkV4));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkV4));
     CHECK_CUDA_ERRORS(cudaFreeHost(VV4));
     CHECK_CUDA_ERRORS(cudaFree(d_VV4));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeV4));
@@ -19927,8 +19614,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntV5));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkV5));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkV5));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkV5));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkV5));
     CHECK_CUDA_ERRORS(cudaFreeHost(VV5));
     CHECK_CUDA_ERRORS(cudaFree(d_VV5));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeV5));
@@ -19937,8 +19622,6 @@ void freeMem() {
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkCntV6));
     CHECK_CUDA_ERRORS(cudaFreeHost(glbSpkV6));
     CHECK_CUDA_ERRORS(cudaFree(d_glbSpkV6));
-    CHECK_CUDA_ERRORS(cudaFreeHost(recordSpkV6));
-    CHECK_CUDA_ERRORS(cudaFree(d_recordSpkV6));
     CHECK_CUDA_ERRORS(cudaFreeHost(VV6));
     CHECK_CUDA_ERRORS(cudaFree(d_VV6));
     CHECK_CUDA_ERRORS(cudaFreeHost(RefracTimeV6));
@@ -22389,7 +22072,7 @@ size_t getFreeDeviceMemBytes() {
 
 void stepTime() {
     updateSynapses(t);
-    updateNeurons(t, (unsigned int)(iT % numRecordingTimesteps)); 
+    updateNeurons(t); 
     denDelayPtrP62E23 = (denDelayPtrP62E23 + 1) % 1;
     denDelayPtrS52E23 = (denDelayPtrS52E23 + 1) % 1;
     denDelayPtrE52E23 = (denDelayPtrE52E23 + 1) % 1;
