@@ -57,43 +57,34 @@ struct MergedNeuronInitGroup0
 ;
 struct MergedNeuronInitGroup1
  {
-    float* inSynInSyn8;
-    float* inSynInSyn5;
-    float* denDelayInSyn5;
-    unsigned int* denDelayPtrInSyn5;
-    float* inSynInSyn6;
-    float* denDelayInSyn6;
-    unsigned int* denDelayPtrInSyn6;
-    float* inSynInSyn7;
-    float* denDelayInSyn7;
-    unsigned int* denDelayPtrInSyn7;
-    unsigned int* denDelayPtrInSyn4;
-    float* denDelayInSyn8;
-    unsigned int* denDelayPtrInSyn8;
-    float* inSynInSyn9;
-    float* denDelayInSyn9;
-    unsigned int* denDelayPtrInSyn9;
-    float* inSynInSyn10;
-    float* denDelayInSyn10;
-    unsigned int* denDelayPtrInSyn10;
-    unsigned int* denDelayPtrInSyn1;
-    unsigned int* spkCnt;
-    unsigned int* spk;
-    scalar* V;
-    scalar* RefracTime;
-    float* inSynInSyn0;
-    float* denDelayInSyn0;
-    unsigned int* denDelayPtrInSyn0;
-    float* inSynInSyn1;
-    float* denDelayInSyn1;
-    float* inSynInSyn2;
-    float* denDelayInSyn2;
-    unsigned int* denDelayPtrInSyn2;
     float* inSynInSyn3;
-    float* denDelayInSyn3;
-    unsigned int* denDelayPtrInSyn3;
-    float* inSynInSyn4;
+    unsigned int* denDelayPtrInSyn7;
+    float* denDelayInSyn7;
+    float* inSynInSyn7;
+    unsigned int* denDelayPtrInSyn6;
+    float* denDelayInSyn6;
+    float* inSynInSyn6;
+    unsigned int* denDelayPtrInSyn5;
+    float* denDelayInSyn5;
+    float* inSynInSyn5;
+    unsigned int* denDelayPtrInSyn4;
     float* denDelayInSyn4;
+    float* inSynInSyn4;
+    unsigned int* denDelayPtrInSyn3;
+    float* denDelayInSyn3;
+    unsigned int* denDelayPtrInSyn2;
+    float* denDelayInSyn2;
+    float* inSynInSyn2;
+    unsigned int* denDelayPtrInSyn1;
+    float* denDelayInSyn1;
+    float* inSynInSyn1;
+    unsigned int* denDelayPtrInSyn0;
+    float* denDelayInSyn0;
+    float* inSynInSyn0;
+    scalar* RefracTime;
+    scalar* V;
+    unsigned int* spk;
+    unsigned int* spkCnt;
     unsigned int numNeurons;
     
 }
@@ -127,46 +118,6 @@ struct MergedNeuronInitGroup2
 }
 ;
 struct MergedNeuronInitGroup3
- {
-    float* inSynInSyn7;
-    float* denDelayInSyn4;
-    unsigned int* denDelayPtrInSyn4;
-    float* inSynInSyn5;
-    float* denDelayInSyn5;
-    unsigned int* denDelayPtrInSyn5;
-    float* inSynInSyn6;
-    float* denDelayInSyn6;
-    unsigned int* denDelayPtrInSyn6;
-    float* inSynInSyn4;
-    float* denDelayInSyn7;
-    unsigned int* denDelayPtrInSyn7;
-    float* inSynInSyn8;
-    float* denDelayInSyn8;
-    unsigned int* denDelayPtrInSyn8;
-    float* inSynInSyn9;
-    float* denDelayInSyn9;
-    unsigned int* denDelayPtrInSyn9;
-    float* denDelayInSyn1;
-    unsigned int* spkCnt;
-    unsigned int* spk;
-    scalar* V;
-    scalar* RefracTime;
-    float* inSynInSyn0;
-    float* denDelayInSyn0;
-    unsigned int* denDelayPtrInSyn0;
-    float* inSynInSyn1;
-    unsigned int* denDelayPtrInSyn1;
-    float* inSynInSyn2;
-    float* denDelayInSyn2;
-    unsigned int* denDelayPtrInSyn2;
-    float* inSynInSyn3;
-    float* denDelayInSyn3;
-    unsigned int* denDelayPtrInSyn3;
-    unsigned int numNeurons;
-    
-}
-;
-struct MergedNeuronInitGroup4
  {
     float* inSynInSyn11;
     float* inSynInSyn7;
@@ -221,7 +172,7 @@ struct MergedNeuronInitGroup4
     
 }
 ;
-struct MergedNeuronInitGroup5
+struct MergedNeuronInitGroup4
  {
     float* denDelayInSyn9;
     float* inSynInSyn6;
@@ -270,36 +221,85 @@ struct MergedNeuronInitGroup5
     
 }
 ;
+struct MergedNeuronInitGroup5
+ {
+    float* inSynInSyn8;
+    float* inSynInSyn5;
+    float* denDelayInSyn5;
+    unsigned int* denDelayPtrInSyn5;
+    float* inSynInSyn6;
+    float* denDelayInSyn6;
+    unsigned int* denDelayPtrInSyn6;
+    float* inSynInSyn7;
+    float* denDelayInSyn7;
+    unsigned int* denDelayPtrInSyn7;
+    unsigned int* denDelayPtrInSyn4;
+    float* denDelayInSyn8;
+    unsigned int* denDelayPtrInSyn8;
+    float* inSynInSyn9;
+    float* denDelayInSyn9;
+    unsigned int* denDelayPtrInSyn9;
+    float* inSynInSyn10;
+    float* denDelayInSyn10;
+    unsigned int* denDelayPtrInSyn10;
+    unsigned int* denDelayPtrInSyn1;
+    unsigned int* spkCnt;
+    unsigned int* spk;
+    scalar* V;
+    scalar* RefracTime;
+    float* inSynInSyn0;
+    float* denDelayInSyn0;
+    unsigned int* denDelayPtrInSyn0;
+    float* inSynInSyn1;
+    float* denDelayInSyn1;
+    float* inSynInSyn2;
+    float* denDelayInSyn2;
+    unsigned int* denDelayPtrInSyn2;
+    float* inSynInSyn3;
+    float* denDelayInSyn3;
+    unsigned int* denDelayPtrInSyn3;
+    float* inSynInSyn4;
+    float* denDelayInSyn4;
+    unsigned int numNeurons;
+    
+}
+;
 struct MergedNeuronInitGroup6
  {
-    float* inSynInSyn3;
-    unsigned int* denDelayPtrInSyn7;
-    float* denDelayInSyn7;
     float* inSynInSyn7;
-    unsigned int* denDelayPtrInSyn6;
-    float* denDelayInSyn6;
-    float* inSynInSyn6;
-    unsigned int* denDelayPtrInSyn5;
-    float* denDelayInSyn5;
-    float* inSynInSyn5;
-    unsigned int* denDelayPtrInSyn4;
     float* denDelayInSyn4;
+    unsigned int* denDelayPtrInSyn4;
+    float* inSynInSyn5;
+    float* denDelayInSyn5;
+    unsigned int* denDelayPtrInSyn5;
+    float* inSynInSyn6;
+    float* denDelayInSyn6;
+    unsigned int* denDelayPtrInSyn6;
     float* inSynInSyn4;
-    unsigned int* denDelayPtrInSyn3;
-    float* denDelayInSyn3;
-    unsigned int* denDelayPtrInSyn2;
-    float* denDelayInSyn2;
-    float* inSynInSyn2;
-    unsigned int* denDelayPtrInSyn1;
+    float* denDelayInSyn7;
+    unsigned int* denDelayPtrInSyn7;
+    float* inSynInSyn8;
+    float* denDelayInSyn8;
+    unsigned int* denDelayPtrInSyn8;
+    float* inSynInSyn9;
+    float* denDelayInSyn9;
+    unsigned int* denDelayPtrInSyn9;
     float* denDelayInSyn1;
-    float* inSynInSyn1;
-    unsigned int* denDelayPtrInSyn0;
-    float* denDelayInSyn0;
-    float* inSynInSyn0;
-    scalar* RefracTime;
-    scalar* V;
-    unsigned int* spk;
     unsigned int* spkCnt;
+    unsigned int* spk;
+    scalar* V;
+    scalar* RefracTime;
+    float* inSynInSyn0;
+    float* denDelayInSyn0;
+    unsigned int* denDelayPtrInSyn0;
+    float* inSynInSyn1;
+    unsigned int* denDelayPtrInSyn1;
+    float* inSynInSyn2;
+    float* denDelayInSyn2;
+    unsigned int* denDelayPtrInSyn2;
+    float* inSynInSyn3;
+    float* denDelayInSyn3;
+    unsigned int* denDelayPtrInSyn3;
     unsigned int numNeurons;
     
 }
@@ -386,9 +386,9 @@ void pushMergedNeuronInitGroup0ToDevice(unsigned int idx, float* inSynInSyn10, f
     MergedNeuronInitGroup0 group = {inSynInSyn10, denDelayInSyn6, denDelayPtrInSyn6, inSynInSyn7, denDelayInSyn7, denDelayPtrInSyn7, inSynInSyn8, denDelayInSyn8, denDelayPtrInSyn8, inSynInSyn9, denDelayInSyn9, denDelayPtrInSyn9, inSynInSyn6, denDelayInSyn10, denDelayPtrInSyn10, inSynInSyn11, denDelayInSyn11, denDelayPtrInSyn11, inSynInSyn12, denDelayInSyn12, denDelayPtrInSyn12, inSynInSyn13, denDelayInSyn13, denDelayPtrInSyn13, denDelayInSyn2, spkCnt, spk, V, RefracTime, inSynInSyn0, denDelayInSyn0, denDelayPtrInSyn0, inSynInSyn1, denDelayInSyn1, denDelayPtrInSyn1, inSynInSyn2, denDelayPtrInSyn2, inSynInSyn3, denDelayInSyn3, denDelayPtrInSyn3, inSynInSyn4, denDelayInSyn4, denDelayPtrInSyn4, inSynInSyn5, denDelayInSyn5, denDelayPtrInSyn5, numNeurons, };
     CHECK_CUDA_ERRORS(cudaMemcpyToSymbolAsync(d_mergedNeuronInitGroup0, &group, sizeof(MergedNeuronInitGroup0), idx * sizeof(MergedNeuronInitGroup0)));
 }
-__device__ __constant__ MergedNeuronInitGroup1 d_mergedNeuronInitGroup1[2];
-void pushMergedNeuronInitGroup1ToDevice(unsigned int idx, float* inSynInSyn8, float* inSynInSyn5, float* denDelayInSyn5, unsigned int* denDelayPtrInSyn5, float* inSynInSyn6, float* denDelayInSyn6, unsigned int* denDelayPtrInSyn6, float* inSynInSyn7, float* denDelayInSyn7, unsigned int* denDelayPtrInSyn7, unsigned int* denDelayPtrInSyn4, float* denDelayInSyn8, unsigned int* denDelayPtrInSyn8, float* inSynInSyn9, float* denDelayInSyn9, unsigned int* denDelayPtrInSyn9, float* inSynInSyn10, float* denDelayInSyn10, unsigned int* denDelayPtrInSyn10, unsigned int* denDelayPtrInSyn1, unsigned int* spkCnt, unsigned int* spk, scalar* V, scalar* RefracTime, float* inSynInSyn0, float* denDelayInSyn0, unsigned int* denDelayPtrInSyn0, float* inSynInSyn1, float* denDelayInSyn1, float* inSynInSyn2, float* denDelayInSyn2, unsigned int* denDelayPtrInSyn2, float* inSynInSyn3, float* denDelayInSyn3, unsigned int* denDelayPtrInSyn3, float* inSynInSyn4, float* denDelayInSyn4, unsigned int numNeurons) {
-    MergedNeuronInitGroup1 group = {inSynInSyn8, inSynInSyn5, denDelayInSyn5, denDelayPtrInSyn5, inSynInSyn6, denDelayInSyn6, denDelayPtrInSyn6, inSynInSyn7, denDelayInSyn7, denDelayPtrInSyn7, denDelayPtrInSyn4, denDelayInSyn8, denDelayPtrInSyn8, inSynInSyn9, denDelayInSyn9, denDelayPtrInSyn9, inSynInSyn10, denDelayInSyn10, denDelayPtrInSyn10, denDelayPtrInSyn1, spkCnt, spk, V, RefracTime, inSynInSyn0, denDelayInSyn0, denDelayPtrInSyn0, inSynInSyn1, denDelayInSyn1, inSynInSyn2, denDelayInSyn2, denDelayPtrInSyn2, inSynInSyn3, denDelayInSyn3, denDelayPtrInSyn3, inSynInSyn4, denDelayInSyn4, numNeurons, };
+__device__ __constant__ MergedNeuronInitGroup1 d_mergedNeuronInitGroup1[3];
+void pushMergedNeuronInitGroup1ToDevice(unsigned int idx, float* inSynInSyn3, unsigned int* denDelayPtrInSyn7, float* denDelayInSyn7, float* inSynInSyn7, unsigned int* denDelayPtrInSyn6, float* denDelayInSyn6, float* inSynInSyn6, unsigned int* denDelayPtrInSyn5, float* denDelayInSyn5, float* inSynInSyn5, unsigned int* denDelayPtrInSyn4, float* denDelayInSyn4, float* inSynInSyn4, unsigned int* denDelayPtrInSyn3, float* denDelayInSyn3, unsigned int* denDelayPtrInSyn2, float* denDelayInSyn2, float* inSynInSyn2, unsigned int* denDelayPtrInSyn1, float* denDelayInSyn1, float* inSynInSyn1, unsigned int* denDelayPtrInSyn0, float* denDelayInSyn0, float* inSynInSyn0, scalar* RefracTime, scalar* V, unsigned int* spk, unsigned int* spkCnt, unsigned int numNeurons) {
+    MergedNeuronInitGroup1 group = {inSynInSyn3, denDelayPtrInSyn7, denDelayInSyn7, inSynInSyn7, denDelayPtrInSyn6, denDelayInSyn6, inSynInSyn6, denDelayPtrInSyn5, denDelayInSyn5, inSynInSyn5, denDelayPtrInSyn4, denDelayInSyn4, inSynInSyn4, denDelayPtrInSyn3, denDelayInSyn3, denDelayPtrInSyn2, denDelayInSyn2, inSynInSyn2, denDelayPtrInSyn1, denDelayInSyn1, inSynInSyn1, denDelayPtrInSyn0, denDelayInSyn0, inSynInSyn0, RefracTime, V, spk, spkCnt, numNeurons, };
     CHECK_CUDA_ERRORS(cudaMemcpyToSymbolAsync(d_mergedNeuronInitGroup1, &group, sizeof(MergedNeuronInitGroup1), idx * sizeof(MergedNeuronInitGroup1)));
 }
 __device__ __constant__ MergedNeuronInitGroup2 d_mergedNeuronInitGroup2[1];
@@ -396,24 +396,24 @@ void pushMergedNeuronInitGroup2ToDevice(unsigned int idx, float* inSynInSyn2, un
     MergedNeuronInitGroup2 group = {inSynInSyn2, denDelayPtrInSyn5, denDelayInSyn5, inSynInSyn5, denDelayPtrInSyn4, denDelayInSyn4, inSynInSyn4, denDelayPtrInSyn3, denDelayInSyn3, inSynInSyn3, denDelayPtrInSyn2, denDelayInSyn2, denDelayPtrInSyn1, denDelayInSyn1, inSynInSyn1, denDelayPtrInSyn0, denDelayInSyn0, inSynInSyn0, RefracTime, V, spk, spkCnt, numNeurons, };
     CHECK_CUDA_ERRORS(cudaMemcpyToSymbolAsync(d_mergedNeuronInitGroup2, &group, sizeof(MergedNeuronInitGroup2), idx * sizeof(MergedNeuronInitGroup2)));
 }
-__device__ __constant__ MergedNeuronInitGroup3 d_mergedNeuronInitGroup3[2];
-void pushMergedNeuronInitGroup3ToDevice(unsigned int idx, float* inSynInSyn7, float* denDelayInSyn4, unsigned int* denDelayPtrInSyn4, float* inSynInSyn5, float* denDelayInSyn5, unsigned int* denDelayPtrInSyn5, float* inSynInSyn6, float* denDelayInSyn6, unsigned int* denDelayPtrInSyn6, float* inSynInSyn4, float* denDelayInSyn7, unsigned int* denDelayPtrInSyn7, float* inSynInSyn8, float* denDelayInSyn8, unsigned int* denDelayPtrInSyn8, float* inSynInSyn9, float* denDelayInSyn9, unsigned int* denDelayPtrInSyn9, float* denDelayInSyn1, unsigned int* spkCnt, unsigned int* spk, scalar* V, scalar* RefracTime, float* inSynInSyn0, float* denDelayInSyn0, unsigned int* denDelayPtrInSyn0, float* inSynInSyn1, unsigned int* denDelayPtrInSyn1, float* inSynInSyn2, float* denDelayInSyn2, unsigned int* denDelayPtrInSyn2, float* inSynInSyn3, float* denDelayInSyn3, unsigned int* denDelayPtrInSyn3, unsigned int numNeurons) {
-    MergedNeuronInitGroup3 group = {inSynInSyn7, denDelayInSyn4, denDelayPtrInSyn4, inSynInSyn5, denDelayInSyn5, denDelayPtrInSyn5, inSynInSyn6, denDelayInSyn6, denDelayPtrInSyn6, inSynInSyn4, denDelayInSyn7, denDelayPtrInSyn7, inSynInSyn8, denDelayInSyn8, denDelayPtrInSyn8, inSynInSyn9, denDelayInSyn9, denDelayPtrInSyn9, denDelayInSyn1, spkCnt, spk, V, RefracTime, inSynInSyn0, denDelayInSyn0, denDelayPtrInSyn0, inSynInSyn1, denDelayPtrInSyn1, inSynInSyn2, denDelayInSyn2, denDelayPtrInSyn2, inSynInSyn3, denDelayInSyn3, denDelayPtrInSyn3, numNeurons, };
+__device__ __constant__ MergedNeuronInitGroup3 d_mergedNeuronInitGroup3[1];
+void pushMergedNeuronInitGroup3ToDevice(unsigned int idx, float* inSynInSyn11, float* inSynInSyn7, float* denDelayInSyn7, unsigned int* denDelayPtrInSyn7, float* inSynInSyn8, float* denDelayInSyn8, unsigned int* denDelayPtrInSyn8, float* inSynInSyn9, float* denDelayInSyn9, unsigned int* denDelayPtrInSyn9, float* inSynInSyn10, float* denDelayInSyn10, unsigned int* denDelayPtrInSyn10, unsigned int* denDelayPtrInSyn6, float* denDelayInSyn11, unsigned int* denDelayPtrInSyn11, float* inSynInSyn12, float* denDelayInSyn12, unsigned int* denDelayPtrInSyn12, float* inSynInSyn13, float* denDelayInSyn13, unsigned int* denDelayPtrInSyn13, float* inSynInSyn14, float* denDelayInSyn14, unsigned int* denDelayPtrInSyn14, unsigned int* denDelayPtrInSyn2, unsigned int* spkCnt, unsigned int* spk, scalar* V, scalar* RefracTime, float* inSynInSyn0, float* denDelayInSyn0, unsigned int* denDelayPtrInSyn0, float* inSynInSyn1, float* denDelayInSyn1, unsigned int* denDelayPtrInSyn1, float* inSynInSyn2, float* denDelayInSyn2, float* inSynInSyn3, float* denDelayInSyn3, unsigned int* denDelayPtrInSyn3, float* inSynInSyn4, float* denDelayInSyn4, unsigned int* denDelayPtrInSyn4, float* inSynInSyn5, float* denDelayInSyn5, unsigned int* denDelayPtrInSyn5, float* inSynInSyn6, float* denDelayInSyn6, unsigned int numNeurons) {
+    MergedNeuronInitGroup3 group = {inSynInSyn11, inSynInSyn7, denDelayInSyn7, denDelayPtrInSyn7, inSynInSyn8, denDelayInSyn8, denDelayPtrInSyn8, inSynInSyn9, denDelayInSyn9, denDelayPtrInSyn9, inSynInSyn10, denDelayInSyn10, denDelayPtrInSyn10, denDelayPtrInSyn6, denDelayInSyn11, denDelayPtrInSyn11, inSynInSyn12, denDelayInSyn12, denDelayPtrInSyn12, inSynInSyn13, denDelayInSyn13, denDelayPtrInSyn13, inSynInSyn14, denDelayInSyn14, denDelayPtrInSyn14, denDelayPtrInSyn2, spkCnt, spk, V, RefracTime, inSynInSyn0, denDelayInSyn0, denDelayPtrInSyn0, inSynInSyn1, denDelayInSyn1, denDelayPtrInSyn1, inSynInSyn2, denDelayInSyn2, inSynInSyn3, denDelayInSyn3, denDelayPtrInSyn3, inSynInSyn4, denDelayInSyn4, denDelayPtrInSyn4, inSynInSyn5, denDelayInSyn5, denDelayPtrInSyn5, inSynInSyn6, denDelayInSyn6, numNeurons, };
     CHECK_CUDA_ERRORS(cudaMemcpyToSymbolAsync(d_mergedNeuronInitGroup3, &group, sizeof(MergedNeuronInitGroup3), idx * sizeof(MergedNeuronInitGroup3)));
 }
 __device__ __constant__ MergedNeuronInitGroup4 d_mergedNeuronInitGroup4[1];
-void pushMergedNeuronInitGroup4ToDevice(unsigned int idx, float* inSynInSyn11, float* inSynInSyn7, float* denDelayInSyn7, unsigned int* denDelayPtrInSyn7, float* inSynInSyn8, float* denDelayInSyn8, unsigned int* denDelayPtrInSyn8, float* inSynInSyn9, float* denDelayInSyn9, unsigned int* denDelayPtrInSyn9, float* inSynInSyn10, float* denDelayInSyn10, unsigned int* denDelayPtrInSyn10, unsigned int* denDelayPtrInSyn6, float* denDelayInSyn11, unsigned int* denDelayPtrInSyn11, float* inSynInSyn12, float* denDelayInSyn12, unsigned int* denDelayPtrInSyn12, float* inSynInSyn13, float* denDelayInSyn13, unsigned int* denDelayPtrInSyn13, float* inSynInSyn14, float* denDelayInSyn14, unsigned int* denDelayPtrInSyn14, unsigned int* denDelayPtrInSyn2, unsigned int* spkCnt, unsigned int* spk, scalar* V, scalar* RefracTime, float* inSynInSyn0, float* denDelayInSyn0, unsigned int* denDelayPtrInSyn0, float* inSynInSyn1, float* denDelayInSyn1, unsigned int* denDelayPtrInSyn1, float* inSynInSyn2, float* denDelayInSyn2, float* inSynInSyn3, float* denDelayInSyn3, unsigned int* denDelayPtrInSyn3, float* inSynInSyn4, float* denDelayInSyn4, unsigned int* denDelayPtrInSyn4, float* inSynInSyn5, float* denDelayInSyn5, unsigned int* denDelayPtrInSyn5, float* inSynInSyn6, float* denDelayInSyn6, unsigned int numNeurons) {
-    MergedNeuronInitGroup4 group = {inSynInSyn11, inSynInSyn7, denDelayInSyn7, denDelayPtrInSyn7, inSynInSyn8, denDelayInSyn8, denDelayPtrInSyn8, inSynInSyn9, denDelayInSyn9, denDelayPtrInSyn9, inSynInSyn10, denDelayInSyn10, denDelayPtrInSyn10, denDelayPtrInSyn6, denDelayInSyn11, denDelayPtrInSyn11, inSynInSyn12, denDelayInSyn12, denDelayPtrInSyn12, inSynInSyn13, denDelayInSyn13, denDelayPtrInSyn13, inSynInSyn14, denDelayInSyn14, denDelayPtrInSyn14, denDelayPtrInSyn2, spkCnt, spk, V, RefracTime, inSynInSyn0, denDelayInSyn0, denDelayPtrInSyn0, inSynInSyn1, denDelayInSyn1, denDelayPtrInSyn1, inSynInSyn2, denDelayInSyn2, inSynInSyn3, denDelayInSyn3, denDelayPtrInSyn3, inSynInSyn4, denDelayInSyn4, denDelayPtrInSyn4, inSynInSyn5, denDelayInSyn5, denDelayPtrInSyn5, inSynInSyn6, denDelayInSyn6, numNeurons, };
+void pushMergedNeuronInitGroup4ToDevice(unsigned int idx, float* denDelayInSyn9, float* inSynInSyn6, float* denDelayInSyn6, unsigned int* denDelayPtrInSyn6, float* inSynInSyn7, float* denDelayInSyn7, unsigned int* denDelayPtrInSyn7, float* inSynInSyn8, float* denDelayInSyn8, unsigned int* denDelayPtrInSyn8, float* inSynInSyn9, unsigned int* denDelayPtrInSyn5, unsigned int* denDelayPtrInSyn9, float* inSynInSyn10, float* denDelayInSyn10, unsigned int* denDelayPtrInSyn10, float* inSynInSyn11, float* denDelayInSyn11, unsigned int* denDelayPtrInSyn11, float* inSynInSyn12, float* denDelayInSyn12, unsigned int* denDelayPtrInSyn12, float* inSynInSyn2, unsigned int* spkCnt, unsigned int* spk, scalar* V, scalar* RefracTime, float* inSynInSyn0, float* denDelayInSyn0, unsigned int* denDelayPtrInSyn0, float* inSynInSyn1, float* denDelayInSyn1, unsigned int* denDelayPtrInSyn1, float* denDelayInSyn2, unsigned int* denDelayPtrInSyn2, float* inSynInSyn3, float* denDelayInSyn3, unsigned int* denDelayPtrInSyn3, float* inSynInSyn4, float* denDelayInSyn4, unsigned int* denDelayPtrInSyn4, float* inSynInSyn5, float* denDelayInSyn5, unsigned int numNeurons) {
+    MergedNeuronInitGroup4 group = {denDelayInSyn9, inSynInSyn6, denDelayInSyn6, denDelayPtrInSyn6, inSynInSyn7, denDelayInSyn7, denDelayPtrInSyn7, inSynInSyn8, denDelayInSyn8, denDelayPtrInSyn8, inSynInSyn9, denDelayPtrInSyn5, denDelayPtrInSyn9, inSynInSyn10, denDelayInSyn10, denDelayPtrInSyn10, inSynInSyn11, denDelayInSyn11, denDelayPtrInSyn11, inSynInSyn12, denDelayInSyn12, denDelayPtrInSyn12, inSynInSyn2, spkCnt, spk, V, RefracTime, inSynInSyn0, denDelayInSyn0, denDelayPtrInSyn0, inSynInSyn1, denDelayInSyn1, denDelayPtrInSyn1, denDelayInSyn2, denDelayPtrInSyn2, inSynInSyn3, denDelayInSyn3, denDelayPtrInSyn3, inSynInSyn4, denDelayInSyn4, denDelayPtrInSyn4, inSynInSyn5, denDelayInSyn5, numNeurons, };
     CHECK_CUDA_ERRORS(cudaMemcpyToSymbolAsync(d_mergedNeuronInitGroup4, &group, sizeof(MergedNeuronInitGroup4), idx * sizeof(MergedNeuronInitGroup4)));
 }
-__device__ __constant__ MergedNeuronInitGroup5 d_mergedNeuronInitGroup5[1];
-void pushMergedNeuronInitGroup5ToDevice(unsigned int idx, float* denDelayInSyn9, float* inSynInSyn6, float* denDelayInSyn6, unsigned int* denDelayPtrInSyn6, float* inSynInSyn7, float* denDelayInSyn7, unsigned int* denDelayPtrInSyn7, float* inSynInSyn8, float* denDelayInSyn8, unsigned int* denDelayPtrInSyn8, float* inSynInSyn9, unsigned int* denDelayPtrInSyn5, unsigned int* denDelayPtrInSyn9, float* inSynInSyn10, float* denDelayInSyn10, unsigned int* denDelayPtrInSyn10, float* inSynInSyn11, float* denDelayInSyn11, unsigned int* denDelayPtrInSyn11, float* inSynInSyn12, float* denDelayInSyn12, unsigned int* denDelayPtrInSyn12, float* inSynInSyn2, unsigned int* spkCnt, unsigned int* spk, scalar* V, scalar* RefracTime, float* inSynInSyn0, float* denDelayInSyn0, unsigned int* denDelayPtrInSyn0, float* inSynInSyn1, float* denDelayInSyn1, unsigned int* denDelayPtrInSyn1, float* denDelayInSyn2, unsigned int* denDelayPtrInSyn2, float* inSynInSyn3, float* denDelayInSyn3, unsigned int* denDelayPtrInSyn3, float* inSynInSyn4, float* denDelayInSyn4, unsigned int* denDelayPtrInSyn4, float* inSynInSyn5, float* denDelayInSyn5, unsigned int numNeurons) {
-    MergedNeuronInitGroup5 group = {denDelayInSyn9, inSynInSyn6, denDelayInSyn6, denDelayPtrInSyn6, inSynInSyn7, denDelayInSyn7, denDelayPtrInSyn7, inSynInSyn8, denDelayInSyn8, denDelayPtrInSyn8, inSynInSyn9, denDelayPtrInSyn5, denDelayPtrInSyn9, inSynInSyn10, denDelayInSyn10, denDelayPtrInSyn10, inSynInSyn11, denDelayInSyn11, denDelayPtrInSyn11, inSynInSyn12, denDelayInSyn12, denDelayPtrInSyn12, inSynInSyn2, spkCnt, spk, V, RefracTime, inSynInSyn0, denDelayInSyn0, denDelayPtrInSyn0, inSynInSyn1, denDelayInSyn1, denDelayPtrInSyn1, denDelayInSyn2, denDelayPtrInSyn2, inSynInSyn3, denDelayInSyn3, denDelayPtrInSyn3, inSynInSyn4, denDelayInSyn4, denDelayPtrInSyn4, inSynInSyn5, denDelayInSyn5, numNeurons, };
+__device__ __constant__ MergedNeuronInitGroup5 d_mergedNeuronInitGroup5[2];
+void pushMergedNeuronInitGroup5ToDevice(unsigned int idx, float* inSynInSyn8, float* inSynInSyn5, float* denDelayInSyn5, unsigned int* denDelayPtrInSyn5, float* inSynInSyn6, float* denDelayInSyn6, unsigned int* denDelayPtrInSyn6, float* inSynInSyn7, float* denDelayInSyn7, unsigned int* denDelayPtrInSyn7, unsigned int* denDelayPtrInSyn4, float* denDelayInSyn8, unsigned int* denDelayPtrInSyn8, float* inSynInSyn9, float* denDelayInSyn9, unsigned int* denDelayPtrInSyn9, float* inSynInSyn10, float* denDelayInSyn10, unsigned int* denDelayPtrInSyn10, unsigned int* denDelayPtrInSyn1, unsigned int* spkCnt, unsigned int* spk, scalar* V, scalar* RefracTime, float* inSynInSyn0, float* denDelayInSyn0, unsigned int* denDelayPtrInSyn0, float* inSynInSyn1, float* denDelayInSyn1, float* inSynInSyn2, float* denDelayInSyn2, unsigned int* denDelayPtrInSyn2, float* inSynInSyn3, float* denDelayInSyn3, unsigned int* denDelayPtrInSyn3, float* inSynInSyn4, float* denDelayInSyn4, unsigned int numNeurons) {
+    MergedNeuronInitGroup5 group = {inSynInSyn8, inSynInSyn5, denDelayInSyn5, denDelayPtrInSyn5, inSynInSyn6, denDelayInSyn6, denDelayPtrInSyn6, inSynInSyn7, denDelayInSyn7, denDelayPtrInSyn7, denDelayPtrInSyn4, denDelayInSyn8, denDelayPtrInSyn8, inSynInSyn9, denDelayInSyn9, denDelayPtrInSyn9, inSynInSyn10, denDelayInSyn10, denDelayPtrInSyn10, denDelayPtrInSyn1, spkCnt, spk, V, RefracTime, inSynInSyn0, denDelayInSyn0, denDelayPtrInSyn0, inSynInSyn1, denDelayInSyn1, inSynInSyn2, denDelayInSyn2, denDelayPtrInSyn2, inSynInSyn3, denDelayInSyn3, denDelayPtrInSyn3, inSynInSyn4, denDelayInSyn4, numNeurons, };
     CHECK_CUDA_ERRORS(cudaMemcpyToSymbolAsync(d_mergedNeuronInitGroup5, &group, sizeof(MergedNeuronInitGroup5), idx * sizeof(MergedNeuronInitGroup5)));
 }
-__device__ __constant__ MergedNeuronInitGroup6 d_mergedNeuronInitGroup6[3];
-void pushMergedNeuronInitGroup6ToDevice(unsigned int idx, float* inSynInSyn3, unsigned int* denDelayPtrInSyn7, float* denDelayInSyn7, float* inSynInSyn7, unsigned int* denDelayPtrInSyn6, float* denDelayInSyn6, float* inSynInSyn6, unsigned int* denDelayPtrInSyn5, float* denDelayInSyn5, float* inSynInSyn5, unsigned int* denDelayPtrInSyn4, float* denDelayInSyn4, float* inSynInSyn4, unsigned int* denDelayPtrInSyn3, float* denDelayInSyn3, unsigned int* denDelayPtrInSyn2, float* denDelayInSyn2, float* inSynInSyn2, unsigned int* denDelayPtrInSyn1, float* denDelayInSyn1, float* inSynInSyn1, unsigned int* denDelayPtrInSyn0, float* denDelayInSyn0, float* inSynInSyn0, scalar* RefracTime, scalar* V, unsigned int* spk, unsigned int* spkCnt, unsigned int numNeurons) {
-    MergedNeuronInitGroup6 group = {inSynInSyn3, denDelayPtrInSyn7, denDelayInSyn7, inSynInSyn7, denDelayPtrInSyn6, denDelayInSyn6, inSynInSyn6, denDelayPtrInSyn5, denDelayInSyn5, inSynInSyn5, denDelayPtrInSyn4, denDelayInSyn4, inSynInSyn4, denDelayPtrInSyn3, denDelayInSyn3, denDelayPtrInSyn2, denDelayInSyn2, inSynInSyn2, denDelayPtrInSyn1, denDelayInSyn1, inSynInSyn1, denDelayPtrInSyn0, denDelayInSyn0, inSynInSyn0, RefracTime, V, spk, spkCnt, numNeurons, };
+__device__ __constant__ MergedNeuronInitGroup6 d_mergedNeuronInitGroup6[2];
+void pushMergedNeuronInitGroup6ToDevice(unsigned int idx, float* inSynInSyn7, float* denDelayInSyn4, unsigned int* denDelayPtrInSyn4, float* inSynInSyn5, float* denDelayInSyn5, unsigned int* denDelayPtrInSyn5, float* inSynInSyn6, float* denDelayInSyn6, unsigned int* denDelayPtrInSyn6, float* inSynInSyn4, float* denDelayInSyn7, unsigned int* denDelayPtrInSyn7, float* inSynInSyn8, float* denDelayInSyn8, unsigned int* denDelayPtrInSyn8, float* inSynInSyn9, float* denDelayInSyn9, unsigned int* denDelayPtrInSyn9, float* denDelayInSyn1, unsigned int* spkCnt, unsigned int* spk, scalar* V, scalar* RefracTime, float* inSynInSyn0, float* denDelayInSyn0, unsigned int* denDelayPtrInSyn0, float* inSynInSyn1, unsigned int* denDelayPtrInSyn1, float* inSynInSyn2, float* denDelayInSyn2, unsigned int* denDelayPtrInSyn2, float* inSynInSyn3, float* denDelayInSyn3, unsigned int* denDelayPtrInSyn3, unsigned int numNeurons) {
+    MergedNeuronInitGroup6 group = {inSynInSyn7, denDelayInSyn4, denDelayPtrInSyn4, inSynInSyn5, denDelayInSyn5, denDelayPtrInSyn5, inSynInSyn6, denDelayInSyn6, denDelayPtrInSyn6, inSynInSyn4, denDelayInSyn7, denDelayPtrInSyn7, inSynInSyn8, denDelayInSyn8, denDelayPtrInSyn8, inSynInSyn9, denDelayInSyn9, denDelayPtrInSyn9, denDelayInSyn1, spkCnt, spk, V, RefracTime, inSynInSyn0, denDelayInSyn0, denDelayPtrInSyn0, inSynInSyn1, denDelayPtrInSyn1, inSynInSyn2, denDelayInSyn2, denDelayPtrInSyn2, inSynInSyn3, denDelayInSyn3, denDelayPtrInSyn3, numNeurons, };
     CHECK_CUDA_ERRORS(cudaMemcpyToSymbolAsync(d_mergedNeuronInitGroup6, &group, sizeof(MergedNeuronInitGroup6), idx * sizeof(MergedNeuronInitGroup6)));
 }
 __device__ __constant__ MergedNeuronInitGroup7 d_mergedNeuronInitGroup7[6];
@@ -445,14 +445,14 @@ void pushMergedSynapseConnectivityInit0preCalcRowLengthToDevice(unsigned int idx
 // merged extra global parameter functions
 // ------------------------------------------------------------------------
 __device__ unsigned int d_mergedNeuronInitGroupStartID0[] = {0, };
-__device__ unsigned int d_mergedNeuronInitGroupStartID1[] = {1792, 4416, };
-__device__ unsigned int d_mergedNeuronInitGroupStartID2[] = {6336, };
-__device__ unsigned int d_mergedNeuronInitGroupStartID3[] = {21888, 42176, };
-__device__ unsigned int d_mergedNeuronInitGroupStartID4[] = {46720, };
-__device__ unsigned int d_mergedNeuronInitGroupStartID5[] = {68352, };
-__device__ unsigned int d_mergedNeuronInitGroupStartID6[] = {143296, 144960, 146688, };
-__device__ unsigned int d_mergedNeuronInitGroupStartID7[] = {147008, 198784, 205824, 209920, 211520, 213504, };
-__device__ unsigned int d_mergedSynapseConnectivityInitGroupStartID0[] = {213888, 265664, 317440, 369216, 420992, 472768, 524544, 576320, 628096, 679872, 731648, 783424, 858368, 933312, 1008256, 1083200, 1158144, 1233088, 1308032, 1382976, 1457920, 1532864, 1607808, 1682752, 1757696, 1779328, 1800960, 1822592, 1844224, 1865856, 1887488, 1909120, 1930752, 1952384, 1974016, 1995648, 2017280, 2038912, 2060544, 2082176, 2103808, 2125440, 2145728, 2166016, 2186304, 2206592, 2226880, 2247168, 2267456, 2287744, 2303296, 2318848, 2334400, 2349952, 2365504, 2381056, 2396608, 2412160, 2414784, 2417408, 2420032, 2422656, 2425280, 2427904, 2430528, 2433152, 2435776, 2438400, 2441024, 2448064, 2455104, 2462144, 2469184, 2476224, 2483264, 2490304, 2497344, 2504384, 2511424, 2518464, 2525504, 2527296, 2529088, 2530880, 2532672, 2534464, 2536256, 2538048, 2539840, 2541632, 2543424, 2545216, 2547008, 2548672, 2550336, 2552000, 2553664, 2555328, 2556992, 2558656, 2560320, 2561984, 2563648, 2565568, 2567488, 2569408, 2571328, 2573248, 2575168, 2577088, 2579008, 2580928, 2582848, 2586944, 2591040, 2595136, 2599232, 2603328, 2607424, 2611520, 2615616, 2619712, 2623808, 2627904, 2632000, 2633600, 2635200, 2636800, 2638400, 2640000, 2641600, 2643200, 2644800, 2646400, 2648000, 2649600, 2651200, 2652800, 2654400, 2656000, 2657728, 2659456, 2661184, 2662912, 2664640, 2666368, 2668096, 2669824, 2674368, 2678912, 2683456, 2688000, 2692544, 2697088, 2701632, 2706176, 2708160, 2710144, 2712128, 2714112, 2716096, 2718080, 2720064, 2722048, 2724032, 2726016, 2728000, 2728384, 2728768, 2729152, 2729536, 2729920, 2730304, 2730688, 2731072, 2731456, 2731840, 2732224, 2732608, 2732928, 2733248, 2733568, 2733888, 2734208, 2734528, 2734848, };
+__device__ unsigned int d_mergedNeuronInitGroupStartID1[] = {1760, 3424, 5120, };
+__device__ unsigned int d_mergedNeuronInitGroupStartID2[] = {5440, };
+__device__ unsigned int d_mergedNeuronInitGroupStartID3[] = {20992, };
+__device__ unsigned int d_mergedNeuronInitGroupStartID4[] = {42624, };
+__device__ unsigned int d_mergedNeuronInitGroupStartID5[] = {117568, 120192, };
+__device__ unsigned int d_mergedNeuronInitGroupStartID6[] = {122112, 142400, };
+__device__ unsigned int d_mergedNeuronInitGroupStartID7[] = {146944, 198688, 205728, 209792, 211392, 213376, };
+__device__ unsigned int d_mergedSynapseConnectivityInitGroupStartID0[] = {213728, 265472, 317216, 368960, 420704, 472448, 524192, 575936, 627680, 679424, 731168, 782912, 857856, 932800, 1007744, 1082688, 1157632, 1232576, 1307520, 1382464, 1457408, 1532352, 1607296, 1682240, 1757184, 1778816, 1800448, 1822080, 1843712, 1865344, 1886976, 1908608, 1930240, 1951872, 1973504, 1995136, 2016768, 2038400, 2060032, 2081664, 2103296, 2124928, 2145216, 2165504, 2185792, 2206080, 2226368, 2246656, 2266944, 2287232, 2302784, 2318336, 2333888, 2349440, 2364992, 2380544, 2396096, 2411648, 2414272, 2416896, 2419520, 2422144, 2424768, 2427392, 2430016, 2432640, 2435264, 2437888, 2440512, 2447552, 2454592, 2461632, 2468672, 2475712, 2482752, 2489792, 2496832, 2503872, 2510912, 2517952, 2524992, 2526752, 2528512, 2530272, 2532032, 2533792, 2535552, 2537312, 2539072, 2540832, 2542592, 2544352, 2546112, 2547776, 2549440, 2551104, 2552768, 2554432, 2556096, 2557760, 2559424, 2561088, 2562752, 2564672, 2566592, 2568512, 2570432, 2572352, 2574272, 2576192, 2578112, 2580032, 2581952, 2586016, 2590080, 2594144, 2598208, 2602272, 2606336, 2610400, 2614464, 2618528, 2622592, 2626656, 2630720, 2632320, 2633920, 2635520, 2637120, 2638720, 2640320, 2641920, 2643520, 2645120, 2646720, 2648320, 2649920, 2651520, 2653120, 2654720, 2656416, 2658112, 2659808, 2661504, 2663200, 2664896, 2666592, 2668288, 2672832, 2677376, 2681920, 2686464, 2691008, 2695552, 2700096, 2704640, 2706624, 2708608, 2710592, 2712576, 2714560, 2716544, 2718528, 2720512, 2722496, 2724480, 2726464, 2726816, 2727168, 2727520, 2727872, 2728224, 2728576, 2728928, 2729280, 2729632, 2729984, 2730336, 2730688, 2731008, 2731328, 2731648, 2731968, 2732288, 2732608, 2732928, };
 __device__ unsigned int d_mergedSynapseSparseInitGroupStartID0[] = {0, 1152, 1408, 1728, 1984, 2112, 2176, 2304, 2432, 2496, 2624, 2688, 3328, 4736, 4992, 5120, 5184, 5504, 5568, 5632, 5888, 5952, 6080, 6272, 6336, 6656, 6848, 7424, 7680, 7808, 7872, 8000, 8064, 8128, 8192, 8320, 8384, 8448, 8576, 8640, 8704, 8768, 8960, 9216, 9280, 9408, 9472, 9600, 9664, 9728, 10496, 10944, 11136, 11328, 11840, 11904, 11968, 12096, 14976, 15552, 15808, 15936, 16192, 16320, 16384, 16448, 16512, 16704, 16768, 17792, 20288, 20480, 20544, 20864, 20928, 20992, 21056, 21120, 21184, 21248, 21312, 23296, 23488, 23616, 23744, 23936, 24000, 24064, 24128, 24192, 24256, 24320, 24384, 26176, 28672, 29504, 30272, 30336, 30464, 30528, 30656, 30720, 30784, 33792, 34368, 34496, 35136, 35584, 35712, 35776, 35840, 36416, 36480, 37504, 39552, 39680, 40064, 40128, 40704, 40768, 40832, 40896, 40960, 41152, 41216, 42880, 43712, 45120, 45312, 46016, 46144, 46528, 46592, 46656, 46720, 46784, 46848, 46912, 47040, 47104, 47424, 48192, 48256, 48320, 48384, 48448, 48512, 48576, 49280, 49856, 49920, 50048, 50304, 50368, 50432, 50496, 51520, 53568, 53632, 53696, 53760, 53824, 54080, 54144, 54208, 54272, 54336, 54848, 55424, 55616, 55744, 55808, 55872, 55936, 56192, 56256, 56320, 56384, 56448, 56768, 57536, 57600, 57664, 57728, 57792, 57856, };
 
 extern "C" __global__ void initializeRNGKernel(unsigned long long deviceRNGSeed) {
@@ -462,11 +462,11 @@ extern "C" __global__ void initializeRNGKernel(unsigned long long deviceRNGSeed)
 }
 
 extern "C" __global__ void initializeKernel(unsigned long long deviceRNGSeed) {
-    const unsigned int id = 64 * blockIdx.x + threadIdx.x;
+    const unsigned int id = 32 * blockIdx.x + threadIdx.x;
     // ------------------------------------------------------------------------
     // Local neuron groups
     // merged0
-    if(id < 1792) {
+    if(id < 1760) {
         struct MergedNeuronInitGroup0 *group = &d_mergedNeuronInitGroup0[0]; 
         const unsigned int lid = id - 0;
         // only do this for existing neurons
@@ -489,98 +489,126 @@ extern "C" __global__ void initializeKernel(unsigned long long deviceRNGSeed) {
             }
              {
                 group->inSynInSyn0[lid] = 0.000000000e+00f;
-                group->denDelayInSyn0[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn0[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn0 = 0;
                 }
             }
              {
                 group->inSynInSyn1[lid] = 0.000000000e+00f;
-                group->denDelayInSyn1[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn1[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn1 = 0;
                 }
             }
              {
                 group->inSynInSyn2[lid] = 0.000000000e+00f;
-                group->denDelayInSyn2[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn2[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn2 = 0;
                 }
             }
              {
                 group->inSynInSyn3[lid] = 0.000000000e+00f;
-                group->denDelayInSyn3[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn3[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn3 = 0;
                 }
             }
              {
                 group->inSynInSyn4[lid] = 0.000000000e+00f;
-                group->denDelayInSyn4[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn4[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn4 = 0;
                 }
             }
              {
                 group->inSynInSyn5[lid] = 0.000000000e+00f;
-                group->denDelayInSyn5[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn5[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn5 = 0;
                 }
             }
              {
                 group->inSynInSyn6[lid] = 0.000000000e+00f;
-                group->denDelayInSyn6[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn6[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn6 = 0;
                 }
             }
              {
                 group->inSynInSyn7[lid] = 0.000000000e+00f;
-                group->denDelayInSyn7[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn7[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn7 = 0;
                 }
             }
              {
                 group->inSynInSyn8[lid] = 0.000000000e+00f;
-                group->denDelayInSyn8[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn8[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn8 = 0;
                 }
             }
              {
                 group->inSynInSyn9[lid] = 0.000000000e+00f;
-                group->denDelayInSyn9[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn9[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn9 = 0;
                 }
             }
              {
                 group->inSynInSyn10[lid] = 0.000000000e+00f;
-                group->denDelayInSyn10[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn10[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn10 = 0;
                 }
             }
              {
                 group->inSynInSyn11[lid] = 0.000000000e+00f;
-                group->denDelayInSyn11[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn11[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn11 = 0;
                 }
             }
              {
                 group->inSynInSyn12[lid] = 0.000000000e+00f;
-                group->denDelayInSyn12[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn12[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn12 = 0;
                 }
             }
              {
                 group->inSynInSyn13[lid] = 0.000000000e+00f;
-                group->denDelayInSyn13[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn13[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn13 = 0;
                 }
@@ -589,9 +617,9 @@ extern "C" __global__ void initializeKernel(unsigned long long deviceRNGSeed) {
         }
     }
     // merged1
-    if(id >= 1792 && id < 6336) {
+    if(id >= 1760 && id < 5440) {
         unsigned int lo = 0;
-        unsigned int hi = 2;
+        unsigned int hi = 3;
         while(lo < hi)
          {
             const unsigned int mid = (lo + hi) / 2;
@@ -625,88 +653,83 @@ extern "C" __global__ void initializeKernel(unsigned long long deviceRNGSeed) {
             }
              {
                 group->inSynInSyn0[lid] = 0.000000000e+00f;
-                group->denDelayInSyn0[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn0[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn0 = 0;
                 }
             }
              {
                 group->inSynInSyn1[lid] = 0.000000000e+00f;
-                group->denDelayInSyn1[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn1[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn1 = 0;
                 }
             }
              {
                 group->inSynInSyn2[lid] = 0.000000000e+00f;
-                group->denDelayInSyn2[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn2[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn2 = 0;
                 }
             }
              {
                 group->inSynInSyn3[lid] = 0.000000000e+00f;
-                group->denDelayInSyn3[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn3[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn3 = 0;
                 }
             }
              {
                 group->inSynInSyn4[lid] = 0.000000000e+00f;
-                group->denDelayInSyn4[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn4[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn4 = 0;
                 }
             }
              {
                 group->inSynInSyn5[lid] = 0.000000000e+00f;
-                group->denDelayInSyn5[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn5[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn5 = 0;
                 }
             }
              {
                 group->inSynInSyn6[lid] = 0.000000000e+00f;
-                group->denDelayInSyn6[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn6[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn6 = 0;
                 }
             }
              {
                 group->inSynInSyn7[lid] = 0.000000000e+00f;
-                group->denDelayInSyn7[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn7[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn7 = 0;
-                }
-            }
-             {
-                group->inSynInSyn8[lid] = 0.000000000e+00f;
-                group->denDelayInSyn8[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn8 = 0;
-                }
-            }
-             {
-                group->inSynInSyn9[lid] = 0.000000000e+00f;
-                group->denDelayInSyn9[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn9 = 0;
-                }
-            }
-             {
-                group->inSynInSyn10[lid] = 0.000000000e+00f;
-                group->denDelayInSyn10[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn10 = 0;
                 }
             }
             // current source variables
         }
     }
     // merged2
-    if(id >= 6336 && id < 21888) {
+    if(id >= 5440 && id < 20992) {
         struct MergedNeuronInitGroup2 *group = &d_mergedNeuronInitGroup2[0]; 
-        const unsigned int lid = id - 6336;
+        const unsigned int lid = id - 5440;
         // only do this for existing neurons
         if(lid < group->numNeurons) {
             curandStatePhilox4_32_10_t localRNG = d_rng;
@@ -727,42 +750,54 @@ extern "C" __global__ void initializeKernel(unsigned long long deviceRNGSeed) {
             }
              {
                 group->inSynInSyn0[lid] = 0.000000000e+00f;
-                group->denDelayInSyn0[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn0[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn0 = 0;
                 }
             }
              {
                 group->inSynInSyn1[lid] = 0.000000000e+00f;
-                group->denDelayInSyn1[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn1[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn1 = 0;
                 }
             }
              {
                 group->inSynInSyn2[lid] = 0.000000000e+00f;
-                group->denDelayInSyn2[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn2[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn2 = 0;
                 }
             }
              {
                 group->inSynInSyn3[lid] = 0.000000000e+00f;
-                group->denDelayInSyn3[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn3[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn3 = 0;
                 }
             }
              {
                 group->inSynInSyn4[lid] = 0.000000000e+00f;
-                group->denDelayInSyn4[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn4[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn4 = 0;
                 }
             }
              {
                 group->inSynInSyn5[lid] = 0.000000000e+00f;
-                group->denDelayInSyn5[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn5[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn5 = 0;
                 }
@@ -771,21 +806,323 @@ extern "C" __global__ void initializeKernel(unsigned long long deviceRNGSeed) {
         }
     }
     // merged3
-    if(id >= 21888 && id < 46720) {
+    if(id >= 20992 && id < 42624) {
+        struct MergedNeuronInitGroup3 *group = &d_mergedNeuronInitGroup3[0]; 
+        const unsigned int lid = id - 20992;
+        // only do this for existing neurons
+        if(lid < group->numNeurons) {
+            curandStatePhilox4_32_10_t localRNG = d_rng;
+            skipahead_sequence((unsigned long long)id, &localRNG);
+            if(lid == 0) {
+                group->spkCnt[0] = 0;
+            }
+            group->spk[lid] = 0;
+             {
+                scalar initVal;
+                initVal = (-1.50000000000000000e+02f) + (curand_normal(&localRNG) * (5.00000000000000000e+01f));
+                group->V[lid] = initVal;
+            }
+             {
+                scalar initVal;
+                initVal = (0.00000000000000000e+00f);
+                group->RefracTime[lid] = initVal;
+            }
+             {
+                group->inSynInSyn0[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn0[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn0 = 0;
+                }
+            }
+             {
+                group->inSynInSyn1[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn1[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn1 = 0;
+                }
+            }
+             {
+                group->inSynInSyn2[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn2[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn2 = 0;
+                }
+            }
+             {
+                group->inSynInSyn3[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn3[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn3 = 0;
+                }
+            }
+             {
+                group->inSynInSyn4[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn4[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn4 = 0;
+                }
+            }
+             {
+                group->inSynInSyn5[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn5[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn5 = 0;
+                }
+            }
+             {
+                group->inSynInSyn6[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn6[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn6 = 0;
+                }
+            }
+             {
+                group->inSynInSyn7[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn7[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn7 = 0;
+                }
+            }
+             {
+                group->inSynInSyn8[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn8[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn8 = 0;
+                }
+            }
+             {
+                group->inSynInSyn9[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn9[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn9 = 0;
+                }
+            }
+             {
+                group->inSynInSyn10[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn10[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn10 = 0;
+                }
+            }
+             {
+                group->inSynInSyn11[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn11[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn11 = 0;
+                }
+            }
+             {
+                group->inSynInSyn12[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn12[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn12 = 0;
+                }
+            }
+             {
+                group->inSynInSyn13[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn13[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn13 = 0;
+                }
+            }
+             {
+                group->inSynInSyn14[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn14[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn14 = 0;
+                }
+            }
+            // current source variables
+        }
+    }
+    // merged4
+    if(id >= 42624 && id < 117568) {
+        struct MergedNeuronInitGroup4 *group = &d_mergedNeuronInitGroup4[0]; 
+        const unsigned int lid = id - 42624;
+        // only do this for existing neurons
+        if(lid < group->numNeurons) {
+            curandStatePhilox4_32_10_t localRNG = d_rng;
+            skipahead_sequence((unsigned long long)id, &localRNG);
+            if(lid == 0) {
+                group->spkCnt[0] = 0;
+            }
+            group->spk[lid] = 0;
+             {
+                scalar initVal;
+                initVal = (-1.50000000000000000e+02f) + (curand_normal(&localRNG) * (5.00000000000000000e+01f));
+                group->V[lid] = initVal;
+            }
+             {
+                scalar initVal;
+                initVal = (0.00000000000000000e+00f);
+                group->RefracTime[lid] = initVal;
+            }
+             {
+                group->inSynInSyn0[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn0[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn0 = 0;
+                }
+            }
+             {
+                group->inSynInSyn1[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn1[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn1 = 0;
+                }
+            }
+             {
+                group->inSynInSyn2[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn2[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn2 = 0;
+                }
+            }
+             {
+                group->inSynInSyn3[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn3[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn3 = 0;
+                }
+            }
+             {
+                group->inSynInSyn4[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn4[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn4 = 0;
+                }
+            }
+             {
+                group->inSynInSyn5[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn5[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn5 = 0;
+                }
+            }
+             {
+                group->inSynInSyn6[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn6[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn6 = 0;
+                }
+            }
+             {
+                group->inSynInSyn7[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn7[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn7 = 0;
+                }
+            }
+             {
+                group->inSynInSyn8[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn8[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn8 = 0;
+                }
+            }
+             {
+                group->inSynInSyn9[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn9[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn9 = 0;
+                }
+            }
+             {
+                group->inSynInSyn10[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn10[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn10 = 0;
+                }
+            }
+             {
+                group->inSynInSyn11[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn11[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn11 = 0;
+                }
+            }
+             {
+                group->inSynInSyn12[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn12[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn12 = 0;
+                }
+            }
+            // current source variables
+        }
+    }
+    // merged5
+    if(id >= 117568 && id < 122112) {
         unsigned int lo = 0;
         unsigned int hi = 2;
         while(lo < hi)
          {
             const unsigned int mid = (lo + hi) / 2;
-            if(id < d_mergedNeuronInitGroupStartID3[mid]) {
+            if(id < d_mergedNeuronInitGroupStartID5[mid]) {
                 hi = mid;
             }
             else {
                 lo = mid + 1;
             }
         }
-        struct MergedNeuronInitGroup3 *group = &d_mergedNeuronInitGroup3[lo - 1]; 
-        const unsigned int groupStartID = d_mergedNeuronInitGroupStartID3[lo - 1];
+        struct MergedNeuronInitGroup5 *group = &d_mergedNeuronInitGroup5[lo - 1]; 
+        const unsigned int groupStartID = d_mergedNeuronInitGroupStartID5[lo - 1];
         const unsigned int lid = id - groupStartID;
         // only do this for existing neurons
         if(lid < group->numNeurons) {
@@ -807,327 +1144,110 @@ extern "C" __global__ void initializeKernel(unsigned long long deviceRNGSeed) {
             }
              {
                 group->inSynInSyn0[lid] = 0.000000000e+00f;
-                group->denDelayInSyn0[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn0[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn0 = 0;
                 }
             }
              {
                 group->inSynInSyn1[lid] = 0.000000000e+00f;
-                group->denDelayInSyn1[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn1[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn1 = 0;
                 }
             }
              {
                 group->inSynInSyn2[lid] = 0.000000000e+00f;
-                group->denDelayInSyn2[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn2[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn2 = 0;
                 }
             }
              {
                 group->inSynInSyn3[lid] = 0.000000000e+00f;
-                group->denDelayInSyn3[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn3[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn3 = 0;
                 }
             }
              {
                 group->inSynInSyn4[lid] = 0.000000000e+00f;
-                group->denDelayInSyn4[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn4[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn4 = 0;
                 }
             }
              {
                 group->inSynInSyn5[lid] = 0.000000000e+00f;
-                group->denDelayInSyn5[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn5[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn5 = 0;
                 }
             }
              {
                 group->inSynInSyn6[lid] = 0.000000000e+00f;
-                group->denDelayInSyn6[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn6[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn6 = 0;
                 }
             }
              {
                 group->inSynInSyn7[lid] = 0.000000000e+00f;
-                group->denDelayInSyn7[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn7[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn7 = 0;
                 }
             }
              {
                 group->inSynInSyn8[lid] = 0.000000000e+00f;
-                group->denDelayInSyn8[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn8[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn8 = 0;
                 }
             }
              {
                 group->inSynInSyn9[lid] = 0.000000000e+00f;
-                group->denDelayInSyn9[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn9 = 0;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn9[(d * group->numNeurons) + lid] = 0.000000000e+00f;
                 }
-            }
-            // current source variables
-        }
-    }
-    // merged4
-    if(id >= 46720 && id < 68352) {
-        struct MergedNeuronInitGroup4 *group = &d_mergedNeuronInitGroup4[0]; 
-        const unsigned int lid = id - 46720;
-        // only do this for existing neurons
-        if(lid < group->numNeurons) {
-            curandStatePhilox4_32_10_t localRNG = d_rng;
-            skipahead_sequence((unsigned long long)id, &localRNG);
-            if(lid == 0) {
-                group->spkCnt[0] = 0;
-            }
-            group->spk[lid] = 0;
-             {
-                scalar initVal;
-                initVal = (-1.50000000000000000e+02f) + (curand_normal(&localRNG) * (5.00000000000000000e+01f));
-                group->V[lid] = initVal;
-            }
-             {
-                scalar initVal;
-                initVal = (0.00000000000000000e+00f);
-                group->RefracTime[lid] = initVal;
-            }
-             {
-                group->inSynInSyn0[lid] = 0.000000000e+00f;
-                group->denDelayInSyn0[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn0 = 0;
-                }
-            }
-             {
-                group->inSynInSyn1[lid] = 0.000000000e+00f;
-                group->denDelayInSyn1[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn1 = 0;
-                }
-            }
-             {
-                group->inSynInSyn2[lid] = 0.000000000e+00f;
-                group->denDelayInSyn2[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn2 = 0;
-                }
-            }
-             {
-                group->inSynInSyn3[lid] = 0.000000000e+00f;
-                group->denDelayInSyn3[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn3 = 0;
-                }
-            }
-             {
-                group->inSynInSyn4[lid] = 0.000000000e+00f;
-                group->denDelayInSyn4[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn4 = 0;
-                }
-            }
-             {
-                group->inSynInSyn5[lid] = 0.000000000e+00f;
-                group->denDelayInSyn5[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn5 = 0;
-                }
-            }
-             {
-                group->inSynInSyn6[lid] = 0.000000000e+00f;
-                group->denDelayInSyn6[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn6 = 0;
-                }
-            }
-             {
-                group->inSynInSyn7[lid] = 0.000000000e+00f;
-                group->denDelayInSyn7[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn7 = 0;
-                }
-            }
-             {
-                group->inSynInSyn8[lid] = 0.000000000e+00f;
-                group->denDelayInSyn8[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn8 = 0;
-                }
-            }
-             {
-                group->inSynInSyn9[lid] = 0.000000000e+00f;
-                group->denDelayInSyn9[lid] = 0.000000000e+00f;
                 if(lid == 0) {
                     *group->denDelayPtrInSyn9 = 0;
                 }
             }
              {
                 group->inSynInSyn10[lid] = 0.000000000e+00f;
-                group->denDelayInSyn10[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn10[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn10 = 0;
-                }
-            }
-             {
-                group->inSynInSyn11[lid] = 0.000000000e+00f;
-                group->denDelayInSyn11[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn11 = 0;
-                }
-            }
-             {
-                group->inSynInSyn12[lid] = 0.000000000e+00f;
-                group->denDelayInSyn12[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn12 = 0;
-                }
-            }
-             {
-                group->inSynInSyn13[lid] = 0.000000000e+00f;
-                group->denDelayInSyn13[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn13 = 0;
-                }
-            }
-             {
-                group->inSynInSyn14[lid] = 0.000000000e+00f;
-                group->denDelayInSyn14[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn14 = 0;
-                }
-            }
-            // current source variables
-        }
-    }
-    // merged5
-    if(id >= 68352 && id < 143296) {
-        struct MergedNeuronInitGroup5 *group = &d_mergedNeuronInitGroup5[0]; 
-        const unsigned int lid = id - 68352;
-        // only do this for existing neurons
-        if(lid < group->numNeurons) {
-            curandStatePhilox4_32_10_t localRNG = d_rng;
-            skipahead_sequence((unsigned long long)id, &localRNG);
-            if(lid == 0) {
-                group->spkCnt[0] = 0;
-            }
-            group->spk[lid] = 0;
-             {
-                scalar initVal;
-                initVal = (-1.50000000000000000e+02f) + (curand_normal(&localRNG) * (5.00000000000000000e+01f));
-                group->V[lid] = initVal;
-            }
-             {
-                scalar initVal;
-                initVal = (0.00000000000000000e+00f);
-                group->RefracTime[lid] = initVal;
-            }
-             {
-                group->inSynInSyn0[lid] = 0.000000000e+00f;
-                group->denDelayInSyn0[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn0 = 0;
-                }
-            }
-             {
-                group->inSynInSyn1[lid] = 0.000000000e+00f;
-                group->denDelayInSyn1[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn1 = 0;
-                }
-            }
-             {
-                group->inSynInSyn2[lid] = 0.000000000e+00f;
-                group->denDelayInSyn2[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn2 = 0;
-                }
-            }
-             {
-                group->inSynInSyn3[lid] = 0.000000000e+00f;
-                group->denDelayInSyn3[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn3 = 0;
-                }
-            }
-             {
-                group->inSynInSyn4[lid] = 0.000000000e+00f;
-                group->denDelayInSyn4[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn4 = 0;
-                }
-            }
-             {
-                group->inSynInSyn5[lid] = 0.000000000e+00f;
-                group->denDelayInSyn5[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn5 = 0;
-                }
-            }
-             {
-                group->inSynInSyn6[lid] = 0.000000000e+00f;
-                group->denDelayInSyn6[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn6 = 0;
-                }
-            }
-             {
-                group->inSynInSyn7[lid] = 0.000000000e+00f;
-                group->denDelayInSyn7[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn7 = 0;
-                }
-            }
-             {
-                group->inSynInSyn8[lid] = 0.000000000e+00f;
-                group->denDelayInSyn8[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn8 = 0;
-                }
-            }
-             {
-                group->inSynInSyn9[lid] = 0.000000000e+00f;
-                group->denDelayInSyn9[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn9 = 0;
-                }
-            }
-             {
-                group->inSynInSyn10[lid] = 0.000000000e+00f;
-                group->denDelayInSyn10[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn10 = 0;
-                }
-            }
-             {
-                group->inSynInSyn11[lid] = 0.000000000e+00f;
-                group->denDelayInSyn11[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn11 = 0;
-                }
-            }
-             {
-                group->inSynInSyn12[lid] = 0.000000000e+00f;
-                group->denDelayInSyn12[lid] = 0.000000000e+00f;
-                if(lid == 0) {
-                    *group->denDelayPtrInSyn12 = 0;
                 }
             }
             // current source variables
         }
     }
     // merged6
-    if(id >= 143296 && id < 147008) {
+    if(id >= 122112 && id < 146944) {
         unsigned int lo = 0;
-        unsigned int hi = 3;
+        unsigned int hi = 2;
         while(lo < hi)
          {
             const unsigned int mid = (lo + hi) / 2;
@@ -1161,65 +1281,99 @@ extern "C" __global__ void initializeKernel(unsigned long long deviceRNGSeed) {
             }
              {
                 group->inSynInSyn0[lid] = 0.000000000e+00f;
-                group->denDelayInSyn0[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn0[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn0 = 0;
                 }
             }
              {
                 group->inSynInSyn1[lid] = 0.000000000e+00f;
-                group->denDelayInSyn1[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn1[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn1 = 0;
                 }
             }
              {
                 group->inSynInSyn2[lid] = 0.000000000e+00f;
-                group->denDelayInSyn2[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn2[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn2 = 0;
                 }
             }
              {
                 group->inSynInSyn3[lid] = 0.000000000e+00f;
-                group->denDelayInSyn3[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn3[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn3 = 0;
                 }
             }
              {
                 group->inSynInSyn4[lid] = 0.000000000e+00f;
-                group->denDelayInSyn4[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn4[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn4 = 0;
                 }
             }
              {
                 group->inSynInSyn5[lid] = 0.000000000e+00f;
-                group->denDelayInSyn5[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn5[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn5 = 0;
                 }
             }
              {
                 group->inSynInSyn6[lid] = 0.000000000e+00f;
-                group->denDelayInSyn6[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn6[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn6 = 0;
                 }
             }
              {
                 group->inSynInSyn7[lid] = 0.000000000e+00f;
-                group->denDelayInSyn7[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn7[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn7 = 0;
+                }
+            }
+             {
+                group->inSynInSyn8[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn8[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn8 = 0;
+                }
+            }
+             {
+                group->inSynInSyn9[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn9[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
+                if(lid == 0) {
+                    *group->denDelayPtrInSyn9 = 0;
                 }
             }
             // current source variables
         }
     }
     // merged7
-    if(id >= 147008 && id < 213888) {
+    if(id >= 146944 && id < 213728) {
         unsigned int lo = 0;
         unsigned int hi = 6;
         while(lo < hi)
@@ -1255,84 +1409,108 @@ extern "C" __global__ void initializeKernel(unsigned long long deviceRNGSeed) {
             }
              {
                 group->inSynInSyn0[lid] = 0.000000000e+00f;
-                group->denDelayInSyn0[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn0[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn0 = 0;
                 }
             }
              {
                 group->inSynInSyn1[lid] = 0.000000000e+00f;
-                group->denDelayInSyn1[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn1[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn1 = 0;
                 }
             }
              {
                 group->inSynInSyn2[lid] = 0.000000000e+00f;
-                group->denDelayInSyn2[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn2[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn2 = 0;
                 }
             }
              {
                 group->inSynInSyn3[lid] = 0.000000000e+00f;
-                group->denDelayInSyn3[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn3[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn3 = 0;
                 }
             }
              {
                 group->inSynInSyn4[lid] = 0.000000000e+00f;
-                group->denDelayInSyn4[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn4[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn4 = 0;
                 }
             }
              {
                 group->inSynInSyn5[lid] = 0.000000000e+00f;
-                group->denDelayInSyn5[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn5[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn5 = 0;
                 }
             }
              {
                 group->inSynInSyn6[lid] = 0.000000000e+00f;
-                group->denDelayInSyn6[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn6[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn6 = 0;
                 }
             }
              {
                 group->inSynInSyn7[lid] = 0.000000000e+00f;
-                group->denDelayInSyn7[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn7[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn7 = 0;
                 }
             }
              {
                 group->inSynInSyn8[lid] = 0.000000000e+00f;
-                group->denDelayInSyn8[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn8[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn8 = 0;
                 }
             }
              {
                 group->inSynInSyn9[lid] = 0.000000000e+00f;
-                group->denDelayInSyn9[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn9[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn9 = 0;
                 }
             }
              {
                 group->inSynInSyn10[lid] = 0.000000000e+00f;
-                group->denDelayInSyn10[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn10[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn10 = 0;
                 }
             }
              {
                 group->inSynInSyn11[lid] = 0.000000000e+00f;
-                group->denDelayInSyn11[lid] = 0.000000000e+00f;
+                for(unsigned int d = 0; d < 43; d++) {
+                    group->denDelayInSyn11[(d * group->numNeurons) + lid] = 0.000000000e+00f;
+                }
                 if(lid == 0) {
                     *group->denDelayPtrInSyn11 = 0;
                 }
@@ -1353,7 +1531,7 @@ extern "C" __global__ void initializeKernel(unsigned long long deviceRNGSeed) {
     // ------------------------------------------------------------------------
     // Synapse groups with sparse connectivity
     // merged0
-    if(id >= 213888 && id < 2735168) {
+    if(id >= 213728 && id < 2733248) {
         unsigned int lo = 0;
         unsigned int hi = 186;
         while(lo < hi)
@@ -1419,7 +1597,7 @@ extern "C" __global__ void initializeSparseKernel() {
         const unsigned int groupStartID = d_mergedSynapseSparseInitGroupStartID0[lo - 1];
         const unsigned int lid = id - groupStartID;
         curandStatePhilox4_32_10_t localRNG = d_rng;
-        skipahead_sequence((unsigned long long)2735168 + id, &localRNG);
+        skipahead_sequence((unsigned long long)2733248 + id, &localRNG);
         const unsigned int numBlocks = (group->numSrcNeurons + 64 - 1) / 64;
         unsigned int idx = lid;
         for(unsigned int r = 0; r < numBlocks; r++) {
@@ -1448,7 +1626,7 @@ extern "C" __global__ void initializeSparseKernel() {
                         do
                         {
                            normal = group->meanTimestepd + (curand_normal(&localRNG) * group->sdTimestepd);
-                        } while (normal > group->maxTimestepd || normal < (1.00000000000000000e+00f));
+                        } while (normal > group->maxTimestepd || normal < (0.00000000000000000e+00f));
                         initVal = rint(normal);
                         
                         group->d[(((r * 64) + i) * group->rowStride) + lid] = initVal;
@@ -1461,14 +1639,20 @@ extern "C" __global__ void initializeSparseKernel() {
 }
 void initialize() {
     unsigned long long deviceRNGSeed = 0;
-    deviceRNGSeed = 4223108873;
+    deviceRNGSeed = 3186695951;
     initializeRNGKernel<<<1, 1>>>(deviceRNGSeed);
     CHECK_CUDA_ERRORS(cudaPeekAtLastError());
      {
-        const dim3 threads(64, 1);
-        const dim3 grid(42737, 1);
+        CHECK_CUDA_ERRORS(cudaEventRecord(initStart));
+        const dim3 threads(32, 1);
+        const dim3 grid(85414, 1);
         initializeKernel<<<grid, threads>>>(deviceRNGSeed);
         CHECK_CUDA_ERRORS(cudaPeekAtLastError());
+        CHECK_CUDA_ERRORS(cudaEventRecord(initStop));
+        CHECK_CUDA_ERRORS(cudaEventSynchronize(initStop));
+        float tmp;
+        CHECK_CUDA_ERRORS(cudaEventElapsedTime(&tmp, initStart, initStop));
+        initTime += tmp / 1000.0;
     }
 }
 
@@ -1477,9 +1661,15 @@ void initializeSparse() {
     copyConnectivityToDevice(true);
     
      {
+        CHECK_CUDA_ERRORS(cudaEventRecord(initSparseStart));
         const dim3 threads(64, 1);
         const dim3 grid(905, 1);
         initializeSparseKernel<<<grid, threads>>>();
         CHECK_CUDA_ERRORS(cudaPeekAtLastError());
+        CHECK_CUDA_ERRORS(cudaEventRecord(initSparseStop));
+        CHECK_CUDA_ERRORS(cudaEventSynchronize(initSparseStop));
+        float tmp;
+        CHECK_CUDA_ERRORS(cudaEventElapsedTime(&tmp, initSparseStart, initSparseStop));
+        initSparseTime += tmp / 1000.0;
     }
 }

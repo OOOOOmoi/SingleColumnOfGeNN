@@ -8,7 +8,7 @@ import random
 import string
 
 # 获取文件路径列表，假设文件的路径模式是 'output/*.st'
-file_paths = glob.glob('/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/output/*.st')
+file_paths = glob.glob('/home/yangjinhao/GeNN/userproject/SingleColumn/output/*.st')
 
 # 定义颜色列表，每个文件分配一种颜色
 colors = ['blue', 'red']
@@ -70,7 +70,7 @@ plt.yticks(y_ticks, group_labels, fontsize=16)
 plt.xlabel('Time', fontsize=16)
 
 # 添加图例
-output_path = f"/home/yangjinhao/GeNN/genn-master/userproject/SingleColumn/output/Fig/V1_{random_label}.png"
+output_path = f"/home/yangjinhao/GeNN/userproject/SingleColumn/output/Fig/V1_{random_label}.png"
 plt.tight_layout()
 plt.savefig(output_path)
 

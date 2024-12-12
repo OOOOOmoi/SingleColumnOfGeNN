@@ -45,7 +45,7 @@ extern "C" __global__ void synapseDendriticDelayUpdateKernel() {
     // merged0
     if(id < 186) {
         struct MergedSynapseDendriticDelayUpdateGroup0 *group = &d_mergedSynapseDendriticDelayUpdateGroup0[id - 0]; 
-        *group->denDelayPtr = (*group->denDelayPtr + 1) % 1;
+        *group->denDelayPtr = (*group->denDelayPtr + 1) % 43;
     }
     
 }
@@ -92,7 +92,7 @@ extern "C" __global__ void updatePresynapticKernel(float t)
                         const unsigned int npost = shRowLength[j];
                         if (lid < npost) {
                             const unsigned int ipost = group->ind[synAddress];
-                            atomicAdd(&group->denDelay[(((*group->denDelayPtr + group->d[synAddress]) % 1) * group->numTrgNeurons) + ipost], group->g[synAddress]);
+                            atomicAdd(&group->denDelay[(((*group->denDelayPtr + group->d[synAddress]) % 43) * group->numTrgNeurons) + ipost], group->g[synAddress]);
                         }
                     }
                 }
@@ -109,9 +109,11 @@ void updateSynapses(float t) {
         CHECK_CUDA_ERRORS(cudaPeekAtLastError());
     }
      {
+        CHECK_CUDA_ERRORS(cudaEventRecord(presynapticUpdateStart));
         const dim3 threads(32, 1);
         const dim3 grid(1697, 1);
         updatePresynapticKernel<<<grid, threads>>>(t);
         CHECK_CUDA_ERRORS(cudaPeekAtLastError());
+        CHECK_CUDA_ERRORS(cudaEventRecord(presynapticUpdateStop));
     }
 }

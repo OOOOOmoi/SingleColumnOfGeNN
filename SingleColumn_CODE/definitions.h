@@ -40,6 +40,7 @@ EXPORT_VAR double neuronUpdateTime;
 EXPORT_VAR double presynapticUpdateTime;
 EXPORT_VAR double postsynapticUpdateTime;
 EXPORT_VAR double synapseDynamicsTime;
+
 // ------------------------------------------------------------------------
 // local neuron groups
 // ------------------------------------------------------------------------

@@ -22,3 +22,20 @@ struct WeightInfo{
     float w_ave;
     float w_sd;
 };
+
+namespace ParaMeters{
+    enum{
+        PopulationE,
+        PopulationI,
+        PopulationMax
+    };
+    const double meanDelay[PopulationMax] = {
+        1.5,    // PopulationE
+        0.75};  // PopulationI
+
+    const double delaySD[PopulationMax] = {
+        0.75,   // PopulationE
+        0.375}; // PopulationI
+    const double dtMs = 0.1;
+    const bool measureTiming = true;
+}
