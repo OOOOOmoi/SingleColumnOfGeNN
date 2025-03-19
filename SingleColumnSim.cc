@@ -15,7 +15,7 @@
 #include <memory>
 #include "RecordFunc.h"
 using namespace std;
-#define TOTAL_TIME 1000.0f
+#define TOTAL_TIME 3000.0f
 #define REPORT_TIME 100.0f
 
 int main(){

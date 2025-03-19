@@ -20,6 +20,19 @@ const char *FileSynapseNumber="/home/yangjinhao/GeNN/userproject/SingleColumn/Sy
 const char *FileSynapseNumberExternal="/home/yangjinhao/GeNN/userproject/SingleColumn/SynapsesNumberEx.txt";
 const char *FileInd="/home/yangjinhao/GeNN/userproject/SingleColumn/SynapsesInd.txt";
 
+class changeableDC : public CurrentSourceModels::Base
+{
+public:
+    DECLARE_MODEL(changeableDC, 1, 0);
+    SET_INJECTION_CODE(
+        "if (t > 800 && t<1600)\n"
+        "   $(injectCurrent, 0.001 * $(magnitude));\n"
+        "else \n"
+        "   $(injectCurrent, 0);\n");
+    SET_PARAM_NAMES({"magnitude"});
+};
+IMPLEMENT_MODEL(changeableDC);
+
 map<string,map<string,int>> getSynNum(){
     ifstream file(FileSynapseNumber, ios::in);
     string srcPop, tarPop;
@@ -38,8 +51,8 @@ map<string,map<string,ParaMeters::weightInfo>> getSynWeight(){
     double wAve, wSd;
     map<string,map<string,ParaMeters::weightInfo>> SynWeight;
     while(file>>srcPop>>tarPop>>wAve>>wSd){
-        SynWeight[tarPop][srcPop].wAve=wAve;
-        SynWeight[tarPop][srcPop].wSd=wSd;
+        SynWeight[tarPop][srcPop].wAve=wAve/1000;
+        SynWeight[tarPop][srcPop].wSd=wSd/1000;
     }
     file.close();
     return SynWeight;
@@ -97,7 +110,7 @@ void modelDefinition(ModelSpec &model){
     for (int pop=0;pop<ParaMeters::PopulationMax;pop++){
         string popName=ParaMeters::populationNames[pop];
         cout<<"Create Group:"<<popName<<", Neuron Number="<<NeuronNumberMap[popName]<<endl;
-        float ioffset=ParaMeters::input[ParaMeters::populationNames[pop]];
+        float ioffset=ParaMeters::input[ParaMeters::populationNames[pop]]/1000;
         NeuronModels::LIF::ParamValues lifParams(
             ParaMeters::lifParam.Cm/1000.0,//C
             ParaMeters::lifParam.taum,//TauM
@@ -107,6 +120,11 @@ void modelDefinition(ModelSpec &model){
             ioffset,//Ioffset
             ParaMeters::lifParam.t_ref);//refractor
         auto *Neu=model.addNeuronPopulation<NeuronModels::LIF>(popName,NeuronNumberMap[popName],lifParams,lifInit);
+        if(popName=="E23"){
+            changeableDC::ParamValues DCpara(
+                500);  // 0 - magnitude
+            model.addCurrentSource<changeableDC>("CurrE23",popName,DCpara,{});
+        }
         if(SpikeRecord==true){
             Neu->setSpikeRecordingEnabled(true);
         }
