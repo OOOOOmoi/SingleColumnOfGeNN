@@ -20,17 +20,6 @@ const char *FileSynapseNumber="/home/yangjinhao/GeNN/userproject/SingleColumn/Sy
 const char *FileSynapseNumberExternal="/home/yangjinhao/GeNN/userproject/SingleColumn/SynapsesNumberEx.txt";
 const char *FileInd="/home/yangjinhao/GeNN/userproject/SingleColumn/SynapsesInd.txt";
 
-class GaussianMin : public InitVarSnippet::Base
-{
-public:
-    DECLARE_SNIPPET(GaussianMin, 3);
-
-    SET_CODE("$(value) = fmax($(min), $(mean) + ($(gennrand_normal) * $(sd)));");
-
-    SET_PARAM_NAMES({"mean", "sd", "min"});
-};
-IMPLEMENT_SNIPPET(GaussianMin);
-
 map<string,map<string,int>> getSynNum(){
     ifstream file(FileSynapseNumber, ios::in);
     string srcPop, tarPop;
@@ -87,7 +76,7 @@ map<string,map<string,float>> IndCompute(map<string,int> NeuronCount){
 
 void modelDefinition(ModelSpec &model){
     model.setDT(ParaMeters::dtMs);
-    model.setName("SingleColumnWithSTDP");
+    model.setName("SingleColumn");
     unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
     model.setSeed(seed);
     model.setTiming(ParaMeters::measureTiming);
@@ -102,6 +91,9 @@ void modelDefinition(ModelSpec &model){
     NeuronModels::LIF::VarValues lifInit(
         initVar<InitVarSnippet::Normal>(vDist), //V
         0.0);//refractor
+    ifstream PoissonWeight(FilePoissonWeight,ios::in);
+    map<string,map<string,float>> K;
+    K=IndCompute(ParaMeters::neuron_number);
     for (int pop=0;pop<ParaMeters::PopulationMax;pop++){
         string popName=ParaMeters::populationNames[pop];
         cout<<"Create Group:"<<popName<<", Neuron Number="<<NeuronNumberMap[popName]<<endl;
@@ -117,6 +109,15 @@ void modelDefinition(ModelSpec &model){
         auto *Neu=model.addNeuronPopulation<NeuronModels::LIF>(popName,NeuronNumberMap[popName],lifParams,lifInit);
         if(SpikeRecord==true){
             Neu->setSpikeRecordingEnabled(true);
+        }
+        if (PoissionInput==true){
+            string popPoisson;
+            float weightPoisson;
+            PoissonWeight>>popPoisson>>weightPoisson;
+            CurrentSourceModels::PoissonExp::VarValues poissonInit(0.0);
+            CurrentSourceModels::PoissonExp::ParamValues poissonParams(weightPoisson/1000.0,ParaMeters::lifParam.tau_syn,1*K["external"][popName]);
+            model.addCurrentSource<CurrentSourceModels::PoissonExp>(popName+"_Poisson",popName,poissonParams,poissonInit);
+            cout<<"Creating Poisson Input Of "<<popName<<endl;
         }
     }
     PostsynapticModels::ExpCurr::ParamValues excitatoryExpCurrParams(
