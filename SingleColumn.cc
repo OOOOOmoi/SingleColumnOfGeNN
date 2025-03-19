@@ -20,6 +20,42 @@ const char *FileSynapseNumber="/home/yangjinhao/GeNN/userproject/SingleColumn/Sy
 const char *FileSynapseNumberExternal="/home/yangjinhao/GeNN/userproject/SingleColumn/SynapsesNumberEx.txt";
 const char *FileInd="/home/yangjinhao/GeNN/userproject/SingleColumn/SynapsesInd.txt";
 
+class GaussianMin : public InitVarSnippet::Base
+{
+public:
+    DECLARE_SNIPPET(GaussianMin, 3);
+
+    SET_CODE("$(value) = fmax($(min), $(mean) + ($(gennrand_normal) * $(sd)));");
+
+    SET_PARAM_NAMES({"mean", "sd", "min"});
+};
+IMPLEMENT_SNIPPET(GaussianMin);
+
+map<string,map<string,int>> getSynNum(){
+    ifstream file(FileSynapseNumber, ios::in);
+    string srcPop, tarPop;
+    float synNum;
+    map<string,map<string,int>> SynNumber;
+    while(file>>srcPop>>tarPop>>synNum){
+        SynNumber[tarPop][srcPop]=static_cast<int>(synNum);
+    }
+    file.close();
+    return SynNumber;
+}
+
+map<string,map<string,ParaMeters::weightInfo>> getSynWeight(){
+    ifstream file(FileWeight,ios::in);
+    string srcPop, tarPop;
+    double wAve, wSd;
+    map<string,map<string,ParaMeters::weightInfo>> SynWeight;
+    while(file>>srcPop>>tarPop>>wAve>>wSd){
+        SynWeight[tarPop][srcPop].wAve=wAve;
+        SynWeight[tarPop][srcPop].wSd=wSd;
+    }
+    file.close();
+    return SynWeight;
+}
+
 void SaveInd(map<string,map<string,float>>& K, string PopList[]){
     ofstream file(FileInd);
     for (int i=0;i<17;i++){
@@ -49,34 +85,9 @@ map<string,map<string,float>> IndCompute(map<string,int> NeuronCount){
     return K;
 }
 
-map<string,map<string,WeightInfo>> GetWeight(){
-    map<string,map<string,WeightInfo>> W;
-    ifstream Weight(FileWeight,ios::in);
-    string SrcPop,TarPop;
-    float wAve,wSd;
-    while (Weight>>SrcPop>>TarPop>>wAve>>wSd){
-        W[SrcPop][TarPop].w_ave=wAve/1000;
-        W[SrcPop][TarPop].w_sd=wSd/1000;
-    }
-    Weight.close();
-    return W;
-}
-
-LIFParams NeuronParamInit(string name, float EL, float Vth, float Vreset, float Cm, float taum, float tau_syn, float t_ref){
-    LIFParams Param;
-    Param.NeuronName=name;
-    Param.EL=EL;
-    Param.Vth=Vth;
-    Param.Vreset=Vreset;
-    Param.Cm=Cm;
-    Param.taum=taum;
-    Param.tau_syn=tau_syn;
-    Param.t_ref=t_ref;
-    return Param;
-}
 void modelDefinition(ModelSpec &model){
     model.setDT(ParaMeters::dtMs);
-    model.setName("SingleColumn");
+    model.setName("SingleColumnWithSTDP");
     unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
     model.setSeed(seed);
     model.setTiming(ParaMeters::measureTiming);
@@ -84,122 +95,28 @@ void modelDefinition(ModelSpec &model){
     // model.setDefaultSparseConnectivityLocation(VarLocation::HOST_DEVICE);
     // model.setMergePostsynapticModels(true);
     // model.setDefaultNarrowSparseIndEnabled(true);
-    ifstream PoissonWeight(FilePoissonWeight,ios::in);
-    ifstream SynapsesNumber(FileSynapseNumber,ios::in);
-    LIFParams ParamE;
-    LIFParams ParamS;
-    LIFParams ParamP;
-    LIFParams ParamV;
-    LIFParams ParamH;
-    // LIFParams ParamS=NeuronParamInit("S",-76.0,-50.0,-60.0,800.0,50.0,0.5,1.0);
-    // LIFParams ParamP=NeuronParamInit("P",-86.0,-50.0,-60.0,200.0,10.0,0.5,1.0);
-    // LIFParams ParamV=NeuronParamInit("V",-70.0,-50.0,-65.0,100.0,20.0,0.5,1.0);
-    // LIFParams ParamH=NeuronParamInit("H",-70.0,-50.0,-65.0,100.0,20.0,0.5,1.0);
-    InitParam InitVoltage;
-    vector<string> NeuronType={"E","S","P","V"};
-    vector<string> LayerList={"1","23","4","5","6"};
-    string PopList[17];
-    PopList[0]="H1";
-    int PopNum=1;
-    for (auto layer = LayerList.begin()+1; layer != LayerList.end(); layer++){
-        for (auto pop = NeuronType.begin(); pop != NeuronType.end(); pop++){
-                PopList[PopNum]=*pop+*layer;
-                PopNum++;
-        }
-    }
-    map<string,int> neuron_number={
-        {"1", 15545},
-        {"23", 60753},
-        {"4", 87985},
-        {"5", 25295},
-        {"6", 23903},
-        {"total", 213481},
-        {"H1", 15545},
-        {"E23", 51738},
-        {"S23", 1892},
-        {"P23", 2610},
-        {"V23", 4514},
-        {"E4", 74933},
-        {"S4", 4041},
-        {"P4", 7037},
-        {"V4", 1973},
-        {"E5", 21624},
-        {"S5", 1586},
-        {"P5", 1751},
-        {"V5", 334},
-        {"E6", 20278},
-        {"S6", 1667},
-        {"P6", 1656},
-        {"V6", 302}
-    };
-    map<string,float> input={
-        {"H1", 501.0},
-        {"V23", 501.0-10.0},
-        {"S23", 501.0},
-        {"E23", 501.0+50.0},
-        {"P23", 501.0},
-        {"V4", 501.0-50.0},
-        {"S4", 501.0},
-        {"E4", 501.0+50.0},
-        {"P4", 501.0+10.0},
-        {"V5", 501.0-10.0},
-        {"S5", 501.0},
-        {"E5", 501.0+10.0},
-        {"P5", 501.0},
-        {"V6", 501.0-10.0},
-        {"S6", 501.0},
-        {"E6", 501.0+50.0},
-        {"P6", 501.0}
-    };
+    map<string,int> NeuronNumberMap=ParaMeters::neuron_number;
     InitVarSnippet::Normal::ParamValues vDist(
-        InitVoltage.Vmean, //mean
-        InitVoltage.Vstd);  //sd
+        ParaMeters::Vmean, //mean
+        ParaMeters::Vsd);  //sd
     NeuronModels::LIF::VarValues lifInit(
         initVar<InitVarSnippet::Normal>(vDist), //V
         0.0);//refractor
-    map<string,map<string,float>> K;
-    K=IndCompute(neuron_number);
-    SaveInd(K,PopList);
-    double ioffset;
-    for (int i = 0; i < 17; i++){
-        LIFParams ParaList;
-        if (PopList[i].find("E")!=string::npos){
-            ParaList=ParamE;
-        }else if (PopList[i].find("S")!=string::npos){
-            ParaList=ParamS;
-        }else if (PopList[i].find("P")!=string::npos){
-            ParaList=ParamP;
-        }else if (PopList[i].find("V")!=string::npos){
-            ParaList=ParamV;
-        }else if (PopList[i].find("H")!=string::npos){
-            ParaList=ParamH;
-        }
-        if (PoissionInput==false){
-            ioffset=input[PopList[i]]/1000.0;
-        }
+    for (int pop=0;pop<ParaMeters::PopulationMax;pop++){
+        string popName=ParaMeters::populationNames[pop];
+        cout<<"Create Group:"<<popName<<", Neuron Number="<<NeuronNumberMap[popName]<<endl;
+        float ioffset=ParaMeters::input[ParaMeters::populationNames[pop]];
         NeuronModels::LIF::ParamValues lifParams(
-            ParaList.Cm/1000.0,//C
-            ParaList.taum,//TauM
-            ParaList.EL,//Vrest
-            ParaList.Vreset,//Vreset
-            ParaList.Vth,//Vthresh
+            ParaMeters::lifParam.Cm/1000.0,//C
+            ParaMeters::lifParam.taum,//TauM
+            ParaMeters::lifParam.EL,//Vrest
+            ParaMeters::lifParam.Vreset,//Vreset
+            ParaMeters::lifParam.Vth,//Vthresh
             ioffset,//Ioffset
-            ParaList.t_ref);//refractor
-        
-        cout<<"Building Population: "<<PopList[i]<<" ,NeuronNumber: "<<neuron_number[PopList[i]]<<", Ioffset="<<ioffset<<endl;
-        auto *Neu=model.addNeuronPopulation<NeuronModels::LIF>(PopList[i],neuron_number[PopList[i]],lifParams,lifInit);
-        
+            ParaMeters::lifParam.t_ref);//refractor
+        auto *Neu=model.addNeuronPopulation<NeuronModels::LIF>(popName,NeuronNumberMap[popName],lifParams,lifInit);
         if(SpikeRecord==true){
             Neu->setSpikeRecordingEnabled(true);
-        }
-        if (PoissionInput==true){
-            string popPoisson;
-            float weightPoisson;
-            PoissonWeight>>popPoisson>>weightPoisson;
-            CurrentSourceModels::PoissonExp::VarValues poissonInit(0.0);
-            CurrentSourceModels::PoissonExp::ParamValues poissonParams(weightPoisson/1000.0,ParamE.tau_syn,1*K["external"][PopList[i]]);
-            model.addCurrentSource<CurrentSourceModels::PoissonExp>(PopList[i]+"_Poisson",PopList[i],poissonParams,poissonInit);
-            cout<<"Creating Poisson Input Of "<<PopList[i]<<endl;
         }
     }
     PostsynapticModels::ExpCurr::ParamValues excitatoryExpCurrParams(
@@ -207,32 +124,49 @@ void modelDefinition(ModelSpec &model){
 
     PostsynapticModels::ExpCurr::ParamValues inhibitoryExpCurrParams(
         0.5);  // 0 - TauSyn (ms)
-    map<string,map<string,WeightInfo>> W;
-    W=GetWeight();
-    float syn_num;
-    string temp1,temp2;
     double Wave,Wsd;
     const double quantile = 0.9999;
-    const double maxDelayMs[ParaMeters::PopulationMax] = {
-        ParaMeters::meanDelay[ParaMeters::PopulationE] + (ParaMeters::delaySD[ParaMeters::PopulationE] * normalCDFInverse(quantile)),
-        ParaMeters::meanDelay[ParaMeters::PopulationI] + (ParaMeters::delaySD[ParaMeters::PopulationI] * normalCDFInverse(quantile))};
-    const unsigned int maxDendriticDelaySlots = (unsigned int)rint(max(maxDelayMs[ParaMeters::PopulationE], maxDelayMs[ParaMeters::PopulationI])  / ParaMeters::dtMs);
-    for (auto srcPop=begin(PopList);srcPop!=end(PopList);srcPop++){
-        for (auto tarPop=begin(PopList);tarPop!=end(PopList);tarPop++){
-            SynapsesNumber>>temp1>>temp2>>syn_num;
-            int SynNum=static_cast<int>(syn_num);
-            string SynName=*srcPop+"2"+*tarPop;
-            if(syn_num==0.0){
-                cout<<"There are no connection from "<<*srcPop<<" to "<<*tarPop<<endl;
+    const double maxDelayMs[ParaMeters::typeMax] = {
+        ParaMeters::meanDelay[ParaMeters::typeE] + (ParaMeters::delaySD[ParaMeters::typeI] * normalCDFInverse(quantile)),
+        ParaMeters::meanDelay[ParaMeters::typeE] + (ParaMeters::delaySD[ParaMeters::typeI] * normalCDFInverse(quantile))};
+    const unsigned int maxDendriticDelaySlots = (unsigned int)rint(max(maxDelayMs[ParaMeters::typeE], maxDelayMs[ParaMeters::typeI])  / ParaMeters::dtMs);
+    map<string,map<string,int>> SynNumMap=getSynNum();
+    map<string,map<string,ParaMeters::weightInfo>> SynWeightMap=getSynWeight();
+    for (int tarPop=0;tarPop<ParaMeters::PopulationMax;tarPop++){
+        string tarName=ParaMeters::populationNames[tarPop];
+        for (int srcPop=0;srcPop<ParaMeters::PopulationMax;srcPop++){
+            string srcName=ParaMeters::populationNames[srcPop];
+            int SynNum=SynNumMap[tarName][srcName];
+            string SynName=ParaMeters::getSynName(tarPop,srcPop);
+            if(SynNum==0){
+                cout<<"There are no connection from "<<srcName<<" to "<<tarName<<endl;
                 continue;
             }
-            Wave=static_cast<double>(W[*srcPop][*tarPop].w_ave);
-            Wsd=static_cast<double>(W[*srcPop][*tarPop].w_sd);
-            cout<<"AveDelay= "<<ParaMeters::meanDelay[0]<<" "<<ParaMeters::meanDelay[1]<<", maxDelay="<<maxDelayMs[0]<<" "<<maxDelayMs[1]<<endl;
+            cout<<"Create Synapses of "<<SynName<<", synNum="<<SynNum<<endl;
+            Wave=SynWeightMap[tarName][srcName].wAve;
+            Wsd=SynWeightMap[tarName][srcName].wSd;
             InitSparseConnectivitySnippet::FixedNumberTotalWithReplacement::ParamValues synapseNum(
                 SynNum);
-            if (srcPop->find("E") != string::npos){
-                cout<<"Creating Connect of "<<*srcPop<<" to "<<*tarPop<<", SynapseNumber="<<static_cast<int>(syn_num)<<", AveWeight="<<Wave<<endl;
+            if(srcName.find("E") == string::npos){
+                InitVarSnippet::NormalClipped::ParamValues wDist(
+                    Wave,
+                    Wsd,
+                    -numeric_limits<float>::max(),
+                    0);
+                InitVarSnippet::NormalClippedDelay::ParamValues dDist(
+                    ParaMeters::meanDelay[1],
+                    ParaMeters::delaySD[1],
+                    0.0,
+                    maxDelayMs[1]);
+                WeightUpdateModels::StaticPulseDendriticDelay::VarValues staticSynapsesInit(
+                    initVar<InitVarSnippet::NormalClipped>(wDist),
+                    initVar<InitVarSnippet::NormalClippedDelay>(dDist));
+                auto* syn=model.addSynapsePopulation<WeightUpdateModels::StaticPulseDendriticDelay,PostsynapticModels::ExpCurr>(
+                    SynName,SynapseMatrixType::SPARSE_INDIVIDUALG,NO_DELAY,srcName,tarName,
+                    {},staticSynapsesInit,inhibitoryExpCurrParams,{},
+                    initConnectivity<InitSparseConnectivitySnippet::FixedNumberTotalWithReplacement>(synapseNum));
+                syn->setMaxDendriticDelayTimesteps(maxDendriticDelaySlots);
+            }else{
                 InitVarSnippet::NormalClipped::ParamValues wDist(
                     Wave,
                     Wsd,
@@ -247,93 +181,11 @@ void modelDefinition(ModelSpec &model){
                     initVar<InitVarSnippet::NormalClipped>(wDist),
                     initVar<InitVarSnippet::NormalClippedDelay>(dDist));
                 auto* syn=model.addSynapsePopulation<WeightUpdateModels::StaticPulseDendriticDelay,PostsynapticModels::ExpCurr>(
-                    SynName,SynapseMatrixType::SPARSE_INDIVIDUALG,NO_DELAY,*srcPop,*tarPop,
+                    SynName,SynapseMatrixType::SPARSE_INDIVIDUALG,NO_DELAY,srcName,tarName,
                     {},staticSynapsesInit,excitatoryExpCurrParams,{},
-                    initConnectivity<InitSparseConnectivitySnippet::FixedNumberTotalWithReplacement>(synapseNum));
-                syn->setMaxDendriticDelayTimesteps(maxDendriticDelaySlots);
-            }else if(srcPop->find("S") != string::npos){
-                cout<<"Creating Connect of "<<*srcPop<<" to "<<*tarPop<<", SynapseNumber="<<static_cast<int>(syn_num)<<", AveWeight="<<Wave<<", AveDelay="<<endl;
-                InitVarSnippet::NormalClipped::ParamValues wDist(
-                    Wave,
-                    Wsd,
-                    -numeric_limits<float>::max(),
-                    0);
-                InitVarSnippet::NormalClippedDelay::ParamValues dDist(
-                    ParaMeters::meanDelay[1],
-                    ParaMeters::delaySD[1],
-                    0.0,
-                    maxDelayMs[1]);
-                WeightUpdateModels::StaticPulseDendriticDelay::VarValues staticSynapsesInit(
-                    initVar<InitVarSnippet::NormalClipped>(wDist),
-                    initVar<InitVarSnippet::NormalClippedDelay>(dDist));
-                auto* syn=model.addSynapsePopulation<WeightUpdateModels::StaticPulseDendriticDelay,PostsynapticModels::ExpCurr>(
-                    *srcPop+"2"+*tarPop,SynapseMatrixType::SPARSE_INDIVIDUALG,NO_DELAY,*srcPop,*tarPop,
-                    {},staticSynapsesInit,inhibitoryExpCurrParams,{},
-                    initConnectivity<InitSparseConnectivitySnippet::FixedNumberTotalWithReplacement>(synapseNum));
-                syn->setMaxDendriticDelayTimesteps(maxDendriticDelaySlots);
-            }else if(srcPop->find("P") != string::npos){
-                cout<<"Creating Connect of "<<*srcPop<<" to "<<*tarPop<<", SynapseNumber="<<static_cast<int>(syn_num)<<", AveWeight="<<Wave<<endl;
-                InitVarSnippet::NormalClipped::ParamValues wDist(
-                    Wave,
-                    Wsd,
-                    -numeric_limits<float>::max(),
-                    0);
-                InitVarSnippet::NormalClippedDelay::ParamValues dDist(
-                    ParaMeters::meanDelay[1],
-                    ParaMeters::delaySD[1],
-                    0.0,
-                    maxDelayMs[1]);
-                WeightUpdateModels::StaticPulseDendriticDelay::VarValues staticSynapsesInit(
-                    initVar<InitVarSnippet::NormalClipped>(wDist),
-                    initVar<InitVarSnippet::NormalClippedDelay>(dDist));
-                auto* syn=model.addSynapsePopulation<WeightUpdateModels::StaticPulseDendriticDelay,PostsynapticModels::ExpCurr>(
-                    SynName,SynapseMatrixType::SPARSE_INDIVIDUALG,NO_DELAY,*srcPop,*tarPop,
-                    {},staticSynapsesInit,inhibitoryExpCurrParams,{},
-                    initConnectivity<InitSparseConnectivitySnippet::FixedNumberTotalWithReplacement>(synapseNum));
-                syn->setMaxDendriticDelayTimesteps(maxDendriticDelaySlots);
-            }else if(srcPop->find("V") != string::npos){
-                cout<<"Creating Connect of "<<*srcPop<<" to "<<*tarPop<<", SynapseNumber="<<static_cast<int>(syn_num)<<", AveWeight="<<Wave<<endl;
-                InitVarSnippet::NormalClipped::ParamValues wDist(
-                    Wave,
-                    Wsd,
-                    -numeric_limits<float>::max(),
-                    0);
-                InitVarSnippet::NormalClippedDelay::ParamValues dDist(
-                    ParaMeters::meanDelay[1],
-                    ParaMeters::delaySD[1],
-                    0.0,
-                    maxDelayMs[1]);
-                WeightUpdateModels::StaticPulseDendriticDelay::VarValues staticSynapsesInit(
-                    initVar<InitVarSnippet::NormalClipped>(wDist),
-                    initVar<InitVarSnippet::NormalClippedDelay>(dDist));
-                auto* syn=model.addSynapsePopulation<WeightUpdateModels::StaticPulseDendriticDelay,PostsynapticModels::ExpCurr>(
-                    SynName,SynapseMatrixType::SPARSE_INDIVIDUALG,NO_DELAY,*srcPop,*tarPop,
-                    {},staticSynapsesInit,inhibitoryExpCurrParams,{},
-                    initConnectivity<InitSparseConnectivitySnippet::FixedNumberTotalWithReplacement>(synapseNum));
-                syn->setMaxDendriticDelayTimesteps(maxDendriticDelaySlots);
-            }else if(srcPop->find("H") != string::npos){
-                cout<<"Creating Connect of "<<*srcPop<<" to "<<*tarPop<<", SynapseNumber="<<static_cast<int>(syn_num)<<", AveWeight="<<Wave<<endl;
-                InitVarSnippet::NormalClipped::ParamValues wDist(
-                    Wave,
-                    Wsd,
-                    -numeric_limits<float>::max(),
-                    0);
-                InitVarSnippet::NormalClippedDelay::ParamValues dDist(
-                    ParaMeters::meanDelay[1],
-                    ParaMeters::delaySD[1],
-                    0.0,
-                    maxDelayMs[1]);
-                WeightUpdateModels::StaticPulseDendriticDelay::VarValues staticSynapsesInit(
-                    initVar<InitVarSnippet::NormalClipped>(wDist),
-                    initVar<InitVarSnippet::NormalClippedDelay>(dDist));
-                auto* syn=model.addSynapsePopulation<WeightUpdateModels::StaticPulseDendriticDelay,PostsynapticModels::ExpCurr>(
-                    SynName,SynapseMatrixType::SPARSE_INDIVIDUALG,NO_DELAY,*srcPop,*tarPop,
-                    {},staticSynapsesInit,inhibitoryExpCurrParams,{},
                     initConnectivity<InitSparseConnectivitySnippet::FixedNumberTotalWithReplacement>(synapseNum));
                 syn->setMaxDendriticDelayTimesteps(maxDendriticDelaySlots);
             }
         }
     }
-    PoissonWeight.close();
-    SynapsesNumber.close();
 }
