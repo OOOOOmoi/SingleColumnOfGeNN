@@ -25,7 +25,7 @@ class changeableDC : public CurrentSourceModels::Base
 public:
     DECLARE_MODEL(changeableDC, 1, 0);
     SET_INJECTION_CODE(
-        "if (t > 800 && t<1600)\n"
+        "if (t > 600 && t<1600)\n"
         "   $(injectCurrent, 0.001 * $(magnitude));\n"
         "else \n"
         "   $(injectCurrent, 0);\n");
@@ -87,6 +87,12 @@ map<string,map<string,float>> IndCompute(map<string,int> NeuronCount){
     return K;
 }
 
+void addChangeableDC(ModelSpec &model, string popName, float DC, string DCName){
+    changeableDC::ParamValues DCpara(
+                DC);  // 0 - magnitude
+    model.addCurrentSource<changeableDC>(DCName,popName,DCpara,{});
+}
+
 void modelDefinition(ModelSpec &model){
     model.setDT(ParaMeters::dtMs);
     model.setName("SingleColumn");
@@ -120,11 +126,6 @@ void modelDefinition(ModelSpec &model){
             ioffset,//Ioffset
             ParaMeters::lifParam.t_ref);//refractor
         auto *Neu=model.addNeuronPopulation<NeuronModels::LIF>(popName,NeuronNumberMap[popName],lifParams,lifInit);
-        if(popName=="E23"){
-            changeableDC::ParamValues DCpara(
-                500);  // 0 - magnitude
-            model.addCurrentSource<changeableDC>("CurrE23",popName,DCpara,{});
-        }
         if(SpikeRecord==true){
             Neu->setSpikeRecordingEnabled(true);
         }
@@ -138,6 +139,19 @@ void modelDefinition(ModelSpec &model){
             cout<<"Creating Poisson Input Of "<<popName<<endl;
         }
     }
+    // addChangeableDC(model, "E4", 500, "CurrE4");
+    addChangeableDC(model, "E23", 500, "CurrE23");
+    // addChangeableDC(model, "S23", 500, "CurrS23");
+    // addChangeableDC(model, "P23", 500, "CurrP23");
+    // addChangeableDC(model, "V23", 500, "CurrV23");
+    addChangeableDC(model, "E5", 200, "CurrE5");
+    // addChangeableDC(model, "S5", 200, "CurrS5");
+    // addChangeableDC(model, "P5", 200, "CurrP5");
+    // addChangeableDC(model, "V5", 200, "CurrV5");
+    addChangeableDC(model, "E6", 200, "CurrE6");
+    // addChangeableDC(model, "S6", 200, "CurrS6");
+    // addChangeableDC(model, "P6", 200, "CurrP6");
+    // addChangeableDC(model, "V6", 200, "CurrV6");
     PostsynapticModels::ExpCurr::ParamValues excitatoryExpCurrParams(
         0.5);  // 0 - TauSyn (ms)
 
