@@ -1924,19 +1924,23 @@ extern "C" __global__ void initializeSparseKernel() {
             else {
                 lo = mid + 1;
             }
-        }
+        }// 每个线程根据自己的id找到对应的group
         struct MergedSynapseSparseInitGroup0 *group = &d_mergedSynapseSparseInitGroup0[lo - 1]; 
         const unsigned int groupStartID = d_mergedSynapseSparseInitGroupStartID0[lo - 1];
         const unsigned int lid = id - groupStartID;
         curandStatePhilox4_32_10_t localRNG = d_rng;
-        skipahead_sequence((unsigned long long)2733248 + id, &localRNG);
-        const unsigned int numBlocks = (group->numSrcNeurons + 64 - 1) / 64;
+        skipahead_sequence((unsigned long long)2733248 + id, &localRNG);// 为每个线程设置不同的随机数种子
+        const unsigned int numBlocks = (group->numSrcNeurons + 64 - 1) / 64;// 将所有的源神经元分为包含64个神经元的块
         unsigned int idx = lid;
+        // __syncthreads();
+        // if(threadIdx.x == 0) {
+        //     printf("blockIdx: %d, numBlocks: %d\n", blockIdx.x, numBlocks);
+        // }
         for(unsigned int r = 0; r < numBlocks; r++) {
-            const unsigned numRowsInBlock = (r == (numBlocks - 1)) ? ((group->numSrcNeurons - 1) % 64) + 1 : 64;
+            const unsigned numRowsInBlock = (r == (numBlocks - 1)) ? ((group->numSrcNeurons - 1) % 64) + 1 : 64;// 表达式为真时返回第一个值，否则返回第二个值
             __syncthreads();
             if (threadIdx.x < numRowsInBlock) {
-                shRowLength[threadIdx.x] = group->rowLength[(r * 64) + threadIdx.x];
+                shRowLength[threadIdx.x] = group->rowLength[(r * 64) + threadIdx.x];// 得到每个线程对应的rowLength
             }
             __syncthreads();
             for(unsigned int i = 0; i < numRowsInBlock; i++) {
@@ -2003,5 +2007,6 @@ void initializeSparse() {
         float tmp;
         CHECK_CUDA_ERRORS(cudaEventElapsedTime(&tmp, initSparseStart, initSparseStop));
         initSparseTime += tmp / 1000.0;
+        // std::cout<<"initSparseTime: "<<initSparseTime<<std::endl;
     }
 }

@@ -14,6 +14,7 @@
 #include <cassert>
 #include <memory>
 #include "RecordFunc.h"
+#include "DefaultParam.h"
 using namespace std;
 #define TOTAL_TIME 3000.0f
 #define REPORT_TIME 100.0f
@@ -83,36 +84,37 @@ int main(){
     initialize();
     initializeSparse();
     // cout<<"Record Connection Of E232E23 Begin"<<endl;
-    // ofstream file_rowLength("/home/yangjinhao/GeNN/userproject/SingleColumn/connectionInfo/rowLength.st");
-    // ofstream file_ind("/home/yangjinhao/GeNN/userproject/SingleColumn/connectionInfo/ind.st");
-    // ofstream file_g("/home/yangjinhao/GeNN/userproject/SingleColumn/connectionInfo/weight.st");
-    // ofstream file_d("/home/yangjinhao/GeNN/userproject/SingleColumn/connectionInfo/delay.st");
-    // pullE232S23ConnectivityFromDevice();
-    // pullE232S23StateFromDevice();
-    // for (int i=0;i<neuron_number["E23"];i++){
-    //     file_rowLength<<rowLengthE232S23[i];
-    //     if(i<neuron_number["E23"]){
-    //         file_rowLength<<" ";
-    //     }
-    //     for (int j=0;j<maxRowLengthE232S23;j++){
-    //         file_ind<<indE232S23[i*maxRowLengthE232S23+j];
-    //         file_g<<gE232S23[i];
-    //         file_d<<static_cast<int>(dE232S23[i]);
-    //         if(j<maxRowLengthE232S23-1){
-    //             file_ind<<" ";
-    //             file_g<<" ";
-    //             file_d<<" ";
-    //         }
-    //     }
-    //     file_ind<<endl;
-    //     file_g<<endl;
-    //     file_d<<endl;
-    // }
-    // file_rowLength<<endl;
-    // file_rowLength.close();
-    // file_ind.close();
-    // file_g.close();
-    // cout<<"Pull Connection Of E232E23 Complete"<<endl;
+    ofstream file_rowLength("/home/yangjinhao/GeNN/userproject/SingleColumn/connectionInfo/rowLength.st");
+    ofstream file_ind("/home/yangjinhao/GeNN/userproject/SingleColumn/connectionInfo/ind.st");
+    ofstream file_g("/home/yangjinhao/GeNN/userproject/SingleColumn/connectionInfo/weight.st");
+    ofstream file_d("/home/yangjinhao/GeNN/userproject/SingleColumn/connectionInfo/delay.st");
+    pullE232E23ConnectivityFromDevice();
+    pullE232E23StateFromDevice();
+    for (int i=0;i<ParaMeters::neuron_number["E23"];i++){
+        file_rowLength<<rowLengthE232E23[i];
+        if(i<ParaMeters::neuron_number["E23"]){
+            file_rowLength<<" ";
+        }
+        for (int j=0;j<maxRowLengthE232E23;j++){
+            file_ind<<indE232E23[i*maxRowLengthE232E23+j];
+            file_g<<gE232E23[i];
+            file_d<<static_cast<int>(dE232E23[i]);
+            if(j<maxRowLengthE232E23-1){
+                file_ind<<" ";
+                file_g<<" ";
+                file_d<<" ";
+            }
+        }
+        file_ind<<endl;
+        file_g<<endl;
+        file_d<<endl;
+    }
+    file_rowLength<<endl;
+    file_rowLength.close();
+    file_ind.close();
+    file_g.close();
+    file_d.close();
+    cout<<"Pull Connection Of E232E23 Complete"<<endl;
     cout<<"start Simulation"<<endl;
     clock_t start=clock();
     ofstream FileInSynE232P23("/home/yangjinhao/GeNN/userproject/SingleColumn/InSynE232P23.st");
